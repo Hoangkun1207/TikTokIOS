@@ -1,333 +1,4970 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup Form</title>
-    
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>NOVA 3D — Future Commerce</title>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-            text-decoration: none;
-            list-style: none;
-        }
+<style>
+:root{
+    --bg:#050505;
+    --bg-soft:#0a0a0c;
+    --card:rgba(255,255,255,.06);
+    --card-border:rgba(255,255,255,.12);
+    --text:#f5f5f7;
+    --muted:#9a9aa2;
+    --white:#fff;
+    --accent:#7c5cff;
+    --accent-2:#00d9ff;
+    --accent-3:#ff3d81;
+    --success:#00d084;
+    --shadow:0 25px 80px rgba(0,0,0,.45);
+    --radius:28px;
+}
 
-        body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .container{
-            position: relative;
-            width: 850px;
-            height: 550px;
-            background: #fff;
-            margin: 20px;
-            border-radius: 30px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, .2);
-            overflow: hidden;
-        }
+html{
+    scroll-behavior:smooth;
+    background:var(--bg);
+}
 
-            .container h1{
-                font-size: 36px;
-                margin: -10px 0;
-            }
+body{
+    font-family:"Inter",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+    min-height:100vh;
+}
 
-            .container p{
-                font-size: 14.5px;
-                margin: 15px 0;
-            }
+body.loading{
+    overflow:hidden;
+}
 
-        form{ width: 100%; }
+a{
+    color:inherit;
+    text-decoration:none;
+}
 
-        .form-box{
-            position: absolute;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            color: #333;
-            text-align: center;
-            padding: 40px;
-            z-index: 1;
-            transition: .6s ease-in-out 1.2s, visibility 0s 1s;
-        }
+button,
+input{
+    font:inherit;
+}
 
-            .container.active .form-box{ right: 50%; }
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+}
 
-            .form-box.register{ visibility: hidden; }
-                .container.active .form-box.register{ visibility: visible; }
+::selection{
+    background:var(--accent);
+    color:#fff;
+}
 
-        .input-box{
-            position: relative;
-            margin: 30px 0;
-        }
+::-webkit-scrollbar{
+    width:8px;
+}
 
-            .input-box input{
-                width: 100%;
-                padding: 13px 50px 13px 20px;
-                background: #eee;
-                border-radius: 8px;
-                border: none;
-                outline: none;
-                font-size: 16px;
-                color: #333;
-                font-weight: 500;
-            }
+::-webkit-scrollbar-track{
+    background:#050505;
+}
 
-                .input-box input::placeholder{
-                    color: #888;
-                    font-weight: 400;
-                }
-            
-            .input-box i{
-                position: absolute;
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: 20px;
-            }
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(var(--accent),var(--accent-2));
+    border-radius:20px;
+}
 
-        .forgot-link{ margin: -15px 0 15px; }
-            .forgot-link a{
-                font-size: 14.5px;
-                color: #333;
-            }
+::-webkit-scrollbar-thumb:hover{
+    background:var(--white);
+}
 
-        .btn{
-            width: 100%;
-            height: 48px;
-            background: #7494ec;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            color: #fff;
-            font-weight: 600;
-        }
+/* =========================
+   LOADING SCREEN
+========================= */
 
-        .social-icons{
-            display: flex;
-            justify-content: center;
-        }
+#loader{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#030304;
+    overflow:hidden;
+}
 
-            .social-icons a{
-                display: inline-flex;
-                padding: 10px;
-                border: 2px solid #ccc;
-                border-radius: 8px;
-                font-size: 24px;
-                color: #333;
-                margin: 0 8px;
-            }
+.loader-grid{
+    position:absolute;
+    width:140vw;
+    height:140vh;
+    opacity:.18;
+    background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+    background-size:60px 60px;
+    transform:perspective(600px) rotateX(60deg) translateY(15%);
+    transform-origin:center bottom;
+}
 
-        .toggle-box{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
+.loader-glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(124,92,255,.35),rgba(0,217,255,.08) 35%,transparent 70%);
+    filter:blur(20px);
+    animation:loaderPulse 2s ease-in-out infinite;
+}
 
-            .toggle-box::before{
-                content: '';
-                position: absolute;
-                left: -250%;
-                width: 300%;
-                height: 100%;
-                background: #7494ec;
-                border-radius: 150px;
-                z-index: 2;
-                transition: 1.8s ease-in-out;
-            }
+.loader-content{
+    position:relative;
+    z-index:2;
+    width:min(500px,85vw);
+    text-align:center;
+}
 
-                .container.active .toggle-box::before{ left: 50%; }
+.loader-logo{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(40px,7vw,82px);
+    font-weight:700;
+    letter-spacing:-4px;
+    line-height:1;
+}
 
-        .toggle-panel{
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-            transition: .6s ease-in-out;
-        }
+.loader-logo span{
+    color:var(--accent-2);
+    text-shadow:0 0 30px rgba(0,217,255,.5);
+}
 
-            .toggle-panel.toggle-left{ 
-                left: 0;
-                transition-delay: 1.2s; 
-            }
-                .container.active .toggle-panel.toggle-left{
-                    left: -50%;
-                    transition-delay: .6s;
-                }
+.loader-sub{
+    margin-top:18px;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:5px;
+    text-transform:uppercase;
+}
 
-            .toggle-panel.toggle-right{ 
-                right: -50%;
-                transition-delay: .6s;
-            }
-                .container.active .toggle-panel.toggle-right{
-                    right: 0;
-                    transition-delay: 1.2s;
-                }
+.loader-bar{
+    position:relative;
+    width:100%;
+    height:3px;
+    margin-top:45px;
+    border-radius:20px;
+    overflow:hidden;
+    background:rgba(255,255,255,.08);
+}
 
-            .toggle-panel p{ margin-bottom: 20px; }
+.loader-progress{
+    width:0%;
+    height:100%;
+    border-radius:inherit;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2),#fff);
+    box-shadow:0 0 20px var(--accent-2);
+}
 
-            .toggle-panel .btn{
-                width: 160px;
-                height: 46px;
-                background: transparent;
-                border: 2px solid #fff;
-                box-shadow: none;
-            }
+.loader-percent{
+    margin-top:14px;
+    font-size:12px;
+    font-weight:700;
+    color:var(--muted);
+}
 
-        @media screen and (max-width: 650px){
-            .container{ height: calc(100vh - 40px); }
+/* =========================
+   FIXED BACKGROUND
+========================= */
 
-            .form-box{
-                bottom: 0;
-                width: 100%;
-                height: 70%;
-            }
+#webgl-container{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    width:100%;
+    height:100vh;
+    pointer-events:none;
+}
 
-                .container.active .form-box{
-                    right: 0;
-                    bottom: 30%;
-                }
+#webgl-container canvas{
+    width:100%!important;
+    height:100%!important;
+    display:block;
+}
 
-            .toggle-box::before{
-                left: 0;
-                top: -270%;
-                width: 100%;
-                height: 300%;
-                border-radius: 20vw;
-            }
+.ambient-noise{
+    position:fixed;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
 
-                .container.active .toggle-box::before{
-                    left: 0;
-                    top: 70%;
-                }
+.page-glow{
+    position:fixed;
+    z-index:0;
+    pointer-events:none;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.13;
+}
 
-                .container.active .toggle-panel.toggle-left{
-                    left: 0;
-                    top: -30%;
-                }
+.page-glow.one{
+    top:-250px;
+    left:-250px;
+    background:var(--accent);
+}
 
-            .toggle-panel{ 
-                width: 100%;
-                height: 30%;
-            }
-                .toggle-panel.toggle-left{ top: 0; }
-                .toggle-panel.toggle-right{
-                    right: 0;
-                    bottom: -30%;
-                }
+.page-glow.two{
+    right:-300px;
+    bottom:-250px;
+    background:var(--accent-2);
+}
 
-                    .container.active .toggle-panel.toggle-right{ bottom: 0; }
-        }
+/* =========================
+   MAIN WRAPPER
+========================= */
 
-        @media screen and (max-width: 400px){
-            .form-box { padding: 20px; }
+.site{
+    position:relative;
+    z-index:3;
+}
 
-            .toggle-panel h1{font-size: 30px; }
-        }
+.container{
+    width:min(1240px,calc(100% - 48px));
+    margin:0 auto;
+}
+
+.section-label{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 14px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:999px;
+    color:#c7c7cf;
+    background:rgba(255,255,255,.035);
+    backdrop-filter:blur(16px);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.section-label::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--accent-2);
+    box-shadow:0 0 14px var(--accent-2);
+}
+
+.section-title{
+    max-width:850px;
+    margin-top:24px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(42px,7vw,92px);
+    font-weight:700;
+    line-height:.96;
+    letter-spacing:-4px;
+}
+
+.section-title .gradient{
+    background:linear-gradient(100deg,#fff 15%,#a795ff 50%,#58e8ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.section-desc{
+    max-width:620px;
+    margin-top:28px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.8;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav{
+    position:fixed;
+    top:20px;
+    left:50%;
+    z-index:100;
+    width:min(1320px,calc(100% - 30px));
+    transform:translateX(-50%);
+    transition:.4s ease;
+}
+
+.nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:14px 18px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    background:rgba(8,8,10,.48);
+    box-shadow:0 10px 40px rgba(0,0,0,.18);
+    backdrop-filter:blur(24px) saturate(140%);
+}
+
+.nav.scrolled .nav-inner{
+    background:rgba(8,8,10,.82);
+    border-color:rgba(255,255,255,.14);
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:21px;
+    font-weight:700;
+    letter-spacing:-1px;
+}
+
+.brand-mark{
+    position:relative;
+    width:28px;
+    height:28px;
+    border-radius:9px;
+    overflow:hidden;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 0 25px rgba(124,92,255,.35);
+}
+
+.brand-mark::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:2px solid #fff;
+    border-radius:6px;
+    transform:rotate(45deg);
+}
+
+.brand-dot{
+    color:var(--accent-2);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.nav-links a{
+    padding:10px 14px;
+    border-radius:12px;
+    color:#aaaab2;
+    font-size:13px;
+    font-weight:600;
+    transition:.25s ease;
+}
+
+.nav-links a:hover{
+    color:#fff;
+    background:rgba(255,255,255,.07);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.icon-btn{
+    display:grid;
+    place-items:center;
+    width:39px;
+    height:39px;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:13px;
+    color:#fff;
+    background:rgba(255,255,255,.055);
+    transition:.25s ease;
+}
+
+.icon-btn:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.12);
+}
+
+.nav-buy{
+    padding:11px 18px;
+    border-radius:13px;
+    color:#060607;
+    background:#fff;
+    font-size:12px;
+    font-weight:800;
+    transition:.3s ease;
+}
+
+.nav-buy:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px rgba(255,255,255,.15);
+}
+
+.menu-toggle{
+    display:none;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    position:relative;
+    min-height:100vh;
+    padding:180px 0 100px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(380px,1fr);
+    align-items:center;
+    min-height:700px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    padding:40px 0;
+}
+
+.hero-kicker{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:max-content;
+    padding:9px 14px 9px 10px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+    color:#d4d4da;
+    background:rgba(255,255,255,.045);
+    backdrop-filter:blur(16px);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+}
+
+.kicker-live{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--success);
+    box-shadow:0 0 0 5px rgba(0,208,132,.12),0 0 15px var(--success);
+    animation:blink 1.8s infinite;
+}
+
+.hero-title{
+    margin-top:28px;
+    max-width:760px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(56px,8vw,120px);
+    font-weight:700;
+    line-height:.88;
+    letter-spacing:-6px;
+}
+
+.hero-title .line{
+    display:block;
+    overflow:hidden;
+}
+
+.hero-title .word-gradient{
+    background:linear-gradient(100deg,#fff 5%,#a896ff 46%,#00d9ff 95%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero-text{
+    max-width:530px;
+    margin-top:30px;
+    color:#a6a6af;
+    font-size:16px;
+    line-height:1.85;
+}
+
+.hero-buttons{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    margin-top:34px;
+}
+
+.btn-primary{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:11px;
+    min-width:170px;
+    padding:16px 23px;
+    border-radius:16px;
+    overflow:hidden;
+    color:#fff;
+    background:linear-gradient(135deg,var(--accent),#5a40ed);
+    box-shadow:0 15px 45px rgba(124,92,255,.25);
+    font-size:13px;
+    font-weight:800;
+    transition:.3s ease;
+}
+
+.btn-primary::before{
+    content:"";
+    position:absolute;
+    top:-120%;
+    left:-20%;
+    width:45%;
+    height:300%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+    transform:rotate(25deg);
+    transition:.7s ease;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 22px 60px rgba(124,92,255,.42);
+}
+
+.btn-primary:hover::before{
+    left:130%;
+}
+
+.btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-width:160px;
+    padding:15px 22px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:16px;
+    color:#e8e8ec;
+    background:rgba(255,255,255,.045);
+    backdrop-filter:blur(14px);
+    font-size:13px;
+    font-weight:700;
+    transition:.3s ease;
+}
+
+.btn-secondary:hover{
+    transform:translateY(-3px);
+    border-color:rgba(255,255,255,.28);
+    background:rgba(255,255,255,.09);
+}
+
+.hero-meta{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    margin-top:55px;
+}
+
+.meta-item{
+    position:relative;
+}
+
+.meta-item:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    right:-14px;
+    width:1px;
+    height:30px;
+    background:rgba(255,255,255,.1);
+    transform:translateY(-50%);
+}
+
+.meta-number{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:21px;
+    font-weight:700;
+}
+
+.meta-text{
+    margin-top:4px;
+    color:#777780;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+/* =========================
+   HERO 3D SIDE INFO
+========================= */
+
+.hero-visual{
+    position:relative;
+    min-height:680px;
+    pointer-events:none;
+}
+
+.visual-ring{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:520px;
+    height:520px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+}
+
+.visual-ring::before,
+.visual-ring::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+}
+
+.visual-ring::before{
+    inset:35px;
+    border:1px dashed rgba(124,92,255,.24);
+    animation:spin 18s linear infinite;
+}
+
+.visual-ring::after{
+    inset:100px;
+    border:1px solid rgba(0,217,255,.15);
+}
+
+.visual-orbit{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:610px;
+    height:240px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:50%;
+    transform:translate(-50%,-50%) rotate(-25deg);
+}
+
+.float-card{
+    position:absolute;
+    z-index:6;
+    padding:14px 16px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    background:rgba(9,9,12,.5);
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+    backdrop-filter:blur(20px);
+    pointer-events:auto;
+}
+
+.float-card.top{
+    top:12%;
+    right:2%;
+    animation:floatOne 5s ease-in-out infinite;
+}
+
+.float-card.bottom{
+    bottom:13%;
+    left:0;
+    animation:floatTwo 6s ease-in-out infinite;
+}
+
+.float-card.small{
+    top:53%;
+    right:-2%;
+    padding:11px 13px;
+    animation:floatThree 4.5s ease-in-out infinite;
+}
+
+.float-card-label{
+    color:#7e7e87;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.float-card-value{
+    margin-top:7px;
+    color:#fff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:18px;
+    font-weight:700;
+}
+
+.float-card-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.float-icon{
+    display:grid;
+    place-items:center;
+    width:34px;
+    height:34px;
+    border-radius:11px;
+    background:linear-gradient(135deg,rgba(124,92,255,.3),rgba(0,217,255,.18));
+    color:#fff;
+}
+
+.float-text strong{
+    display:block;
+    font-size:12px;
+}
+
+.float-text span{
+    display:block;
+    margin-top:3px;
+    color:#888891;
+    font-size:9px;
+}
+
+.hero-scroll{
+    position:absolute;
+    left:50%;
+    bottom:26px;
+    z-index:6;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#73737c;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transform:translateX(-50%);
+}
+
+.scroll-line{
+    position:relative;
+    width:55px;
+    height:1px;
+    overflow:hidden;
+    background:rgba(255,255,255,.15);
+}
+
+.scroll-line::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-30px;
+    width:30px;
+    height:100%;
+    background:#fff;
+    animation:scrollLine 1.6s ease-in-out infinite;
+}
+
+/* =========================
+   MARQUEE
+========================= */
+
+.marquee-section{
+    position:relative;
+    z-index:5;
+    padding:18px 0;
+    overflow:hidden;
+    border-top:1px solid rgba(255,255,255,.07);
+    border-bottom:1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.018);
+}
+
+.marquee-track{
+    display:flex;
+    width:max-content;
+    animation:marquee 28s linear infinite;
+}
+
+.marquee-item{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    padding-right:24px;
+    color:rgba(255,255,255,.65);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.marquee-star{
+    color:var(--accent-2);
+    font-size:18px;
+}
+
+/* =========================
+   INTRO SECTION
+========================= */
+
+.intro{
+    position:relative;
+    min-height:130vh;
+    padding:180px 0 120px;
+}
+
+.intro-grid{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:80px;
+    align-items:start;
+}
+
+.intro-sticky{
+    position:sticky;
+    top:150px;
+}
+
+.intro-right{
+    padding-top:80px;
+}
+
+.intro-line{
+    width:100%;
+    height:1px;
+    margin:45px 0;
+    background:linear-gradient(90deg,rgba(255,255,255,.16),transparent);
+}
+
+.intro-feature{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:24px;
+    padding:30px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    transition:.35s ease;
+}
+
+.intro-feature:hover{
+    padding-left:12px;
+}
+
+.feature-index{
+    color:var(--accent-2);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:13px;
+    font-weight:700;
+}
+
+.feature-title{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:24px;
+    font-weight:700;
+}
+
+.feature-desc{
+    max-width:500px;
+    margin-top:10px;
+    color:#85858e;
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* =========================
+   SPEC SECTION
+========================= */
+
+.specs{
+    position:relative;
+    padding:150px 0;
+}
+
+.spec-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.spec-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:60px;
+}
+
+.spec-card{
+    position:relative;
+    min-height:260px;
+    padding:28px;
+    overflow:hidden;
+    border:1px solid var(--card-border);
+    border-radius:24px;
+    background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.02));
+    backdrop-filter:blur(20px);
+    transition:.45s cubic-bezier(.2,.8,.2,1);
+}
+
+.spec-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,255,255,.23);
+    box-shadow:var(--shadow);
+}
+
+.spec-card::before{
+    content:"";
+    position:absolute;
+    top:-100px;
+    right:-100px;
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(124,92,255,.18),transparent 70%);
+}
+
+.spec-icon{
+    display:grid;
+    place-items:center;
+    width:48px;
+    height:48px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:16px;
+    background:rgba(255,255,255,.05);
+    color:var(--accent-2);
+}
+
+.spec-number{
+    margin-top:50px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:38px;
+    font-weight:700;
+    letter-spacing:-2px;
+}
+
+.spec-name{
+    margin-top:7px;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+}
+
+.spec-sub{
+    margin-top:9px;
+    color:#777780;
+    font-size:11px;
+    line-height:1.6;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes loaderPulse{
+    0%,100%{
+        transform:scale(.9);
+        opacity:.65;
+    }
+    50%{
+        transform:scale(1.12);
+        opacity:1;
+    }
+}
+
+@keyframes blink{
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+    50%{
+        opacity:.35;
+        transform:scale(.7);
+    }
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes floatOne{
+    0%,100%{
+        transform:translate3d(0,0,0) rotate(-3deg);
+    }
+    50%{
+        transform:translate3d(-12px,-18px,0) rotate(2deg);
+    }
+}
+
+@keyframes floatTwo{
+    0%,100%{
+        transform:translate3d(0,0,0) rotate(3deg);
+    }
+    50%{
+        transform:translate3d(14px,16px,0) rotate(-2deg);
+    }
+}
+
+@keyframes floatThree{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+@keyframes scrollLine{
+    0%{
+        left:-30px;
+    }
+    100%{
+        left:100%;
+    }
+}
+
+@keyframes marquee{
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+/* =========================
+   RESPONSIVE PART 1
+========================= */
+
+@media(max-width:1000px){
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-content{
+        max-width:720px;
+    }
+
+    .hero-visual{
+        position:absolute;
+        top:50%;
+        right:-10%;
+        width:65%;
+        min-height:500px;
+        transform:translateY(-35%);
+        opacity:.8;
+    }
+
+    .intro-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .intro-sticky{
+        position:relative;
+        top:auto;
+    }
+
+    .intro-right{
+        padding-top:20px;
+    }
+
+    .spec-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:760px){
+    .container{
+        width:min(100% - 30px,1240px);
+    }
+
+    .nav{
+        top:10px;
+        width:calc(100% - 20px);
+    }
+
+    .nav-inner{
+        padding:11px 12px;
+        border-radius:18px;
+    }
+
+    .nav-links,
+    .nav-buy{
+        display:none;
+    }
+
+    .menu-toggle{
+        display:grid;
+    }
+
+    .hero{
+        padding-top:130px;
+    }
+
+    .hero-title{
+        font-size:clamp(52px,15vw,84px);
+        letter-spacing:-4px;
+    }
+
+    .hero-text{
+        font-size:14px;
+    }
+
+    .hero-buttons{
+        flex-wrap:wrap;
+    }
+
+    .hero-meta{
+        gap:18px;
+    }
+
+    .hero-visual{
+        right:-25%;
+        width:100%;
+        opacity:.55;
+    }
+
+    .float-card{
+        transform:scale(.82);
+    }
+
+    .float-card.top{
+        right:-5%;
+    }
+
+    .section-title{
+        letter-spacing:-2.5px;
+    }
+
+    .spec-head{
+        display:block;
+    }
+
+    .spec-grid{
+        grid-template-columns:1fr;
+    }
+
+    .spec-card{
+        min-height:210px;
+    }
+}
+
+@media(max-width:460px){
+    .hero-meta{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .meta-item:not(:last-child)::after{
+        display:none;
+    }
+
+    .meta-number{
+        font-size:17px;
+    }
+
+    .hero-buttons{
+        display:grid;
+        grid-template-columns:1fr;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+        width:100%;
+    }
+}
     </style>
 </head>
-<body>
 
-    <div class="container">
-        <div class="form-box login">
-            <form action="#">
-                <h1>Login</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt' ></i>
-                </div>
-                <div class="forgot-link">
-                    <a href="#">Forgot Password?</a>
-                </div>
-                <button type="submit" class="btn">Login</button>
-                <p>or login with social platforms</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google' ></i></a>
-                    <a href="#"><i class='bx bxl-facebook' ></i></a>
-                    <a href="#"><i class='bx bxl-github' ></i></a>
-                    <a href="#"><i class='bx bxl-linkedin' ></i></a>
-                </div>
-            </form>
+<body class="loading">
+
+<!-- LOADING -->
+<div id="loader">
+    <div class="loader-grid"></div>
+    <div class="loader-glow"></div>
+    <div class="loader-content">
+        <div class="loader-logo">NOVA<span>.</span></div>
+        <div class="loader-sub">Initializing Future Experience</div>
+        <div class="loader-bar">
+            <div class="loader-progress" id="loaderProgress"></div>
+        </div>
+        <div class="loader-percent"><span id="loaderPercent">0</span>% LOADED</div>
+    </div>
+</div>
+
+<!-- THREE.JS BACKGROUND -->
+<div id="webgl-container"></div>
+<div class="ambient-noise"></div>
+<div class="page-glow one"></div>
+<div class="page-glow two"></div>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="navbar">
+    <div class="nav-inner">
+        <a href="#home" class="brand">
+            <div class="brand-mark"></div>
+            <span>NOVA<span class="brand-dot">.</span></span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Trang chủ</a>
+            <a href="#experience">Trải nghiệm</a>
+            <a href="#specs">Công nghệ</a>
+            <a href="#showcase">Sản phẩm</a>
+            <a href="#shop">Cửa hàng</a>
         </div>
 
-        <div class="form-box register">
-            <form action="#">
-                <h1>Registration</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="email" placeholder="Email" required>
-                    <i class='bx bxs-envelope' ></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt' ></i>
-                </div>
-                <button type="submit" class="btn">Register</button>
-                <p>or register with social platforms</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google' ></i></a>
-                    <a href="#"><i class='bx bxl-facebook' ></i></a>
-                    <a href="#"><i class='bx bxl-github' ></i></a>
-                    <a href="#"><i class='bx bxl-linkedin' ></i></a>
-                </div>
-            </form>
-        </div>
+        <div class="nav-actions">
+            <button class="icon-btn" aria-label="Tìm kiếm">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M16 16L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+            </button>
 
-        <div class="toggle-box">
-            <div class="toggle-panel toggle-left">
-                <h1>Hello, Welcome!</h1>
-                <p>Don't have an account?</p>
-                <button class="btn register-btn">Register</button>
+            <button class="icon-btn" aria-label="Giỏ hàng">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 4H5L7.2 15.2C7.35 15.95 7.75 16.5 8.7 16.5H17.4C18.25 16.5 18.7 16.05 18.9 15.35L20.5 8H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="9" cy="20" r="1.2" fill="currentColor"/>
+                    <circle cx="18" cy="20" r="1.2" fill="currentColor"/>
+                </svg>
+            </button>
+
+            <a href="#shop" class="nav-buy">Mua ngay</a>
+
+            <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main class="site">
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+            <div class="hero-kicker">
+                <span class="kicker-live"></span>
+                The Future Is Here
             </div>
 
-            <div class="toggle-panel toggle-right">
-                <h1>Welcome Back!</h1>
-                <p>Already have an account?</p>
-                <button class="btn login-btn">Login</button>
+            <h1 class="hero-title">
+                <span class="line">BEYOND</span>
+                <span class="line word-gradient">THE LIMIT.</span>
+            </h1>
+
+            <p class="hero-text">
+                Trải nghiệm thế hệ công nghệ mới với thiết kế tương lai,
+                sức mạnh vượt giới hạn và không gian 3D chuyển động theo
+                từng cú cuộn của bạn.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#experience" class="btn-primary">
+                    Khám phá ngay
+                    <span>→</span>
+                </a>
+
+                <a href="#showcase" class="btn-secondary">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M10 8.8L15.2 12L10 15.2V8.8Z" fill="currentColor"/>
+                    </svg>
+                    Xem trải nghiệm
+                </a>
+            </div>
+
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <div class="meta-number">360°</div>
+                    <div class="meta-text">Immersive View</div>
+                </div>
+
+                <div class="meta-item">
+                    <div class="meta-number">120Hz</div>
+                    <div class="meta-text">Ultra Smooth</div>
+                </div>
+
+                <div class="meta-item">
+                    <div class="meta-number">3D</div>
+                    <div class="meta-text">Interactive</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="visual-ring"></div>
+            <div class="visual-orbit"></div>
+
+            <div class="float-card top">
+                <div class="float-card-label">Performance</div>
+                <div class="float-card-value">98.7%</div>
+            </div>
+
+            <div class="float-card bottom">
+                <div class="float-card-row">
+                    <div class="float-icon">✦</div>
+                    <div class="float-text">
+                        <strong>Quantum Engine</strong>
+                        <span>Next generation power</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="float-card small">
+                <div class="float-card-label">Live System</div>
+                <div class="float-card-value">ONLINE</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="hero-scroll">
+        <span>Scroll To Explore</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marquee-section">
+    <div class="marquee-track">
+        <div class="marquee-item">
+            NEXT GENERATION
+            <span class="marquee-star">✦</span>
+            IMMERSIVE 3D
+            <span class="marquee-star">✦</span>
+            FUTURE TECHNOLOGY
+            <span class="marquee-star">✦</span>
+            SCROLL EXPERIENCE
+            <span class="marquee-star">✦</span>
+            PREMIUM DESIGN
+            <span class="marquee-star">✦</span>
+        </div>
+
+        <div class="marquee-item">
+            NEXT GENERATION
+            <span class="marquee-star">✦</span>
+            IMMERSIVE 3D
+            <span class="marquee-star">✦</span>
+            FUTURE TECHNOLOGY
+            <span class="marquee-star">✦</span>
+            SCROLL EXPERIENCE
+            <span class="marquee-star">✦</span>
+            PREMIUM DESIGN
+            <span class="marquee-star">✦</span>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="intro" id="experience">
+    <div class="container intro-grid">
+
+        <div class="intro-sticky">
+            <span class="section-label">01 — Immersive Experience</span>
+
+            <h2 class="section-title">
+                Không chỉ là
+                <span class="gradient">một website.</span>
+            </h2>
+
+            <p class="section-desc">
+                Mỗi lần bạn lướt xuống, thế giới 3D sẽ thay đổi.
+                Camera di chuyển, vật thể xoay, ánh sáng biến đổi
+                và từng chi tiết xuất hiện đúng theo hành trình của bạn.
+            </p>
+
+            <div class="intro-line"></div>
+
+            <a href="#specs" class="btn-secondary">
+                Khám phá công nghệ
+                <span>↓</span>
+            </a>
+        </div>
+
+        <div class="intro-right">
+
+            <article class="intro-feature reveal-item">
+                <div class="feature-index">01</div>
+                <div>
+                    <h3 class="feature-title">Scroll Reactive</h3>
+                    <p class="feature-desc">
+                        Animation được liên kết trực tiếp với vị trí cuộn trang.
+                        Kéo xuống bao nhiêu, thế giới 3D thay đổi chính xác bấy nhiêu.
+                    </p>
+                </div>
+            </article>
+
+            <article class="intro-feature reveal-item">
+                <div class="feature-index">02</div>
+                <div>
+                    <h3 class="feature-title">True 3D Motion</h3>
+                    <p class="feature-desc">
+                        Vật thể được tạo trong không gian Three.js,
+                        có chiều sâu, ánh sáng và chuyển động thật thay vì ảnh 2D.
+                    </p>
+                </div>
+            </article>
+
+            <article class="intro-feature reveal-item">
+                <div class="feature-index">03</div>
+                <div>
+                    <h3 class="feature-title">Dynamic Camera</h3>
+                    <p class="feature-desc">
+                        Góc camera thay đổi theo từng section,
+                        tạo cảm giác như bạn đang điều khiển một trải nghiệm điện ảnh.
+                    </p>
+                </div>
+            </article>
+
+            <article class="intro-feature reveal-item">
+                <div class="feature-index">04</div>
+                <div>
+                    <h3 class="feature-title">Infinite Details</h3>
+                    <p class="feature-desc">
+                        Từng hiệu ứng nhỏ, particle, ánh sáng và phản chiếu
+                        được kết hợp để tạo nên một giao diện cao cấp.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- SPECS -->
+<section class="specs" id="specs">
+    <div class="container">
+
+        <div class="spec-head">
+            <div>
+                <span class="section-label">02 — Core Technology</span>
+
+                <h2 class="section-title">
+                    Được xây dựng
+                    <span class="gradient">cho tương lai.</span>
+                </h2>
+            </div>
+        </div>
+
+        <div class="spec-grid">
+
+            <article class="spec-card">
+                <div class="spec-icon">
+                    <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3V21M3 12H21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                        <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.7"/>
+                    </svg>
+                </div>
+                <div class="spec-number">01</div>
+                <div class="spec-name">Three.js Engine</div>
+                <div class="spec-sub">Real-time WebGL rendering</div>
+            </article>
+
+            <article class="spec-card">
+                <div class="spec-icon">
+                    <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 16L9 11L13 15L20 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 7H20V12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="spec-number">120</div>
+                <div class="spec-name">FPS Optimized</div>
+                <div class="spec-sub">Ultra smooth motion system</div>
+            </article>
+
+            <article class="spec-card">
+                <div class="spec-icon">
+                    <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3C7 3 3 7 3 12C3 17 7 21 12 21C17 21 21 17 21 12" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M12 7V12L16 14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="spec-number">0.8s</div>
+                <div class="spec-name">Fast Response</div>
+                <div class="spec-sub">Instant interactive animation</div>
+            </article>
+
+            <article class="spec-card">
+                <div class="spec-icon">
+                    <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L14.8 8.5L22 9L16.5 13.5L18.3 21L12 17.2L5.7 21L7.5 13.5L2 9L9.2 8.5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="spec-number">∞</div>
+                <div class="spec-name">Visual Effects</div>
+                <div class="spec-sub">Particles, glow and cinematic motion</div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- 3D SHOWCASE SECTION -->
+<section class="showcase-section" id="showcase">
+    <div class="container">
+        <div class="showcase-top">
+            <span class="section-label">03 — 3D Showcase</span>
+            <h2 class="section-title">
+                Một vật thể.
+                <span class="gradient">Một thế giới.</span>
+            </h2>
+            <p class="section-desc">
+                Phần tiếp theo sẽ điều khiển trực tiếp vật thể 3D
+                theo vị trí bạn cuộn trên trang.
+            </p>
+        </div>
+
+        <div class="showcase-spacer"></div>
+    </div>
+</section>
+
+    <style>
+
+/* =========================
+   SHOWCASE 3D
+========================= */
+
+.showcase-section{
+    position:relative;
+    min-height:220vh;
+    padding:140px 0 0;
+}
+
+.showcase-top{
+    position:relative;
+    z-index:5;
+    text-align:center;
+}
+
+.showcase-top .section-title,
+.showcase-top .section-desc{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.showcase-spacer{
+    height:120vh;
+}
+
+/* =========================
+   PRODUCT STORY
+========================= */
+
+.product-story{
+    position:relative;
+    min-height:180vh;
+    padding:100px 0;
+}
+
+.story-stage{
+    position:sticky;
+    top:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    pointer-events:none;
+}
+
+.story-copy{
+    position:relative;
+    z-index:10;
+    width:min(1240px,calc(100% - 48px));
+    margin:auto;
+    pointer-events:auto;
+}
+
+.story-block{
+    width:min(470px,100%);
+    padding:30px;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:25px;
+    background:rgba(8,8,11,.34);
+    backdrop-filter:blur(22px);
+    box-shadow:0 25px 80px rgba(0,0,0,.2);
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.story-block.right{
+    margin-left:auto;
+}
+
+.story-block.center{
+    margin:0 auto;
+    text-align:center;
+}
+
+.story-number{
+    color:var(--accent-2);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.story-title{
+    margin-top:15px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(30px,4vw,56px);
+    line-height:1;
+    letter-spacing:-2px;
+}
+
+.story-text{
+    margin-top:18px;
+    color:#96969f;
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* =========================
+   PRODUCT DETAILS
+========================= */
+
+.details-section{
+    position:relative;
+    padding:180px 0;
+}
+
+.details-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:70px;
+}
+
+.detail-card{
+    position:relative;
+    min-height:420px;
+    padding:38px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:30px;
+    background:
+        radial-gradient(circle at 85% 15%,rgba(124,92,255,.14),transparent 35%),
+        linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018));
+    transition:.5s cubic-bezier(.2,.8,.2,1);
+}
+
+.detail-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,255,255,.2);
+}
+
+.detail-card.large{
+    grid-row:span 2;
+}
+
+.detail-card::after{
+    content:"";
+    position:absolute;
+    right:-30%;
+    bottom:-40%;
+    width:320px;
+    height:320px;
+    border:1px solid rgba(0,217,255,.12);
+    border-radius:50%;
+}
+
+.detail-tag{
+    position:relative;
+    z-index:2;
+    color:var(--accent-2);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.detail-title{
+    position:relative;
+    z-index:2;
+    max-width:440px;
+    margin-top:22px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(30px,4vw,58px);
+    line-height:1;
+    letter-spacing:-2px;
+}
+
+.detail-desc{
+    position:relative;
+    z-index:2;
+    max-width:410px;
+    margin-top:20px;
+    color:#888891;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.detail-value{
+    position:absolute;
+    right:35px;
+    bottom:32px;
+    z-index:2;
+    color:rgba(255,255,255,.95);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(46px,7vw,90px);
+    font-weight:700;
+    letter-spacing:-5px;
+}
+
+/* =========================
+   SHOP SECTION
+========================= */
+
+.shop-section{
+    position:relative;
+    padding:160px 0;
+}
+
+.shop-header{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.shop-products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:60px;
+}
+
+.shop-card{
+    position:relative;
+    overflow:hidden;
+    min-height:530px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:28px;
+    background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));
+    transition:.5s cubic-bezier(.2,.8,.2,1);
+}
+
+.shop-card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(255,255,255,.24);
+    box-shadow:0 30px 90px rgba(0,0,0,.35);
+}
+
+.shop-visual{
+    position:relative;
+    height:330px;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 45%,rgba(124,92,255,.3),transparent 35%),
+        linear-gradient(145deg,#15151d,#08080b);
+}
+
+.product-orb{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:
+        radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),rgba(255,255,255,.08) 10%,transparent 25%),
+        linear-gradient(135deg,#1b1b25,#805dff 48%,#00d9ff);
+    box-shadow:
+        inset -25px -30px 50px rgba(0,0,0,.45),
+        inset 20px 20px 30px rgba(255,255,255,.18),
+        0 35px 80px rgba(0,0,0,.55);
+    transition:.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.shop-card:hover .product-orb{
+    transform:translate(-50%,-55%) scale(1.12) rotate(25deg);
+}
+
+.product-orb::before{
+    content:"";
+    position:absolute;
+    inset:-30px;
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:50%;
+}
+
+.product-orb.variant-2{
+    width:155px;
+    height:220px;
+    border-radius:48px;
+    background:
+        linear-gradient(90deg,rgba(255,255,255,.16),transparent 35%),
+        linear-gradient(135deg,#11111a,#ff3d81 55%,#9d59ff);
+}
+
+.product-orb.variant-3{
+    width:210px;
+    height:130px;
+    border-radius:40px;
+    background:
+        linear-gradient(135deg,#20202a,#00d9ff 50%,#7557ff);
+}
+
+.shop-info{
+    padding:27px;
+}
+
+.shop-category{
+    color:#777780;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+}
+
+.shop-name{
+    margin-top:11px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:25px;
+    font-weight:700;
+}
+
+.shop-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:26px;
+}
+
+.shop-price{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:19px;
+    font-weight:700;
+}
+
+.add-cart{
+    display:grid;
+    place-items:center;
+    width:44px;
+    height:44px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    color:#fff;
+    background:rgba(255,255,255,.06);
+    transition:.25s ease;
+}
+
+.add-cart:hover{
+    transform:rotate(90deg);
+    color:#080809;
+    background:#fff;
+}
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.cta-section{
+    position:relative;
+    padding:80px 0 150px;
+}
+
+.cta-box{
+    position:relative;
+    overflow:hidden;
+    padding:100px 40px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:36px;
+    text-align:center;
+    background:
+        radial-gradient(circle at 20% 50%,rgba(124,92,255,.25),transparent 30%),
+        radial-gradient(circle at 80% 40%,rgba(0,217,255,.18),transparent 30%),
+        linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+}
+
+.cta-box::before{
+    content:"";
+    position:absolute;
+    top:-200px;
+    left:50%;
+    width:700px;
+    height:700px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:50%;
+    transform:translateX(-50%);
+}
+
+.cta-box::after{
+    content:"NOVA";
+    position:absolute;
+    bottom:-80px;
+    left:50%;
+    color:rgba(255,255,255,.025);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(100px,22vw,300px);
+    font-weight:700;
+    letter-spacing:-15px;
+    transform:translateX(-50%);
+    white-space:nowrap;
+}
+
+.cta-content{
+    position:relative;
+    z-index:2;
+}
+
+.cta-title{
+    max-width:850px;
+    margin:25px auto 0;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(48px,8vw,105px);
+    font-weight:700;
+    line-height:.92;
+    letter-spacing:-5px;
+}
+
+.cta-text{
+    max-width:560px;
+    margin:25px auto 0;
+    color:#92929b;
+    font-size:15px;
+    line-height:1.8;
+}
+
+.cta-actions{
+    display:flex;
+    justify-content:center;
+    gap:13px;
+    margin-top:35px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    position:relative;
+    padding:70px 0 30px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.footer-top{
+    display:grid;
+    grid-template-columns:1.5fr repeat(3,1fr);
+    gap:50px;
+    padding-bottom:70px;
+}
+
+.footer-desc{
+    max-width:320px;
+    margin-top:18px;
+    color:#74747d;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.footer-title{
+    margin-bottom:18px;
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+}
+
+.footer-links a{
+    width:max-content;
+    color:#777780;
+    font-size:13px;
+    transition:.25s ease;
+}
+
+.footer-links a:hover{
+    color:#fff;
+    transform:translateX(5px);
+}
+
+.footer-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding-top:28px;
+    border-top:1px solid rgba(255,255,255,.07);
+    color:#65656e;
+    font-size:11px;
+}
+
+.footer-social{
+    display:flex;
+    gap:8px;
+}
+
+.social-link{
+    display:grid;
+    place-items:center;
+    width:34px;
+    height:34px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:11px;
+    color:#aaaab2;
+    transition:.25s ease;
+}
+
+.social-link:hover{
+    color:#fff;
+    background:rgba(255,255,255,.08);
+    transform:translateY(-3px);
+}
+
+/* =========================
+   REVEAL ANIMATION BASE
+========================= */
+
+.reveal-up{
+    opacity:0;
+    transform:translateY(55px);
+}
+
+.reveal-left{
+    opacity:0;
+    transform:translateX(-60px);
+}
+
+.reveal-right{
+    opacity:0;
+    transform:translateX(60px);
+}
+
+.scale-in{
+    opacity:0;
+    transform:scale(.85);
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+    position:fixed;
+    inset:0;
+    z-index:90;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:40px;
+    opacity:0;
+    visibility:hidden;
+    background:rgba(5,5,7,.96);
+    backdrop-filter:blur(30px);
+    transition:.4s ease;
+}
+
+.mobile-menu.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.mobile-menu a{
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(28px,8vw,48px);
+    font-weight:700;
+}
+
+/* =========================
+   EXTRA PARTICLE LAYERS
+========================= */
+
+.ui-particle{
+    position:absolute;
+    z-index:4;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 15px #fff;
+    pointer-events:none;
+}
+
+.ui-particle.p1{
+    top:15%;
+    left:7%;
+    animation:particleFloat 6s ease-in-out infinite;
+}
+
+.ui-particle.p2{
+    top:48%;
+    left:18%;
+    width:7px;
+    height:7px;
+    background:var(--accent-2);
+    box-shadow:0 0 20px var(--accent-2);
+    animation:particleFloat 8s ease-in-out infinite reverse;
+}
+
+.ui-particle.p3{
+    top:28%;
+    right:9%;
+    width:5px;
+    height:5px;
+    background:var(--accent);
+    box-shadow:0 0 20px var(--accent);
+    animation:particleFloat 5s ease-in-out infinite;
+}
+
+@keyframes particleFloat{
+    0%,100%{
+        transform:translate3d(0,0,0);
+        opacity:.35;
+    }
+    50%{
+        transform:translate3d(20px,-45px,0);
+        opacity:1;
+    }
+}
+
+/* =========================
+   RESPONSIVE PART 2
+========================= */
+
+@media(max-width:900px){
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .detail-card.large{
+        grid-row:auto;
+    }
+
+    .shop-products{
+        grid-template-columns:1fr;
+    }
+
+    .shop-card{
+        min-height:460px;
+    }
+
+    .footer-top{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .showcase-section{
+        min-height:170vh;
+    }
+
+    .story-copy{
+        width:calc(100% - 30px);
+    }
+
+    .story-block{
+        padding:24px;
+    }
+
+    .detail-card{
+        min-height:340px;
+        padding:26px;
+    }
+
+    .detail-value{
+        right:25px;
+        bottom:22px;
+    }
+
+    .shop-header{
+        display:block;
+    }
+
+    .cta-box{
+        padding:80px 20px;
+        border-radius:26px;
+    }
+
+    .cta-title{
+        letter-spacing:-3px;
+    }
+
+    .cta-actions{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .cta-actions .btn-primary,
+    .cta-actions .btn-secondary{
+        width:min(100%,280px);
+    }
+
+    .footer-top{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+</style>
+
+<!-- PHẦN HTML TIẾP THEO SẼ DÁN NGAY BÊN DƯỚI -->
+
+    <!-- PRODUCT STORY -->
+<section class="product-story" id="story">
+    <div class="story-stage">
+        <div class="story-copy">
+            <div class="story-block story-block-1">
+                <div class="story-number">01 / DESIGN</div>
+                <h2 class="story-title">Thiết kế từ<br>tương lai.</h2>
+                <p class="story-text">
+                    Kéo xuống để khám phá sản phẩm từ nhiều góc độ.
+                    Vật thể 3D sẽ xoay, thay đổi vị trí và phản ứng trực tiếp
+                    với hành trình cuộn trang của bạn.
+                </p>
+            </div>
+
+            <div class="story-block story-block-2 right">
+                <div class="story-number">02 / MOTION</div>
+                <h2 class="story-title">Mọi chuyển động<br>đều sống động.</h2>
+                <p class="story-text">
+                    Không chỉ là hiệu ứng xuất hiện thông thường.
+                    Camera và vật thể trong Three.js được điều khiển theo
+                    từng phần của trang web.
+                </p>
+            </div>
+
+            <div class="story-block story-block-3 center">
+                <div class="story-number">03 / POWER</div>
+                <h2 class="story-title">Sức mạnh<br>không giới hạn.</h2>
+                <p class="story-text">
+                    Ánh sáng, particle và không gian 3D kết hợp để tạo ra
+                    một trải nghiệm hiện đại, mượt mà và đầy chiều sâu.
+                </p>
             </div>
         </div>
     </div>
+</section>
 
-    <script>
-        const container = document.querySelector('.container');
-        const registerBtn = document.querySelector('.register-btn');
-        const loginBtn = document.querySelector('.login-btn');
+<!-- PRODUCT DETAILS -->
+<section class="details-section">
+    <div class="container">
 
-        registerBtn.addEventListener('click', () => {
-            container.classList.add('active');
+        <span class="section-label">04 — Deep Technology</span>
+
+        <h2 class="section-title reveal-up">
+            Chi tiết tạo nên
+            <span class="gradient">sự khác biệt.</span>
+        </h2>
+
+        <div class="details-grid">
+
+            <article class="detail-card large reveal-up">
+                <div class="detail-tag">Performance Core</div>
+
+                <h3 class="detail-title">
+                    Sức mạnh được thiết kế cho tốc độ.
+                </h3>
+
+                <p class="detail-desc">
+                    Một hệ thống tối ưu hóa trải nghiệm từ hiệu suất xử lý,
+                    animation cho đến từng khung hình được hiển thị.
+                </p>
+
+                <div class="detail-value">99%</div>
+            </article>
+
+            <article class="detail-card reveal-up">
+                <div class="detail-tag">Visual Engine</div>
+
+                <h3 class="detail-title">
+                    Ánh sáng<br>đa chiều.
+                </h3>
+
+                <p class="detail-desc">
+                    Hiệu ứng glow và phản chiếu giúp không gian
+                    có cảm giác sâu và chân thực hơn.
+                </p>
+
+                <div class="detail-value">3D</div>
+            </article>
+
+            <article class="detail-card reveal-up">
+                <div class="detail-tag">Motion System</div>
+
+                <h3 class="detail-title">
+                    Cuộn tới đâu,<br>chạy tới đó.
+                </h3>
+
+                <p class="detail-desc">
+                    ScrollTrigger đồng bộ animation với hành động
+                    cuộn trang theo thời gian thực.
+                </p>
+
+                <div class="detail-value">∞</div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- SHOP -->
+<section class="shop-section" id="shop">
+    <div class="container">
+
+        <div class="shop-header">
+            <div>
+                <span class="section-label">05 — Nova Collection</span>
+
+                <h2 class="section-title">
+                    Chọn phiên bản
+                    <span class="gradient">của bạn.</span>
+                </h2>
+            </div>
+
+            <a href="#shop" class="btn-secondary">
+                Xem tất cả
+                <span>→</span>
+            </a>
+        </div>
+
+        <div class="shop-products">
+
+            <article class="shop-card reveal-up">
+                <div class="shop-visual">
+                    <div class="product-orb"></div>
+                </div>
+
+                <div class="shop-info">
+                    <div class="shop-category">Nova / Core Series</div>
+                    <h3 class="shop-name">NOVA ONE</h3>
+
+                    <div class="shop-bottom">
+                        <div class="shop-price">$299</div>
+
+                        <button class="add-cart" aria-label="Thêm vào giỏ hàng">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="shop-card reveal-up">
+                <div class="shop-visual">
+                    <div class="product-orb variant-2"></div>
+                </div>
+
+                <div class="shop-info">
+                    <div class="shop-category">Nova / Pro Series</div>
+                    <h3 class="shop-name">NOVA PRO</h3>
+
+                    <div class="shop-bottom">
+                        <div class="shop-price">$499</div>
+
+                        <button class="add-cart" aria-label="Thêm vào giỏ hàng">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="shop-card reveal-up">
+                <div class="shop-visual">
+                    <div class="product-orb variant-3"></div>
+                </div>
+
+                <div class="shop-info">
+                    <div class="shop-category">Nova / Ultra Series</div>
+                    <h3 class="shop-name">NOVA ULTRA</h3>
+
+                    <div class="shop-bottom">
+                        <div class="shop-price">$799</div>
+
+                        <button class="add-cart" aria-label="Thêm vào giỏ hàng">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+    <div class="container">
+
+        <div class="cta-box">
+            <div class="cta-content">
+                <span class="section-label">Ready For The Future</span>
+
+                <h2 class="cta-title">
+                    Bắt đầu trải nghiệm
+                    <span class="gradient">khác biệt.</span>
+                </h2>
+
+                <p class="cta-text">
+                    Công nghệ, thiết kế và không gian 3D được kết hợp
+                    trong một trải nghiệm duy nhất.
+                </p>
+
+                <div class="cta-actions">
+                    <a href="#home" class="btn-primary">
+                        Khám phá NOVA
+                        <span>→</span>
+                    </a>
+
+                    <a href="#shop" class="btn-secondary">
+                        Mua sản phẩm
+                        <span>↗</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div>
+                <a href="#home" class="brand">
+                    <div class="brand-mark"></div>
+                    <span>NOVA<span class="brand-dot">.</span></span>
+                </a>
+
+                <p class="footer-desc">
+                    A new dimension of digital commerce.
+                    Built for the next generation of experiences.
+                </p>
+            </div>
+
+            <div>
+                <div class="footer-title">Explore</div>
+
+                <div class="footer-links">
+                    <a href="#home">Trang chủ</a>
+                    <a href="#experience">Trải nghiệm</a>
+                    <a href="#specs">Công nghệ</a>
+                    <a href="#showcase">3D Showcase</a>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-title">Products</div>
+
+                <div class="footer-links">
+                    <a href="#shop">Nova One</a>
+                    <a href="#shop">Nova Pro</a>
+                    <a href="#shop">Nova Ultra</a>
+                    <a href="#shop">Accessories</a>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-title">Support</div>
+
+                <div class="footer-links">
+                    <a href="#">Trung tâm hỗ trợ</a>
+                    <a href="#">Vận chuyển</a>
+                    <a href="#">Bảo hành</a>
+                    <a href="#">Liên hệ</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 NOVA. Future Commerce Experience.</span>
+
+            <div class="footer-social">
+                <a href="#" class="social-link">𝕏</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">◎</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+</main>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Trang chủ</a>
+    <a href="#experience">Trải nghiệm</a>
+    <a href="#specs">Công nghệ</a>
+    <a href="#showcase">3D Showcase</a>
+    <a href="#shop">Cửa hàng</a>
+</div>
+
+<!-- UI PARTICLES -->
+<div class="ui-particle p1"></div>
+<div class="ui-particle p2"></div>
+<div class="ui-particle p3"></div>
+
+<!-- PHẦN 5 SẼ DÁN LIỀN NGAY BÊN DƯỚI ĐÂY -->
+
+    <!-- THREE.JS + GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+"use strict";
+
+/* ==========================================
+   NOVA 3D ENGINE
+========================================== */
+
+gsap.registerPlugin(ScrollTrigger);
+
+const webglContainer = document.getElementById("webgl-container");
+const loader = document.getElementById("loader");
+const loaderProgress = document.getElementById("loaderProgress");
+const loaderPercent = document.getElementById("loaderPercent");
+const navbar = document.getElementById("navbar");
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+/* ==========================================
+   THREE.JS VARIABLES
+========================================== */
+
+let scene;
+let camera;
+let renderer;
+let clock;
+
+let novaGroup;
+let coreGroup;
+let ringGroup;
+let particleSystem;
+let stars;
+let mainLight;
+let blueLight;
+let purpleLight;
+
+let mouseX = 0;
+let mouseY = 0;
+let targetMouseX = 0;
+let targetMouseY = 0;
+
+let currentScroll = 0;
+let targetScroll = 0;
+
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+};
+
+const config = {
+    pixelRatio: Math.min(window.devicePixelRatio, 2),
+    particleCount: 1800,
+    starCount: 800
+};
+
+/* ==========================================
+   LOADING SYSTEM
+========================================== */
+
+let loadingValue = 0;
+
+function updateLoader() {
+    loadingValue += Math.random() * 7 + 2;
+
+    if (loadingValue >= 100) {
+        loadingValue = 100;
+    }
+
+    loaderProgress.style.width = loadingValue + "%";
+    loaderPercent.textContent = Math.floor(loadingValue);
+
+    if (loadingValue < 100) {
+        setTimeout(updateLoader, 70);
+    } else {
+        setTimeout(finishLoading, 500);
+    }
+}
+
+function finishLoading() {
+    gsap.to(loader, {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.inOut",
+        onComplete: () => {
+            loader.style.display = "none";
+            document.body.classList.remove("loading");
+
+            gsap.from(".hero-kicker", {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            });
+
+            gsap.from(".hero-title .line", {
+                yPercent: 120,
+                stagger: 0.12,
+                duration: 1.2,
+                ease: "power4.out",
+                delay: 0.1
+            });
+
+            gsap.from(".hero-text", {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                delay: 0.5,
+                ease: "power3.out"
+            });
+
+            gsap.from(".hero-buttons", {
+                y: 25,
+                opacity: 0,
+                duration: 0.7,
+                delay: 0.65,
+                ease: "power3.out"
+            });
+
+            gsap.from(".hero-meta", {
+                y: 20,
+                opacity: 0,
+                duration: 0.7,
+                delay: 0.8,
+                ease: "power3.out"
+            });
+        }
+    });
+}
+
+/* ==========================================
+   SCENE
+========================================== */
+
+function createScene() {
+    scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x050505, 0.055);
+
+    clock = new THREE.Clock();
+
+    camera = new THREE.PerspectiveCamera(
+        42,
+        sizes.width / sizes.height,
+        0.1,
+        100
+    );
+
+    camera.position.set(0, 0, 10);
+
+    renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance"
+    });
+
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(config.pixelRatio);
+
+    renderer.outputEncoding = THREE.sRGBEncoding;
+
+    webglContainer.appendChild(renderer.domElement);
+}
+
+/* ==========================================
+   LIGHTS
+========================================== */
+
+function createLights() {
+
+    const ambientLight = new THREE.AmbientLight(
+        0xffffff,
+        0.7
+    );
+
+    scene.add(ambientLight);
+
+    mainLight = new THREE.PointLight(
+        0xffffff,
+        3,
+        30
+    );
+
+    mainLight.position.set(4, 5, 6);
+
+    scene.add(mainLight);
+
+    blueLight = new THREE.PointLight(
+        0x00d9ff,
+        4,
+        25
+    );
+
+    blueLight.position.set(-5, 1, 4);
+
+    scene.add(blueLight);
+
+    purpleLight = new THREE.PointLight(
+        0x7c5cff,
+        5,
+        25
+    );
+
+    purpleLight.position.set(4, -4, 2);
+
+    scene.add(purpleLight);
+
+    const backLight = new THREE.PointLight(
+        0xff3d81,
+        2,
+        18
+    );
+
+    backLight.position.set(0, 3, -7);
+
+    scene.add(backLight);
+}
+
+/* ==========================================
+   CREATE MAIN 3D PRODUCT
+========================================== */
+
+function createNovaProduct() {
+
+    novaGroup = new THREE.Group();
+    novaGroup.position.set(1.8, 0, 0);
+
+    scene.add(novaGroup);
+
+    /* CORE GROUP */
+
+    coreGroup = new THREE.Group();
+
+    novaGroup.add(coreGroup);
+
+    /* MAIN CORE */
+
+    const coreGeometry = new THREE.IcosahedronGeometry(
+        1.55,
+        4
+    );
+
+    const coreMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x171722,
+        metalness: 0.85,
+        roughness: 0.16,
+        clearcoat: 1,
+        clearcoatRoughness: 0.08,
+        emissive: 0x110522,
+        emissiveIntensity: 0.35
+    });
+
+    const core = new THREE.Mesh(
+        coreGeometry,
+        coreMaterial
+    );
+
+    core.rotation.set(
+        0.2,
+        0.3,
+        0
+    );
+
+    coreGroup.add(core);
+
+    /* INNER GLOW CORE */
+
+    const innerGeometry = new THREE.IcosahedronGeometry(
+        1.12,
+        3
+    );
+
+    const innerMaterial = new THREE.MeshStandardMaterial({
+        color: 0x5d3fff,
+        emissive: 0x4d25ff,
+        emissiveIntensity: 2.2,
+        transparent: true,
+        opacity: 0.9,
+        roughness: 0.3,
+        metalness: 0.5
+    });
+
+    const innerCore = new THREE.Mesh(
+        innerGeometry,
+        innerMaterial
+    );
+
+    innerCore.name = "innerCore";
+
+    coreGroup.add(innerCore);
+
+    /* ENERGY SHELL */
+
+    const shellGeometry = new THREE.SphereGeometry(
+        1.75,
+        64,
+        64
+    );
+
+    const shellMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x8a6cff,
+        metalness: 0.15,
+        roughness: 0.05,
+        transparent: true,
+        opacity: 0.055,
+        transmission: 0.2,
+        clearcoat: 1,
+        side: THREE.DoubleSide
+    });
+
+    const shell = new THREE.Mesh(
+        shellGeometry,
+        shellMaterial
+    );
+
+    shell.name = "energyShell";
+
+    novaGroup.add(shell);
+
+    /* RING GROUP */
+
+    ringGroup = new THREE.Group();
+
+    novaGroup.add(ringGroup);
+
+    const ringMaterialOne = new THREE.MeshStandardMaterial({
+        color: 0x7c5cff,
+        emissive: 0x4c24ff,
+        emissiveIntensity: 1.5,
+        metalness: 0.8,
+        roughness: 0.2
+    });
+
+    const ringMaterialTwo = new THREE.MeshStandardMaterial({
+        color: 0x00d9ff,
+        emissive: 0x00b8ff,
+        emissiveIntensity: 1.4,
+        metalness: 0.8,
+        roughness: 0.18
+    });
+
+    const ringMaterialThree = new THREE.MeshStandardMaterial({
+        color: 0xff3d81,
+        emissive: 0xff1466,
+        emissiveIntensity: 1.2,
+        metalness: 0.7,
+        roughness: 0.2
+    });
+
+    const ringGeometryOne = new THREE.TorusGeometry(
+        2.25,
+        0.035,
+        12,
+        120
+    );
+
+    const ringOne = new THREE.Mesh(
+        ringGeometryOne,
+        ringMaterialOne
+    );
+
+    ringOne.rotation.x = Math.PI * 0.42;
+    ringOne.rotation.y = Math.PI * 0.12;
+
+    ringOne.name = "ringOne";
+
+    ringGroup.add(ringOne);
+
+    const ringGeometryTwo = new THREE.TorusGeometry(
+        2.6,
+        0.022,
+        10,
+        120
+    );
+
+    const ringTwo = new THREE.Mesh(
+        ringGeometryTwo,
+        ringMaterialTwo
+    );
+
+    ringTwo.rotation.x = Math.PI * 0.7;
+    ringTwo.rotation.z = Math.PI * 0.18;
+
+    ringTwo.name = "ringTwo";
+
+    ringGroup.add(ringTwo);
+
+    const ringGeometryThree = new THREE.TorusGeometry(
+        2.9,
+        0.016,
+        10,
+        120
+    );
+
+    const ringThree = new THREE.Mesh(
+        ringGeometryThree,
+        ringMaterialThree
+    );
+
+    ringThree.rotation.y = Math.PI * 0.48;
+    ringThree.rotation.z = Math.PI * 0.28;
+
+    ringThree.name = "ringThree";
+
+    ringGroup.add(ringThree);
+
+    /* FLOATING MINI OBJECTS */
+
+    const miniGeometry = new THREE.OctahedronGeometry(
+        0.09,
+        0
+    );
+
+    const miniMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        emissive: 0x7c5cff,
+        emissiveIntensity: 2,
+        metalness: 0.6,
+        roughness: 0.25
+    });
+
+    for (let i = 0; i < 28; i++) {
+
+        const mini = new THREE.Mesh(
+            miniGeometry,
+            miniMaterial
+        );
+
+        const radius = 2.3 + Math.random() * 1.6;
+        const angle = Math.random() * Math.PI * 2;
+        const height = (Math.random() - 0.5) * 4;
+
+        mini.position.set(
+            Math.cos(angle) * radius,
+            height,
+            Math.sin(angle) * radius * 0.5
+        );
+
+        mini.rotation.set(
+            Math.random() * Math.PI,
+            Math.random() * Math.PI,
+            Math.random() * Math.PI
+        );
+
+        mini.userData.speed =
+            0.2 + Math.random() * 0.8;
+
+        mini.userData.offset =
+            Math.random() * Math.PI * 2;
+
+        mini.userData.radius = radius;
+
+        mini.name = "miniCrystal";
+
+        ringGroup.add(mini);
+    }
+
+    /* PRODUCT SCALE */
+
+    novaGroup.scale.set(
+        1,
+        1,
+        1
+    );
+}
+
+/* ==========================================
+   PARTICLE SYSTEM
+========================================== */
+
+function createParticles() {
+
+    const geometry = new THREE.BufferGeometry();
+
+    const positions = new Float32Array(
+        config.particleCount * 3
+    );
+
+    const colors = new Float32Array(
+        config.particleCount * 3
+    );
+
+    const colorPalette = [
+        new THREE.Color(0x7c5cff),
+        new THREE.Color(0x00d9ff),
+        new THREE.Color(0xffffff),
+        new THREE.Color(0xff3d81)
+    ];
+
+    for (
+        let i = 0;
+        i < config.particleCount;
+        i++
+    ) {
+
+        const i3 = i * 3;
+
+        const radius =
+            4 + Math.random() * 13;
+
+        const theta =
+            Math.random() * Math.PI * 2;
+
+        const phi =
+            Math.acos(
+                2 * Math.random() - 1
+            );
+
+        positions[i3] =
+            radius *
+            Math.sin(phi) *
+            Math.cos(theta);
+
+        positions[i3 + 1] =
+            radius *
+            Math.sin(phi) *
+            Math.sin(theta);
+
+        positions[i3 + 2] =
+            radius *
+            Math.cos(phi);
+
+        const color =
+            colorPalette[
+                Math.floor(
+                    Math.random() *
+                    colorPalette.length
+                )
+            ];
+
+        colors[i3] = color.r;
+        colors[i3 + 1] = color.g;
+        colors[i3 + 2] = color.b;
+    }
+
+    geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(
+            positions,
+            3
+        )
+    );
+
+    geometry.setAttribute(
+        "color",
+        new THREE.BufferAttribute(
+            colors,
+            3
+        )
+    );
+
+    const material =
+        new THREE.PointsMaterial({
+            size: 0.035,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.8,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            sizeAttenuation: true
         });
 
-        loginBtn.addEventListener('click', () => {
-            container.classList.remove('active');
+    particleSystem =
+        new THREE.Points(
+            geometry,
+            material
+        );
+
+    scene.add(particleSystem);
+}
+    /* ==========================================
+   STAR FIELD
+========================================== */
+
+function createStars() {
+    const geometry = new THREE.BufferGeometry();
+
+    const positions = new Float32Array(
+        config.starCount * 3
+    );
+
+    for (let i = 0; i < config.starCount; i++) {
+        const i3 = i * 3;
+
+        positions[i3] =
+            (Math.random() - 0.5) * 45;
+
+        positions[i3 + 1] =
+            (Math.random() - 0.5) * 30;
+
+        positions[i3 + 2] =
+            -5 - Math.random() * 30;
+    }
+
+    geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(
+            positions,
+            3
+        )
+    );
+
+    const material = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.025,
+        transparent: true,
+        opacity: 0.65,
+        depthWrite: false,
+        sizeAttenuation: true
+    });
+
+    stars = new THREE.Points(
+        geometry,
+        material
+    );
+
+    scene.add(stars);
+}
+
+/* ==========================================
+   MOUSE INTERACTION
+========================================== */
+
+window.addEventListener(
+    "mousemove",
+    (event) => {
+        targetMouseX =
+            event.clientX / sizes.width - 0.5;
+
+        targetMouseY =
+            event.clientY / sizes.height - 0.5;
+    }
+);
+
+window.addEventListener(
+    "touchmove",
+    (event) => {
+        if (!event.touches.length) return;
+
+        targetMouseX =
+            event.touches[0].clientX /
+            sizes.width - 0.5;
+
+        targetMouseY =
+            event.touches[0].clientY /
+            sizes.height - 0.5;
+    },
+    { passive: true }
+);
+
+/* ==========================================
+   SCROLL DATA
+========================================== */
+
+window.addEventListener(
+    "scroll",
+    () => {
+        targetScroll =
+            window.scrollY ||
+            window.pageYOffset;
+
+        if (targetScroll > 40) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    },
+    { passive: true }
+);
+
+/* ==========================================
+   GSAP REVEAL ANIMATIONS
+========================================== */
+
+function createRevealAnimations() {
+
+    gsap.utils
+        .toArray(".reveal-up")
+        .forEach((element) => {
+
+            gsap.to(element, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 88%",
+                    toggleActions:
+                        "play none none reverse"
+                }
+            });
+
         });
-    </script>
+
+    gsap.utils
+        .toArray(".reveal-left")
+        .forEach((element) => {
+
+            gsap.to(element, {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 88%"
+                }
+            });
+
+        });
+
+    gsap.utils
+        .toArray(".reveal-right")
+        .forEach((element) => {
+
+            gsap.to(element, {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 88%"
+                }
+            });
+
+        });
+
+    gsap.utils
+        .toArray(".scale-in")
+        .forEach((element) => {
+
+            gsap.to(element, {
+                opacity: 1,
+                scale: 1,
+                duration: 1.1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%"
+                }
+            });
+
+        });
+
+    gsap.utils
+        .toArray(".reveal-item")
+        .forEach((element) => {
+
+            gsap.fromTo(
+                element,
+                {
+                    opacity: 0,
+                    y: 45
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 88%",
+                        toggleActions:
+                            "play none none reverse"
+                    }
+                }
+            );
+
+        });
+}
+
+/* ==========================================
+   INTRO SECTION 3D ANIMATION
+========================================== */
+
+function createIntroScrollAnimation() {
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#experience",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2
+        }
+    });
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: 2.7,
+            y: 0.4,
+            z: -0.8,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: 0.4,
+            y: Math.PI * 1.1,
+            z: -0.25,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.scale,
+        {
+            x: 0.82,
+            y: 0.82,
+            z: 0.82,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        camera.position,
+        {
+            z: 8.5,
+            x: -0.4,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        particleSystem.rotation,
+        {
+            y: Math.PI * 0.7,
+            x: 0.4,
+            ease: "none"
+        },
+        0
+    );
+}
+
+/* ==========================================
+   SHOWCASE SCROLL ANIMATION
+========================================== */
+
+function createShowcaseAnimation() {
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#showcase",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            pin: false
+        }
+    });
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: 0,
+            y: 0,
+            z: 0,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: Math.PI * 1.2,
+            y: Math.PI * 2.5,
+            z: Math.PI * 0.3,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.scale,
+        {
+            x: 1.35,
+            y: 1.35,
+            z: 1.35,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        camera.position,
+        {
+            x: 0,
+            y: 0,
+            z: 6.5,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        ringGroup.rotation,
+        {
+            x: Math.PI * 2,
+            y: Math.PI * 3,
+            z: Math.PI,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        particleSystem.rotation,
+        {
+            x: Math.PI * 0.8,
+            y: Math.PI * 1.5,
+            ease: "none"
+        },
+        0
+    );
+}
+
+/* ==========================================
+   PRODUCT STORY ANIMATION
+========================================== */
+
+function createStoryAnimation() {
+
+    const story = document.querySelector(
+        ".product-story"
+    );
+
+    const blockOne = document.querySelector(
+        ".story-block-1"
+    );
+
+    const blockTwo = document.querySelector(
+        ".story-block-2"
+    );
+
+    const blockThree = document.querySelector(
+        ".story-block-3"
+    );
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: story,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            pin: false
+        }
+    });
+
+    /* STORY 1 */
+
+    timeline.to(
+        blockOne,
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: 2.4,
+            y: 0.2,
+            z: 0
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: 0.3,
+            y: Math.PI * 3.2,
+            z: 0
+        },
+        0
+    );
+
+    /* STORY 2 */
+
+    timeline.to(
+        blockOne,
+        {
+            opacity: 0,
+            y: -35,
+            duration: 0.5
+        },
+        0.28
+    );
+
+    timeline.to(
+        blockTwo,
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.7
+        },
+        0.38
+    );
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: -2.2,
+            y: 0.4,
+            z: 0.4
+        },
+        0.38
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: Math.PI * 0.7,
+            y: Math.PI * 5.4,
+            z: Math.PI * 0.2
+        },
+        0.38
+    );
+
+    timeline.to(
+        novaGroup.scale,
+        {
+            x: 1.15,
+            y: 1.15,
+            z: 1.15
+        },
+        0.38
+    );
+
+    /* STORY 3 */
+
+    timeline.to(
+        blockTwo,
+        {
+            opacity: 0,
+            y: -35,
+            duration: 0.5
+        },
+        0.68
+    );
+
+    timeline.to(
+        blockThree,
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.7
+        },
+        0.76
+    );
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: 0,
+            y: 0,
+            z: 0
+        },
+        0.76
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: Math.PI,
+            y: Math.PI * 7,
+            z: Math.PI * 0.35
+        },
+        0.76
+    );
+
+    timeline.to(
+        novaGroup.scale,
+        {
+            x: 1.55,
+            y: 1.55,
+            z: 1.55
+        },
+        0.76
+    );
+
+    timeline.to(
+        camera.position,
+        {
+            z: 5.3,
+            ease: "none"
+        },
+        0.76
+    );
+
+    timeline.to(
+        particleSystem.rotation,
+        {
+            y: Math.PI * 3,
+            x: Math.PI * 1.2
+        },
+        0.76
+    );
+}
+
+/* ==========================================
+   DETAILS SECTION 3D ANIMATION
+========================================== */
+
+function createDetailsAnimation() {
+
+    const detailsSection =
+        document.querySelector(
+            ".details-section"
+        );
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: detailsSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.3
+        }
+    });
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: 2.8,
+            y: -0.4,
+            z: -0.5,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: Math.PI * 1.3,
+            y: Math.PI * 8.2,
+            z: Math.PI * 0.5,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.scale,
+        {
+            x: 0.9,
+            y: 0.9,
+            z: 0.9,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        camera.position,
+        {
+            z: 9,
+            x: -0.8,
+            ease: "none"
+        },
+        0
+    );
+}
+    /* ==========================================
+   SHOP SECTION 3D ANIMATION
+========================================== */
+
+function createShopAnimation() {
+
+    const shopSection =
+        document.querySelector(".shop-section");
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: shopSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2
+        }
+    });
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: -2.8,
+            y: 0,
+            z: -1,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: Math.PI * 1.7,
+            y: Math.PI * 10,
+            z: Math.PI * 0.8,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.scale,
+        {
+            x: 0.7,
+            y: 0.7,
+            z: 0.7,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        camera.position,
+        {
+            x: 0.5,
+            y: 0,
+            z: 10,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        particleSystem.rotation,
+        {
+            x: Math.PI * 1.8,
+            y: Math.PI * 4,
+            ease: "none"
+        },
+        0
+    );
+}
+
+/* ==========================================
+   FINAL CTA 3D ANIMATION
+========================================== */
+
+function createCTAAnimation() {
+
+    const ctaSection =
+        document.querySelector(".cta-section");
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ctaSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2
+        }
+    });
+
+    timeline.to(
+        novaGroup.position,
+        {
+            x: 0,
+            y: 0,
+            z: 0,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.rotation,
+        {
+            x: Math.PI * 2,
+            y: Math.PI * 12,
+            z: Math.PI,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        novaGroup.scale,
+        {
+            x: 1.8,
+            y: 1.8,
+            z: 1.8,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        camera.position,
+        {
+            x: 0,
+            y: 0,
+            z: 5.5,
+            ease: "none"
+        },
+        0
+    );
+
+    timeline.to(
+        particleSystem.rotation,
+        {
+            x: Math.PI * 2.5,
+            y: Math.PI * 5,
+            ease: "none"
+        },
+        0
+    );
+}
+
+/* ==========================================
+   FOOTER ANIMATION
+========================================== */
+
+function createFooterAnimation() {
+
+    const footer =
+        document.querySelector(".footer");
+
+    gsap.to(
+        novaGroup.position,
+        {
+            x: 1.5,
+            y: -1,
+            z: -2,
+            scrollTrigger: {
+                trigger: footer,
+                start: "top bottom",
+                end: "bottom bottom",
+                scrub: 1.5
+            }
+        }
+    );
+
+    gsap.to(
+        novaGroup.scale,
+        {
+            x: 0.5,
+            y: 0.5,
+            z: 0.5,
+            scrollTrigger: {
+                trigger: footer,
+                start: "top bottom",
+                end: "bottom bottom",
+                scrub: 1.5
+            }
+        }
+    );
+}
+
+/* ==========================================
+   HERO FLOATING ANIMATION
+========================================== */
+
+function createHeroAnimations() {
+
+    gsap.to(
+        ".float-card.top",
+        {
+            y: -12,
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        }
+    );
+
+    gsap.to(
+        ".float-card.bottom",
+        {
+            y: 15,
+            duration: 3.2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        }
+    );
+
+    gsap.to(
+        ".float-card.small",
+        {
+            x: 10,
+            duration: 2.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        }
+    );
+}
+
+/* ==========================================
+   MOBILE MENU
+========================================== */
+
+if (menuToggle && mobileMenu) {
+
+    menuToggle.addEventListener(
+        "click",
+        () => {
+
+            mobileMenu.classList.toggle(
+                "active"
+            );
+
+            document.body.classList.toggle(
+                "menu-open"
+            );
+
+        }
+    );
+
+    mobileMenu
+        .querySelectorAll("a")
+        .forEach((link) => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    mobileMenu.classList.remove(
+                        "active"
+                    );
+
+                    document.body.classList.remove(
+                        "menu-open"
+                    );
+
+                }
+            );
+
+        });
+}
+
+/* ==========================================
+   SMOOTH ANCHOR SCROLL
+========================================== */
+
+document
+    .querySelectorAll('a[href^="#"]')
+    .forEach((anchor) => {
+
+        anchor.addEventListener(
+            "click",
+            function(event) {
+
+                const target =
+                    document.querySelector(
+                        this.getAttribute("href")
+                    );
+
+                if (!target) return;
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
+
+/* ==========================================
+   RESIZE SYSTEM
+========================================== */
+
+function handleResize() {
+
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    config.pixelRatio =
+        Math.min(
+            window.devicePixelRatio,
+            2
+        );
+
+    camera.aspect =
+        sizes.width / sizes.height;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+        sizes.width,
+        sizes.height
+    );
+
+    renderer.setPixelRatio(
+        config.pixelRatio
+    );
+
+    ScrollTrigger.refresh();
+}
+
+window.addEventListener(
+    "resize",
+    handleResize
+);
+
+/* ==========================================
+   PRODUCT IDLE ANIMATION
+========================================== */
+
+function updateProduct(
+    elapsedTime,
+    deltaTime
+) {
+
+    if (!novaGroup) return;
+
+    /* Smooth mouse movement */
+
+    mouseX +=
+        (targetMouseX - mouseX) *
+        Math.min(1, deltaTime * 3);
+
+    mouseY +=
+        (targetMouseY - mouseY) *
+        Math.min(1, deltaTime * 3);
+
+    /* Scroll smoothing */
+
+    currentScroll +=
+        (targetScroll - currentScroll) *
+        Math.min(1, deltaTime * 8);
+
+    /* Subtle floating */
+
+    novaGroup.position.y +=
+        Math.sin(elapsedTime * 1.3) *
+        0.0008;
+
+    /* Mouse parallax */
+
+    novaGroup.rotation.x +=
+        (-mouseY * 0.12 -
+        novaGroup.rotation.x * 0.0001) *
+        deltaTime;
+
+    novaGroup.rotation.z +=
+        (mouseX * 0.08) *
+        deltaTime * 0.35;
+
+    /* Core rotation */
+
+    if (coreGroup) {
+
+        coreGroup.rotation.y +=
+            deltaTime * 0.18;
+
+        coreGroup.rotation.x +=
+            deltaTime * 0.07;
+
+    }
+
+    /* Energy shell */
+
+    const shell =
+        novaGroup.getObjectByName(
+            "energyShell"
+        );
+
+    if (shell) {
+
+        shell.rotation.y +=
+            deltaTime * 0.08;
+
+        shell.rotation.x -=
+            deltaTime * 0.03;
+
+        const pulse =
+            1 +
+            Math.sin(elapsedTime * 2.2) *
+            0.018;
+
+        shell.scale.set(
+            pulse,
+            pulse,
+            pulse
+        );
+
+    }
+
+    /* Inner core pulse */
+
+    const innerCore =
+        coreGroup.getObjectByName(
+            "innerCore"
+        );
+
+    if (innerCore) {
+
+        const innerPulse =
+            1 +
+            Math.sin(elapsedTime * 3) *
+            0.06;
+
+        innerCore.scale.set(
+            innerPulse,
+            innerPulse,
+            innerPulse
+        );
+
+        innerCore.rotation.y +=
+            deltaTime * 0.45;
+
+    }
+
+    /* Rings */
+
+    if (ringGroup) {
+
+        const ringOne =
+            ringGroup.getObjectByName(
+                "ringOne"
+            );
+
+        const ringTwo =
+            ringGroup.getObjectByName(
+                "ringTwo"
+            );
+
+        const ringThree =
+            ringGroup.getObjectByName(
+                "ringThree"
+            );
+
+        if (ringOne) {
+            ringOne.rotation.z +=
+                deltaTime * 0.25;
+        }
+
+        if (ringTwo) {
+            ringTwo.rotation.x -=
+                deltaTime * 0.18;
+        }
+
+        if (ringThree) {
+            ringThree.rotation.y +=
+                deltaTime * 0.22;
+        }
+
+        /* Mini crystals */
+
+        ringGroup.children.forEach(
+            (child) => {
+
+                if (
+                    child.name !==
+                    "miniCrystal"
+                ) return;
+
+                const speed =
+                    child.userData.speed;
+
+                const offset =
+                    child.userData.offset;
+
+                child.rotation.x +=
+                    deltaTime * speed;
+
+                child.rotation.y +=
+                    deltaTime * speed * 0.7;
+
+                child.position.y +=
+                    Math.sin(
+                        elapsedTime *
+                        speed +
+                        offset
+                    ) *
+                    0.0015;
+
+            }
+        );
+
+    }
+
+    /* Dynamic lights */
+
+    if (mainLight) {
+
+        mainLight.position.x =
+            4 +
+            Math.sin(
+                elapsedTime * 0.7
+            ) * 1.5;
+
+        mainLight.position.y =
+            5 +
+            Math.cos(
+                elapsedTime * 0.5
+            ) * 1.2;
+
+    }
+
+    if (blueLight) {
+
+        blueLight.position.x =
+            -5 +
+            Math.sin(
+                elapsedTime * 0.8
+            ) * 2;
+
+    }
+
+    if (purpleLight) {
+
+        purpleLight.intensity =
+            4 +
+            Math.sin(
+                elapsedTime * 1.5
+            ) * 1;
+
+    }
+}
+
+/* ==========================================
+   PARTICLE ANIMATION
+========================================== */
+
+function updateParticles(
+    elapsedTime,
+    deltaTime
+) {
+
+    if (particleSystem) {
+
+        particleSystem.rotation.y +=
+            deltaTime * 0.018;
+
+        particleSystem.rotation.x =
+            Math.sin(
+                elapsedTime * 0.08
+            ) * 0.08;
+
+    }
+
+    if (stars) {
+
+        stars.rotation.y +=
+            deltaTime * 0.006;
+
+        stars.rotation.x =
+            Math.sin(
+                elapsedTime * 0.04
+            ) * 0.04;
+
+    }
+}
+
+/* ==========================================
+   CAMERA LOOK SYSTEM
+========================================== */
+
+const cameraTarget =
+    new THREE.Vector3();
+
+function updateCamera(
+    deltaTime
+) {
+
+    if (!camera || !novaGroup) return;
+
+    cameraTarget.set(
+        novaGroup.position.x * 0.08,
+        novaGroup.position.y * 0.06,
+        0
+    );
+
+    camera.lookAt(cameraTarget);
+
+    camera.rotation.z +=
+        mouseX *
+        deltaTime *
+        0.015;
+}
+
+/* ==========================================
+   MAIN RENDER LOOP
+========================================== */
+
+let previousTime = 0;
+
+function animate() {
+
+    requestAnimationFrame(animate);
+
+    const elapsedTime =
+        clock.getElapsedTime();
+
+    const deltaTime =
+        Math.min(
+            clock.getDelta(),
+            0.05
+        );
+
+    previousTime =
+        elapsedTime;
+
+    updateProduct(
+        elapsedTime,
+        deltaTime
+    );
+
+    updateParticles(
+        elapsedTime,
+        deltaTime
+    );
+
+    updateCamera(
+        deltaTime
+    );
+
+    renderer.render(
+        scene,
+        camera
+    );
+}
+
+/* ==========================================
+   INITIALIZE NOVA EXPERIENCE
+========================================== */
+
+function initializeNOVA() {
+
+    createScene();
+
+    createLights();
+
+    createNovaProduct();
+
+    createParticles();
+
+    createStars();
+
+    createHeroAnimations();
+
+    createRevealAnimations();
+
+    createIntroScrollAnimation();
+
+    createShowcaseAnimation();
+
+    createStoryAnimation();
+
+    createDetailsAnimation();
+
+    createShopAnimation();
+
+    createCTAAnimation();
+
+    createFooterAnimation();
+
+    ScrollTrigger.refresh();
+
+    animate();
+
+    updateLoader();
+}
+
+/* ==========================================
+   START
+========================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        initializeNOVA();
+
+    }
+);
+    /* ==========================================
+   ADVANCED CURSOR GLOW
+========================================== */
+
+const cursorGlow = document.createElement("div");
+
+cursorGlow.className = "cursor-glow";
+
+document.body.appendChild(cursorGlow);
+
+const cursorGlowStyle = document.createElement("style");
+
+cursorGlowStyle.textContent = `
+.cursor-glow{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:3;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    pointer-events:none;
+    opacity:.32;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(
+        circle,
+        rgba(124,92,255,.18) 0%,
+        rgba(0,217,255,.06) 30%,
+        transparent 70%
+    );
+    filter:blur(8px);
+    transition:width .3s ease,height .3s ease;
+    mix-blend-mode:screen;
+}
+body.menu-open{
+    overflow:hidden;
+}
+`;
+
+document.head.appendChild(cursorGlowStyle);
+
+let cursorX = window.innerWidth / 2;
+let cursorY = window.innerHeight / 2;
+
+let cursorTargetX = cursorX;
+let cursorTargetY = cursorY;
+
+window.addEventListener(
+    "mousemove",
+    (event) => {
+
+        cursorTargetX = event.clientX;
+
+        cursorTargetY = event.clientY;
+
+    }
+);
+
+function updateCursorGlow() {
+
+    cursorX +=
+        (cursorTargetX - cursorX) * 0.1;
+
+    cursorY +=
+        (cursorTargetY - cursorY) * 0.1;
+
+    cursorGlow.style.left =
+        cursorX + "px";
+
+    cursorGlow.style.top =
+        cursorY + "px";
+
+    requestAnimationFrame(
+        updateCursorGlow
+    );
+}
+
+updateCursorGlow();
+
+/* ==========================================
+   CARD HOVER TILT
+========================================== */
+
+const tiltCards =
+    document.querySelectorAll(
+        ".detail-card, .shop-card, .cta-box"
+    );
+
+tiltCards.forEach((card) => {
+
+    card.addEventListener(
+        "mousemove",
+        (event) => {
+
+            if (
+                window.innerWidth < 768
+            ) return;
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                event.clientX -
+                rect.left;
+
+            const y =
+                event.clientY -
+                rect.top;
+
+            const centerX =
+                rect.width / 2;
+
+            const centerY =
+                rect.height / 2;
+
+            const rotateX =
+                (y - centerY) /
+                centerY *
+                -4;
+
+            const rotateY =
+                (x - centerX) /
+                centerX *
+                4;
+
+            card.style.transform =
+                `perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-8px)`;
+
+        }
+    );
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform = "";
+
+        }
+    );
+
+});
+
+/* ==========================================
+   MAGNETIC BUTTON EFFECT
+========================================== */
+
+const magneticButtons =
+    document.querySelectorAll(
+        ".btn-primary, .btn-secondary, .add-cart"
+    );
+
+magneticButtons.forEach((button) => {
+
+    button.addEventListener(
+        "mousemove",
+        (event) => {
+
+            if (
+                window.innerWidth < 768
+            ) return;
+
+            const rect =
+                button.getBoundingClientRect();
+
+            const x =
+                event.clientX -
+                rect.left -
+                rect.width / 2;
+
+            const y =
+                event.clientY -
+                rect.top -
+                rect.height / 2;
+
+            gsap.to(
+                button,
+                {
+                    x: x * 0.18,
+                    y: y * 0.18,
+                    duration: 0.35,
+                    ease: "power2.out"
+                }
+            );
+
+        }
+    );
+
+    button.addEventListener(
+        "mouseleave",
+        () => {
+
+            gsap.to(
+                button,
+                {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1,0.4)"
+                }
+            );
+
+        }
+    );
+
+});
+
+/* ==========================================
+   PARALLAX BACKGROUND ELEMENTS
+========================================== */
+
+const parallaxParticles =
+    document.querySelectorAll(
+        ".ui-particle"
+    );
+
+window.addEventListener(
+    "mousemove",
+    (event) => {
+
+        if (
+            window.innerWidth < 768
+        ) return;
+
+        const x =
+            event.clientX /
+            window.innerWidth -
+            0.5;
+
+        const y =
+            event.clientY /
+            window.innerHeight -
+            0.5;
+
+        parallaxParticles.forEach(
+            (particle, index) => {
+
+                const strength =
+                    15 + index * 8;
+
+                gsap.to(
+                    particle,
+                    {
+                        x: x * strength,
+                        y: y * strength,
+                        duration: 1,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+/* ==========================================
+   ACTIVE NAVIGATION SYSTEM
+========================================== */
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-links a"
+    );
+
+const sections =
+    document.querySelectorAll(
+        "section[id]"
+    );
+
+function updateActiveNavigation() {
+
+    let currentSection = "";
+
+    sections.forEach(
+        (section) => {
+
+            const top =
+                section.offsetTop - 180;
+
+            const bottom =
+                top + section.offsetHeight;
+
+            if (
+                window.scrollY >= top &&
+                window.scrollY < bottom
+            ) {
+
+                currentSection =
+                    section.getAttribute("id");
+
+            }
+
+        }
+    );
+
+    navLinks.forEach(
+        (link) => {
+
+            const href =
+                link.getAttribute("href");
+
+            link.classList.remove(
+                "active"
+            );
+
+            if (
+                href ===
+                "#" + currentSection
+            ) {
+
+                link.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+}
+
+window.addEventListener(
+    "scroll",
+    updateActiveNavigation,
+    { passive: true }
+);
+
+/* ==========================================
+   EXTRA NAVIGATION STYLE
+========================================== */
+
+const navigationStyle =
+    document.createElement("style");
+
+navigationStyle.textContent = `
+.nav-links a{
+    position:relative;
+}
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-7px;
+    width:0;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        #7c5cff,
+        #00d9ff
+    );
+    transition:.3s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after{
+    width:100%;
+}
+.nav-links a.active{
+    color:#fff;
+}
+`;
+
+document.head.appendChild(
+    navigationStyle
+);
+
+/* ==========================================
+   SCROLL PROGRESS BAR
+========================================== */
+
+const progressBar =
+    document.createElement("div");
+
+progressBar.className =
+    "scroll-progress";
+
+document.body.appendChild(
+    progressBar
+);
+
+const progressStyle =
+    document.createElement("style");
+
+progressStyle.textContent = `
+.scroll-progress{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    width:0%;
+    height:2px;
+    background:linear-gradient(
+        90deg,
+        #7c5cff,
+        #00d9ff,
+        #ff3d81
+    );
+    box-shadow:
+        0 0 12px rgba(124,92,255,.8);
+    pointer-events:none;
+}
+`;
+
+document.head.appendChild(
+    progressStyle
+);
+
+function updateScrollProgress() {
+
+    const scrollTop =
+        window.scrollY;
+
+    const documentHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    const progress =
+        documentHeight > 0
+            ? scrollTop / documentHeight * 100
+            : 0;
+
+    progressBar.style.width =
+        progress + "%";
+}
+
+window.addEventListener(
+    "scroll",
+    updateScrollProgress,
+    { passive: true }
+);
+
+/* ==========================================
+   ADD TO CART INTERACTION
+========================================== */
+
+document
+    .querySelectorAll(".add-cart")
+    .forEach((button) => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const originalHTML =
+                    this.innerHTML;
+
+                this.innerHTML = `
+                    <svg
+                        width="19"
+                        height="19"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                    >
+                        <path
+                            d="M5 12L10 17L20 7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                `;
+
+                this.classList.add(
+                    "added"
+                );
+
+                gsap.fromTo(
+                    this,
+                    {
+                        scale: 0.7
+                    },
+                    {
+                        scale: 1,
+                        duration: 0.45,
+                        ease: "back.out(3)"
+                    }
+                );
+
+                setTimeout(
+                    () => {
+
+                        this.innerHTML =
+                            originalHTML;
+
+                        this.classList.remove(
+                            "added"
+                        );
+
+                    },
+                    1600
+                );
+
+            }
+        );
+
+    });
+
+/* ==========================================
+   PERFORMANCE OPTIMIZATION
+========================================== */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if (document.hidden) {
+
+            gsap.globalTimeline.pause();
+
+        } else {
+
+            gsap.globalTimeline.resume();
+
+            ScrollTrigger.refresh();
+
+        }
+
+    }
+);
+
+/* ==========================================
+   INITIAL PAGE STATE
+========================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        updateScrollProgress();
+
+        updateActiveNavigation();
+
+        setTimeout(
+            () => {
+
+                ScrollTrigger.refresh();
+
+            },
+            1000
+        );
+
+    }
+);
+
+/* ==========================================
+   END OF NOVA 3D EXPERIENCE
+========================================== */
+</script>
+
 </body>
 </html>
