@@ -1,1086 +1,1252 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <!-- ================= META ================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Hoàng Kun iOS</title>
+    <title>Văn Thắng iOS</title>
+    <meta name="description" content="Nền tảng cung cấp giải pháp công nghệ iOS.">
+    <meta name="keywords" content="vthangios, văn thắng ios">
+    <meta name="author" content="Văn Thắng iOS">
+    <meta name="theme-color" content="#0b0b12">
 
-    <meta
-        name="description"
-        content="Nền tảng cung cấp giải pháp công nghệ iOS 5.0 giúp game thủ leo rank an toàn và hiệu quả."
-    >
-    <meta name="keywords" content="hoangkunios, Hoàng Kun iOS">
-    <meta name="author" content="Hoàng Kun iOS">
-    <meta name="robots" content="index, follow">
-
-    <!-- THAY LINK WEBSITE CHÍNH TẠI ĐÂY -->
+    <!-- TODO: Thay bằng URL website của bạn -->
     <link rel="canonical" href="#">
 
-    <!-- THAY LINK FAVICON TẠI ĐÂY -->
-    <link
-        rel="icon"
-        href="/uploads/intro/1785223665_087e144254b7ed32.png"
-        type="image/png"
-    >
-    <link
-        rel="shortcut icon"
-        href="/uploads/intro/1785223665_087e144254b7ed32.png"
-        type="image/x-icon"
-    >
-    <link
-        rel="apple-touch-icon"
-        href="/uploads/intro/1785223665_087e144254b7ed32.png"
-    >
+    <!-- TODO: Thay bằng đường dẫn favicon của bạn -->
+    <link rel="icon" href="/uploads/intro/1785223665_087e144254b7ed32.png">
 
-    <!-- ================= SEO / SOCIAL PREVIEW ================= -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="vthangios">
+    <!-- Font và icon CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap">
 
-    <!-- THAY LINK WEBSITE TẠI ĐÂY -->
-    <meta property="og:url" content="#">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <meta property="og:title" content="Văn Thắng iOS">
-    <meta
-        property="og:description"
-        content="Nền tảng cung cấp giải pháp công nghệ iOS 5.0 giúp game thủ leo rank an toàn và hiệu quả."
-    >
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- THAY LINK ẢNH HIỂN THỊ KHI CHIA SẺ TẠI ĐÂY -->
-    <meta
-        property="og:image"
-        content="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg"
-    >
+    <style>
+        /* =====================================================
+           1. CÀI ĐẶT CHUNG
+        ===================================================== */
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta
-        name="twitter:image"
-        content="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg"
-    >
-    <meta name="twitter:title" content="Văn Thắng iOS">
-    <meta
-        name="twitter:description"
-        content="Nền tảng cung cấp giải pháp công nghệ iOS 5.0 giúp game thủ leo rank an toàn và hiệu quả."
-    >
+        :root {
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --text: #171923;
+            --muted: #777b8b;
+            --border: #e8e9ef;
+            --primary: #725cff;
+            --primary-light: #eeeaff;
+            --shadow: 0 8px 30px rgba(30, 30, 60, 0.06);
+            --radius: 20px;
+        }
 
-    <!-- TẢI TRƯỚC ẢNH ĐẠI DIỆN -->
-    <link
-        rel="preload"
-        as="image"
-        href="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg"
-        fetchpriority="high"
-    >
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <!-- ================= CSS ================= -->
-    <!-- Google Fonts -->
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&display=swap"
-    >
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    >
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Quicksand", sans-serif;
+            transition: background 0.25s, color 0.25s;
+        }
 
-    <!-- Bootstrap Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
+        body.dark {
+            --bg: #0b0b12;
+            --card: #15151f;
+            --text: #f4f4fa;
+            --muted: #a0a1b2;
+            --border: #292936;
+            --primary-light: #292344;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
 
-    <!-- THAY LINK FILE CSS CHÍNH TẠI ĐÂY -->
-    <link
-        rel="stylesheet"
-        href="/assets/css/style.2.0.css"
-    >
+        button,
+        a {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(100% - 32px, 760px);
+            margin: 0 auto;
+        }
+
+        /* =====================================================
+           2. THANH ĐIỀU HƯỚNG
+        ===================================================== */
+
+        .nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 0;
+        }
+
+        .nav-btn {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--card);
+            color: var(--text);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =====================================================
+           3. THÔNG BÁO
+        ===================================================== */
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.25s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .notification-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 21;
+            width: min(360px, 90vw);
+            height: 100%;
+            padding: 22px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+            transform: translateX(110%);
+            transition: transform 0.25s;
+        }
+
+        .notification-panel.show {
+            transform: translateX(0);
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .notification-close {
+            width: 34px;
+            height: 34px;
+            border: 0;
+            border-radius: 10px;
+            background: var(--primary-light);
+            color: var(--text);
+        }
+
+        .notification-empty {
+            padding: 45px 10px;
+            text-align: center;
+            color: var(--muted);
+            line-height: 2;
+        }
+
+        /* =====================================================
+           4. PROFILE
+        ===================================================== */
+
+        .profile {
+            text-align: center;
+            padding: 10px 0 28px;
+        }
+
+        .avatar-wrap {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 4px solid var(--card);
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+        }
+
+        .avatar-frame {
+            position: absolute;
+            inset: -8px;
+            width: calc(100% + 16px);
+            height: calc(100% + 16px);
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .profile-intro {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .profile-name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 5px 0;
+            font-size: clamp(25px, 5vw, 34px);
+            font-weight: 800;
+        }
+
+        .verified {
+            width: 25px;
+            height: 25px;
+        }
+
+        .profile-headline {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .gradient-text {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* =====================================================
+           5. MẠNG XÃ HỘI
+        ===================================================== */
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 22px 0 30px;
+        }
+
+        .social-item {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .social-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .social-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* =====================================================
+           6. DANH SÁCH ỨNG DỤNG
+        ===================================================== */
+
+        .section-title {
+            margin: 0 0 16px;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .app-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .app-card {
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .app-banner {
+            position: relative;
+            height: 145px;
+            overflow: hidden;
+            background: var(--primary-light);
+        }
+
+        .app-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badges {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 9px;
+            border-radius: 8px;
+            background: rgba(15, 15, 25, 0.78);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .app-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+        }
+
+        .app-icon {
+            flex: 0 0 58px;
+            width: 58px;
+            height: 58px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--primary-light);
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-name {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .app-desc {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .app-actions {
+            display: grid;
+            gap: 8px;
+            padding: 0 14px 14px;
+        }
+
+        .action-btn {
+            min-height: 38px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 10px;
+            border: 0;
+            border-radius: 11px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            transition: filter 0.2s, transform 0.2s;
+        }
+
+        .action-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        .download-btn {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .key-main {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .key-sub {
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        /* =====================================================
+           7. MUSIC PLAYER
+        ===================================================== */
+
+        .widgets {
+            display: grid;
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .music-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+
+        .music-art {
+            flex: 0 0 55px;
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            border-radius: 15px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 25px;
+        }
+
+        .music-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .music-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-title {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .music-artist {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-btn {
+            width: 30px;
+            height: 30px;
+            border: 0;
+            border-radius: 9px;
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .music-progress {
+            height: 4px;
+            margin-top: 12px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: var(--border);
+        }
+
+        .music-progress-fill {
+            width: 0;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        /* =====================================================
+           8. YOUTUBE BANNER
+        ===================================================== */
+
+        .youtube-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+
+        .youtube-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .youtube-avatar {
+            width: 55px;
+            height: 55px;
+            flex: 0 0 55px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .youtube-title {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .youtube-handle,
+        .youtube-meta {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .youtube-btn {
+            flex: 0 0 auto;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #ff0033;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* =====================================================
+           9. FOOTER
+        ===================================================== */
+
+        .footer {
+            padding: 30px 0;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* =====================================================
+           10. RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 560px) {
+            .container {
+                width: min(100% - 22px, 760px);
+            }
+
+            .app-list {
+                grid-template-columns: 1fr;
+                gap: 13px;
+            }
+
+            .app-banner {
+                height: 175px;
+            }
+
+            .app-info {
+                padding: 13px;
+            }
+
+            .app-actions {
+                padding: 0 13px 13px;
+            }
+
+            .music-card {
+                align-items: flex-start;
+            }
+
+            .music-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .youtube-banner {
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- ================= THEME ================= -->
-    <script>
-        (function () {
-            let theme = null;
+    <div class="container">
 
-            try {
-                theme = localStorage.getItem("vthangios_theme_v2");
-            } catch (error) {
-                // Không làm gì nếu trình duyệt chặn localStorage.
-            }
+        <!-- =================================================
+             THANH ĐIỀU HƯỚNG
+        ================================================== -->
 
-            const prefersDark = window.matchMedia(
-                "(prefers-color-scheme: dark)"
-            ).matches;
-
-            if (theme === "dark" || (theme !== "light" && prefersDark)) {
-                document.body.classList.add("vthangios-dark");
-            }
-        })();
-    </script>
-
-
-    <!-- ================= MAIN ================= -->
-    <main role="main">
-
-        <!-- ================= NAVIGATION ================= -->
-        <nav
-            class="vthangios-nav"
-            aria-label="Điều hướng chính"
-        >
-            <!-- NÚT THÔNG BÁO -->
-            <button
-                class="vthangios-bell-btn"
-                id="vthangios-bell-btn"
-                type="button"
-                aria-label="Thông báo"
-            >
+        <nav class="nav" aria-label="Điều hướng chính">
+            <button class="nav-btn" id="notificationButton" aria-label="Thông báo">
                 <i class="fas fa-bell"></i>
             </button>
 
-            <!-- NÚT ĐỔI GIAO DIỆN -->
-            <button
-                class="vthangios-theme-btn"
-                id="vthangios-theme-toggle"
-                type="button"
-                onclick="vtToggleTheme()"
-                aria-label="Chuyển chế độ tối/sáng"
-            >
-                <i
-                    class="bi bi-sun-fill vthangios-theme-icon"
-                    id="vthangios-theme-icon"
-                ></i>
+            <button class="nav-btn" id="themeButton" aria-label="Đổi giao diện">
+                <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
             </button>
         </nav>
 
+        <!-- Bảng thông báo -->
+        <div class="overlay" id="notificationOverlay"></div>
 
-        <!-- ================= NOTIFICATION POPUP ================= -->
-        <div
-            id="vthangios-notif-overlay"
-            class="vthangios-notif-overlay"
-            onclick="vtCloseNotif(event)"
-        ></div>
+        <aside class="notification-panel" id="notificationPanel">
+            <div class="notification-header">
+                <span><i class="fas fa-bell"></i> Thông báo</span>
 
-        <div
-            id="vthangios-notif-panel"
-            class="vthangios-notif-panel"
-        >
-            <div class="vthangios-notif-header">
-                <span>
-                    <i class="fas fa-bell"></i>
-                    Thông Báo
-                </span>
-
-                <button
-                    type="button"
-                    onclick="vtCloseNotif()"
-                    class="vthangios-notif-close"
-                    aria-label="Đóng thông báo"
-                >
+                <button class="notification-close" id="notificationClose" aria-label="Đóng">
                     <i class="fas fa-xmark"></i>
                 </button>
             </div>
 
-            <div class="vthangios-notif-body">
-                <div class="vthangios-notif-empty">
-                    <i class="fas fa-bell-slash"></i>
-                    <br>
-                    Chưa có thông báo
-                </div>
+            <div class="notification-empty">
+                <i class="fas fa-bell-slash"></i>
+                <br>
+                Chưa có thông báo
             </div>
-        </div>
+        </aside>
 
+        <!-- =================================================
+             PROFILE
+        ================================================== -->
 
-        <!-- ================= AVATAR ================= -->
-        <div class="vthangios-avatar-wrap has-frame">
-            <!-- THAY LINK ẢNH ĐẠI DIỆN TẠI ĐÂY -->
-            <img
-                class="vthangios-avatar"
-                src="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg"
-                alt="Ảnh đại diện Văn Thắng iOS"
-                fetchpriority="high"
-                width="120"
-                height="120"
-            >
-
-            <!-- THAY LINK KHUNG AVATAR TẠI ĐÂY -->
-            <img
-                class="vthangios-avatar-frame"
-                src="/uploads/intro/1789270294_e1f9986c9748fea3.png"
-                alt=""
-                aria-hidden="true"
-            >
-        </div>
-
-
-        <!-- ================= NAME & HEADLINE ================= -->
-        <p class="vthangios-iam">
-            Hi, i am
-        </p>
-
-        <h1 class="vthangios-name">
-            Văn Thắng iOS
-
-            <!-- THAY LINK ẢNH TÍCH XANH TẠI ĐÂY -->
-            <img
-                class="vthangios-verify"
-                src="assets/img/verify.png"
-                alt="verified"
-                width="27"
-                height="27"
-            >
-        </h1>
-
-        <p class="vthangios-headline">
-            and I'm a
-            <span
-                id="typed-text"
-                class="vthangios-gradient-text"
-            ></span>
-        </p>
-
-
-        <!-- ================= SOCIAL LINKS ================= -->
-        <div class="vthangios-socials">
-
-            <!-- THAY LINK DISCORD TẠI ĐÂY -->
-            <a
-                href="#"
-                class="vthangios-social-item"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Discord"
-            >
+        <header class="profile">
+            <div class="avatar-wrap">
+                <!-- TODO: Thay bằng ảnh đại diện của bạn -->
                 <img
-                    src="/uploads/social/1785226212_aaa04016c5aa7392.png"
-                    alt="Discord"
-                    width="40"
-                    height="40"
+                    class="avatar"
+                    src="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg"
+                    alt="Ảnh đại diện"
                 >
+
+                <!-- TODO: Thay bằng ảnh khung avatar nếu có -->
+                <img
+                    class="avatar-frame"
+                    src="/uploads/intro/1789270294_e1f9986c9748fea3.png"
+                    alt=""
+                    aria-hidden="true"
+                >
+            </div>
+
+            <p class="profile-intro">Hi, i am</p>
+
+            <h1 class="profile-name">
+                Văn Thắng iOS
+
+                <!-- TODO: Thay bằng ảnh xác minh của bạn -->
+                <img
+                    class="verified"
+                    src="assets/img/verify.png"
+                    alt="Verified"
+                >
+            </h1>
+
+            <p class="profile-headline">
+                and I'm a
+                <span class="gradient-text" id="typedText">Developer</span>
+            </p>
+        </header>
+
+        <!-- =================================================
+             MẠNG XÃ HỘI
+        ================================================== -->
+
+        <div class="socials">
+
+            <!-- TODO: Thay # bằng link Discord của bạn -->
+            <a class="social-item" href="#" aria-label="Discord">
+                <img src="/uploads/social/1785226212_aaa04016c5aa7392.png" alt="Discord">
             </a>
 
-            <!-- THAY LINK TELEGRAM TẠI ĐÂY -->
-            <a
-                href="#"
-                class="vthangios-social-item"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Telegram"
-            >
-                <img
-                    src="/uploads/social/1785226222_d9d79e31dfb0b49d.png"
-                    alt="Telegram"
-                    width="40"
-                    height="40"
-                >
+            <!-- TODO: Thay # bằng link Telegram của bạn -->
+            <a class="social-item" href="#" aria-label="Telegram">
+                <img src="/uploads/social/1785226222_d9d79e31dfb0b49d.png" alt="Telegram">
             </a>
 
-            <!-- THAY LINK YOUTUBE TẠI ĐÂY -->
-            <a
-                href="#"
-                class="vthangios-social-item"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-            >
-                <img
-                    src="/uploads/social/1785226233_576f35dc9945948f.png"
-                    alt="YouTube"
-                    width="40"
-                    height="40"
-                >
+            <!-- TODO: Thay # bằng link YouTube của bạn -->
+            <a class="social-item" href="#" aria-label="YouTube">
+                <img src="/uploads/social/1785226233_576f35dc9945948f.png" alt="YouTube">
             </a>
 
         </div>
 
+        <!-- =================================================
+             DANH SÁCH APP
+        ================================================== -->
 
-        <!-- ================= LINK BOXES ================= -->
-        <div class="vthangios-linkbox-section">
-            <!-- THÊM LINK BOX TẠI ĐÂY NẾU CẦN -->
-        </div>
+        <section aria-label="Danh sách ứng dụng">
+            <h2 class="section-title">APP</h2>
 
+            <div class="app-list">
 
-        <!-- ================= APP GROUP ================= -->
-        <section
-            class="vthangios-app-section"
-            aria-label="Danh sách ứng dụng"
-        >
-            <div
-                class="vthangios-group-block"
-                id="group-6"
-            >
-                <h2 class="vthangios-section-title">
-                    APP
-                </h2>
+                <!-- APP 1 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1785337074_943e1e8c0be1667c.jpeg" alt="MENU AOV MAP V1">
 
-                <div class="vthangios-app-list">
-
-
-                    <!-- ================================================== -->
-                    <!-- APP 1: MENU AOV MAP V1 -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
-
-                            <!-- ẢNH BANNER APP 1 -->
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1785337074_943e1e8c0be1667c.jpeg"
-                                    alt="MENU AOV MAP V1"
-                                    fetchpriority="high"
-                                >
-
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-ios">
-                                        <i class="fab fa-apple"></i>
-                                        iOS
-                                    </span>
-                                </span>
-                            </div>
-
-                            <!-- THÔNG TIN APP 1 -->
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1785224151_22760a5eab01424b.jpeg"
-                                        alt="MENU AOV MAP V1"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        MENU AOV MAP V1
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Cập Nhật Ngày 30/10
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- LINK APP 1 -->
-                            <div class="vthangios-app-actions has-key2">
-
-                                <!-- THAY LINK DOWNLOAD APP 1 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download MENU AOV MAP V1"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY CHÍNH APP 1 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-main"
-                                    aria-label="Get Key Chính MENU AOV MAP V1"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-unlock-keyhole"></i>
-                                    <span>Get Key Chính</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY PHỤ APP 1 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-sub"
-                                    aria-label="Get Key Phụ MENU AOV MAP V1"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    <span>Get Key Phụ</span>
-                                </button>
-
-                            </div>
+                        <div class="badges">
+                            <span class="badge"><i class="fab fa-apple"></i> iOS</span>
                         </div>
                     </div>
 
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1785224151_22760a5eab01424b.jpeg" alt="MENU AOV MAP V1">
+                        </div>
 
-                    <!-- ================================================== -->
-                    <!-- APP 2: MENU AOV MOD V2 -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
-
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1790753362_1d81439ce002af4c.jpeg"
-                                    alt="MENU AOV MOD V2"
-                                    loading="lazy"
-                                >
-
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-ios">
-                                        <i class="fab fa-apple"></i>
-                                        iOS
-                                    </span>
-                                </span>
-                            </div>
-
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1785228134_3e17a04f549f80df.jpeg"
-                                        alt="MENU AOV MOD V2"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        MENU AOV MOD V2
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Cập Nhật Ngày 29/10
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vthangios-app-actions has-key2">
-
-                                <!-- THAY LINK DOWNLOAD APP 2 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download MENU AOV MOD V2"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY CHÍNH APP 2 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-main"
-                                    aria-label="Get Key Chính MENU AOV MOD V2"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-unlock-keyhole"></i>
-                                    <span>Get Key Chính</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY PHỤ APP 2 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-sub"
-                                    aria-label="Get Key Phụ MENU AOV MOD V2"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    <span>Get Key Phụ</span>
-                                </button>
-
-                            </div>
+                        <div>
+                            <span class="app-name">MENU AOV MAP V1</span>
+                            <span class="app-desc">Cập Nhật Ngày 30/10</span>
                         </div>
                     </div>
 
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
 
-                    <!-- ================================================== -->
-                    <!-- APP 3: MENU AOV ESP V3 -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
+                        <!-- TODO: Thay # bằng link Get Key chính -->
+                        <a href="#" class="action-btn key-main">
+                            <i class="fa-solid fa-unlock-keyhole"></i> Get Key Chính
+                        </a>
 
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1792567885_ff260e829d1d93d1.jpeg"
-                                    alt="MENU AOV ESP V3"
-                                    loading="lazy"
-                                >
+                        <!-- TODO: Thay # bằng link Get Key phụ -->
+                        <a href="#" class="action-btn key-sub">
+                            <i class="fa-solid fa-shield-halved"></i> Get Key Phụ
+                        </a>
+                    </div>
+                </article>
 
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-ios">
-                                        <i class="fab fa-apple"></i>
-                                        iOS
-                                    </span>
-                                </span>
-                            </div>
+                <!-- APP 2 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1790753362_1d81439ce002af4c.jpeg" alt="MENU AOV MOD V2">
 
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1790057670_00bfd2f43fc783c9.jpeg"
-                                        alt="MENU AOV ESP V3"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        MENU AOV ESP V3
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Cập Nhật Ngày 21/10
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vthangios-app-actions has-key2">
-
-                                <!-- THAY LINK DOWNLOAD APP 3 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download MENU AOV ESP V3"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY CHÍNH APP 3 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-main"
-                                    aria-label="Get Key Chính MENU AOV ESP V3"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-unlock-keyhole"></i>
-                                    <span>Get Key Chính</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY PHỤ APP 3 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-sub"
-                                    aria-label="Get Key Phụ MENU AOV ESP V3"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    <span>Get Key Phụ</span>
-                                </button>
-
-                            </div>
+                        <div class="badges">
+                            <span class="badge"><i class="fab fa-apple"></i> iOS</span>
                         </div>
                     </div>
 
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1785228134_3e17a04f549f80df.jpeg" alt="MENU AOV MOD V2">
+                        </div>
 
-                    <!-- ================================================== -->
-                    <!-- APP 4: MENU AOV MAP ADR V1 -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
-
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1790651701_f0f4500bb4de08ec.jpeg"
-                                    alt="MENU AOV MAP ADR V1"
-                                    loading="lazy"
-                                >
-
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-android">
-                                        <i class="bi bi-android2"></i>
-                                        Android
-                                    </span>
-                                </span>
-                            </div>
-
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1787278805_050439021e9c26f6.jpeg"
-                                        alt="MENU AOV MAP ADR V1"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        MENU AOV MAP ADR V1
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Cập Nhật Ngày 29/9
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vthangios-app-actions has-key2">
-
-                                <!-- THAY LINK DOWNLOAD APP 4 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download MENU AOV MAP ADR V1"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY CHÍNH APP 4 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-main"
-                                    aria-label="Get Key Chính MENU AOV MAP ADR V1"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-unlock-keyhole"></i>
-                                    <span>Get Key Chính</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY PHỤ APP 4 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-sub"
-                                    aria-label="Get Key Phụ MENU AOV MAP ADR V1"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    <span>Get Key Phụ</span>
-                                </button>
-
-                            </div>
+                        <div>
+                            <span class="app-name">MENU AOV MOD V2</span>
+                            <span class="app-desc">Cập Nhật Ngày 29/10</span>
                         </div>
                     </div>
 
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
 
-                    <!-- ================================================== -->
-                    <!-- APP 5: MENU AOV MAP ADR V2 -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
+                        <!-- TODO: Thay # bằng link Get Key chính -->
+                        <a href="#" class="action-btn key-main">
+                            <i class="fa-solid fa-unlock-keyhole"></i> Get Key Chính
+                        </a>
 
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1793386623_53b22af3dad541dc.jpg"
-                                    alt="MENU AOV MAP ADR V2"
-                                    loading="lazy"
-                                >
+                        <!-- TODO: Thay # bằng link Get Key phụ -->
+                        <a href="#" class="action-btn key-sub">
+                            <i class="fa-solid fa-shield-halved"></i> Get Key Phụ
+                        </a>
+                    </div>
+                </article>
 
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-android">
-                                        <i class="bi bi-android2"></i>
-                                        Android
-                                    </span>
-                                </span>
-                            </div>
+                <!-- APP 3 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1792567885_ff260e829d1d93d1.jpeg" alt="MENU AOV ESP V3">
 
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1793386623_8821a33ff01b84ce.jpg"
-                                        alt="MENU AOV MAP ADR V2"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        MENU AOV MAP ADR V2
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Cập Nhật Ngày 31/10
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vthangios-app-actions">
-
-                                <!-- THAY LINK DOWNLOAD APP 5 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download MENU AOV MAP ADR V2"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                                <!-- THAY LINK GET KEY CHÍNH APP 5 -->
-                                <button
-                                    type="button"
-                                    class="vthangios-app-getkey is-main"
-                                    aria-label="Get Key Chính MENU AOV MAP ADR V2"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="fa-solid fa-unlock-keyhole"></i>
-                                    <span>Get Key Chính</span>
-                                </button>
-
-                            </div>
+                        <div class="badges">
+                            <span class="badge"><i class="fab fa-apple"></i> iOS</span>
                         </div>
                     </div>
 
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1790057670_00bfd2f43fc783c9.jpeg" alt="MENU AOV ESP V3">
+                        </div>
 
-                    <!-- ================================================== -->
-                    <!-- APP 6: FREE FIRE CHEAT PROXY -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
-
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1792232611_a92ee83f69ad9150.jpeg"
-                                    alt="FREE FIRE CHEAT PROXY"
-                                    loading="lazy"
-                                >
-
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-ios">
-                                        <i class="fab fa-apple"></i>
-                                        iOS
-                                    </span>
-                                </span>
-                            </div>
-
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1792232611_55b12dd38115306c.png"
-                                        alt="FREE FIRE CHEAT PROXY"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        FREE FIRE CHEAT PROXY
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Cập Nhật Ngày 17/10
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vthangios-app-actions">
-
-                                <!-- THAY LINK DOWNLOAD APP 6 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download FREE FIRE CHEAT PROXY"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                            </div>
+                        <div>
+                            <span class="app-name">MENU AOV ESP V3</span>
+                            <span class="app-desc">Cập Nhật Ngày 21/10</span>
                         </div>
                     </div>
 
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
 
-                    <!-- ================================================== -->
-                    <!-- APP 7: 8 BALL POOL -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
+                        <!-- TODO: Thay # bằng link Get Key chính -->
+                        <a href="#" class="action-btn key-main">
+                            <i class="fa-solid fa-unlock-keyhole"></i> Get Key Chính
+                        </a>
 
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1791292171_9f46c439d104121b.jpeg"
-                                    alt="8 BALL POOL"
-                                    loading="lazy"
-                                >
+                        <!-- TODO: Thay # bằng link Get Key phụ -->
+                        <a href="#" class="action-btn key-sub">
+                            <i class="fa-solid fa-shield-halved"></i> Get Key Phụ
+                        </a>
+                    </div>
+                </article>
 
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-ios">
-                                        <i class="fab fa-apple"></i>
-                                        iOS
-                                    </span>
-                                </span>
-                            </div>
+                <!-- APP 4 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1790651701_f0f4500bb4de08ec.jpeg" alt="MENU AOV MAP ADR V1">
 
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1791292171_1c96f0e7332a61d2.jpeg"
-                                        alt="8 BALL POOL"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        8 BALL POOL
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Cập Nhật Ngày 26/10
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vthangios-app-actions">
-
-                                <!-- THAY LINK DOWNLOAD APP 7 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download 8 BALL POOL"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                            </div>
+                        <div class="badges">
+                            <span class="badge"><i class="bi bi-android2"></i> Android</span>
                         </div>
                     </div>
 
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1787278805_050439021e9c26f6.jpeg" alt="MENU AOV MAP ADR V1">
+                        </div>
 
-                    <!-- ================================================== -->
-                    <!-- APP 8: TIKTOK MOD -->
-                    <!-- ================================================== -->
-                    <div class="vthangios-app-entry">
-                        <div class="vthangios-app-item">
-
-                            <div class="vthangios-app-banner">
-                                <img
-                                    src="/uploads/previews/1793165747_d0a5d598f62c1094.jpeg"
-                                    alt="TIKTOK MOD"
-                                    loading="lazy"
-                                >
-
-                                <span class="vthangios-app-banner-badges">
-                                    <span class="vthangios-platform-badge vthangios-platform-ios">
-                                        <i class="fab fa-apple"></i>
-                                        iOS
-                                    </span>
-
-                                    <span class="vthangios-platform-badge vthangios-platform-android">
-                                        <i class="bi bi-android2"></i>
-                                        Android
-                                    </span>
-                                </span>
-                            </div>
-
-                            <div class="vthangios-app-info">
-                                <div class="vthangios-app-icon-wrap">
-                                    <img
-                                        src="/uploads/apps/1791309784_3a36086979212b10.png"
-                                        alt="TIKTOK MOD"
-                                        width="78"
-                                        height="78"
-                                        loading="lazy"
-                                    >
-                                </div>
-
-                                <div>
-                                    <span class="vthangios-app-name">
-                                        TIKTOK MOD
-                                    </span>
-
-                                    <span class="vthangios-app-desc">
-                                        Updated: Oct 27, 2026
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vthangios-app-actions">
-
-                                <!-- THAY LINK DOWNLOAD APP 8 -->
-                                <button
-                                    class="vthangios-download-btn vthangios-app-cta"
-                                    type="button"
-                                    aria-label="Download TIKTOK MOD"
-                                    onclick="window.open('#', '_blank')"
-                                >
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-
-                            </div>
+                        <div>
+                            <span class="app-name">MENU AOV MAP ADR V1</span>
+                            <span class="app-desc">Cập Nhật Ngày 29/9</span>
                         </div>
                     </div>
 
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
 
-                </div>
+                        <!-- TODO: Thay # bằng link Get Key chính -->
+                        <a href="#" class="action-btn key-main">
+                            <i class="fa-solid fa-unlock-keyhole"></i> Get Key Chính
+                        </a>
+
+                        <!-- TODO: Thay # bằng link Get Key phụ -->
+                        <a href="#" class="action-btn key-sub">
+                            <i class="fa-solid fa-shield-halved"></i> Get Key Phụ
+                        </a>
+                    </div>
+                </article>
+
+                <!-- APP 5 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1793386623_53b22af3dad541dc.jpg" alt="MENU AOV MAP ADR V2">
+
+                        <div class="badges">
+                            <span class="badge"><i class="bi bi-android2"></i> Android</span>
+                        </div>
+                    </div>
+
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1793386623_8821a33ff01b84ce.jpg" alt="MENU AOV MAP ADR V2">
+                        </div>
+
+                        <div>
+                            <span class="app-name">MENU AOV MAP ADR V2</span>
+                            <span class="app-desc">Cập Nhật Ngày 31/10</span>
+                        </div>
+                    </div>
+
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
+
+                        <!-- TODO: Thay # bằng link Get Key chính -->
+                        <a href="#" class="action-btn key-main">
+                            <i class="fa-solid fa-unlock-keyhole"></i> Get Key Chính
+                        </a>
+                    </div>
+                </article>
+
+                <!-- APP 6 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1792232611_a92ee83f69ad9150.jpeg" alt="FREE FIRE CHEAT PROXY">
+
+                        <div class="badges">
+                            <span class="badge"><i class="fab fa-apple"></i> iOS</span>
+                        </div>
+                    </div>
+
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1792232611_55b12dd38115306c.png" alt="FREE FIRE CHEAT PROXY">
+                        </div>
+
+                        <div>
+                            <span class="app-name">FREE FIRE CHEAT PROXY</span>
+                            <span class="app-desc">Cập Nhật Ngày 17/10</span>
+                        </div>
+                    </div>
+
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
+                    </div>
+                </article>
+
+                <!-- APP 7 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1791292171_9f46c439d104121b.jpeg" alt="8 BALL POOL">
+
+                        <div class="badges">
+                            <span class="badge"><i class="fab fa-apple"></i> iOS</span>
+                        </div>
+                    </div>
+
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1791292171_1c96f0e7332a61d2.jpeg" alt="8 BALL POOL">
+                        </div>
+
+                        <div>
+                            <span class="app-name">8 BALL POOL</span>
+                            <span class="app-desc">Cập Nhật Ngày 26/10</span>
+                        </div>
+                    </div>
+
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
+                    </div>
+                </article>
+
+                <!-- APP 8 -->
+                <article class="app-card">
+                    <div class="app-banner">
+                        <img src="/uploads/previews/1793165747_d0a5d598f62c1094.jpeg" alt="TIKTOK MOD">
+
+                        <div class="badges">
+                            <span class="badge"><i class="fab fa-apple"></i> iOS</span>
+                            <span class="badge"><i class="bi bi-android2"></i> Android</span>
+                        </div>
+                    </div>
+
+                    <div class="app-info">
+                        <div class="app-icon">
+                            <img src="/uploads/apps/1791309784_3a36086979212b10.png" alt="TIKTOK MOD">
+                        </div>
+
+                        <div>
+                            <span class="app-name">TIKTOK MOD</span>
+                            <span class="app-desc">Updated: Oct 27, 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="app-actions">
+                        <!-- TODO: Thay # bằng link tải app -->
+                        <a href="#" class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Download
+                        </a>
+                    </div>
+                </article>
+
             </div>
         </section>
 
+        <!-- =================================================
+             MUSIC PLAYER
+        ================================================== -->
 
-        <!-- ================= WIDGETS ================= -->
-        <div class="vthangios-widgets">
+        <section class="widgets">
 
-            <!-- ================= MUSIC PLAYER ================= -->
-            <div
-                class="vthangios-music-card"
-                id="vt-music-card"
-                data-sources='["#"]'
-            >
-                <div class="vthangios-music-art-wrap">
-                    <div
-                        class="vthangios-music-art"
-                        id="vt-music-art"
-                    >
-                        <i class="fa-brands fa-soundcloud"></i>
-                    </div>
+            <div class="music-card">
+                <div class="music-art">
+                    <i class="fa-brands fa-soundcloud"></i>
                 </div>
 
-                <div class="vthangios-music-info">
-                    <div class="vthangios-music-row">
-
-                        <div class="vthangios-music-text">
-                            <div class="vthangios-music-head">
-                                <p
-                                    class="vthangios-music-title"
-                                    id="vt-music-title"
-                                >
-                                    SoundCloud
-                                </p>
-                            </div>
-
-                            <p
-                                class="vthangios-music-artist"
-                                id="vt-music-artist"
-                            >
-                                by vthangios
-                            </p>
+                <div class="music-content">
+                    <div class="music-row">
+                        <div>
+                            <p class="music-title" id="musicTitle">SoundCloud</p>
+                            <p class="music-artist" id="musicArtist">by vthangios</p>
                         </div>
 
-                        <div class="vthangios-music-controls">
-                            <button
-                                type="button"
-                                class="vthangios-music-btn"
-                                id="vt-music-prev"
-                                aria-label="Bài trước"
-                            >
+                        <div class="music-controls">
+                            <button class="music-btn" id="musicPrev" aria-label="Bài trước">
                                 <i class="bi bi-skip-start-fill"></i>
                             </button>
 
-                            <button
-                                type="button"
-                                class="vthangios-music-toggle"
-                                id="vt-music-toggle"
-                                aria-label="Phát nhạc"
-                            >
-                                <i
-                                    class="fa-solid fa-play"
-                                    id="vt-music-icon"
-                                ></i>
+                            <button class="music-btn" id="musicToggle" aria-label="Phát nhạc">
+                                <i class="fa-solid fa-play" id="musicIcon"></i>
                             </button>
 
-                            <button
-                                type="button"
-                                class="vthangios-music-btn"
-                                id="vt-music-next"
-                                aria-label="Bài tiếp"
-                            >
+                            <button class="music-btn" id="musicNext" aria-label="Bài tiếp">
                                 <i class="bi bi-skip-end-fill"></i>
                             </button>
                         </div>
                     </div>
 
-                    <div class="vthangios-music-progress-row">
-                        <span
-                            class="vthangios-music-time"
-                            id="vt-music-time-cur"
-                        >
-                            0:00
-                        </span>
+                    <div class="music-progress">
+                        <div class="music-progress-fill" id="musicProgress"></div>
+                    </div>
+                </div>
+            </div>
 
-                        <div
-                            class="vthangios-music-progress"
-                            id="vt-music-progress"
-                            role="slider"
-                            aria-label="Tua nhạc"
-                        >
-                            <div
-                                class="vthangios-music-progress-fill"
-                                id="vt-music-progress-fill"
-                            ></div>
-                        </div>
+            <!-- TODO: Nếu muốn dùng playlist, thay # bằng link playlist SoundCloud -->
+            <div id="soundcloudPlaylist" data-playlist="#"></div>
 
-                        <span
-                            class="vthangios-music-time"
-                            id="vt-music-time-total"
-                        >
-                            0:00
-                        </span>
+            <!-- =================================================
+                 YOUTUBE BANNER
+            ================================================== -->
+
+            <div class="youtube-banner">
+                <div class="youtube-main">
+                    <!-- TODO: Thay bằng ảnh đại diện YouTube -->
+                    <img
+                        class="youtube-avatar"
+                        src="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg"
+                        alt="Văn Thắng iOS"
+                    >
+
+                    <div>
+                        <p class="youtube-title">Văn Thắng iOS</p>
+                        <p class="youtube-handle">@vthangios</p>
+                        <p class="youtube-meta">Kênh YouTube của mình</p>
                     </div>
                 </div>
 
-                <div
-                    id="vt-music-frame-holder"
-                    aria-hidden="true"
-                ></div>
+                <!-- TODO: Thay # bằng link đăng ký YouTube -->
+                <a href="#" class="youtube-btn">Đăng ký</a>
             </div>
 
+        </section>
 
-            <!-- ================= YOUTUBE BANNER ================= -->
-            <div class="vthangios-yt-banner">
-                <div class="vthangios-yt-main">
-                    <div class="vthangios-yt-head">
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
 
-                        <!-- THAY LINK ẢNH AVATAR YOUTUBE TẠI ĐÂY -->
-                        <img
-                            class="vthangios-yt-avatar"
-                            src="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg"
-                            alt="Văn Thắng iOS"
-                            width="80"
-                            height="80"
-                            loading="lazy"
-                        >
-
-                        <div class="vthangios-yt-text">
-                            <p class="vthangios-yt-title">
-                                Văn Thắng iOS
-                            </p>
-
-                            <p class="vthangios-yt-handle">
-                                @vthangios
-                            </p>
-
-                            <p class="vthangios-yt-meta">
-                                <span>999 N người đăng ký</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- THAY LINK ĐĂNG KÝ YOUTUBE TẠI ĐÂY -->
-                <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="vthangios-yt-btn"
-                >
-                    Đăng ký
-                </a>
-            </div>
-
-        </div>
-
-
-        <!-- ================= FOOTER ================= -->
-        <footer class="vthangios-footer">
-            &copy; Designer by Văn Thắng iOS 2026
+        <footer class="footer">
+            © Designer by Văn Thắng iOS 2026
         </footer>
 
-    </main>
+    </div>
 
- <script src="/assets/js/main.2.0.js"></script>
+    <!-- =====================================================
+         JAVASCRIPT GỘP TRONG INDEX
+    ====================================================== -->
 
-<script src="assets/js/main.js"></script>
+    <script>
+        /* -----------------------------------------------------
+           1. CHẾ ĐỘ SÁNG / TỐI
+        ----------------------------------------------------- */
 
+        const themeButton = document.getElementById("themeButton");
+        const themeIcon = document.getElementById("themeIcon");
+
+        function setTheme(theme) {
+            document.body.classList.toggle("dark", theme === "dark");
+
+            themeIcon.className = theme === "dark"
+                ? "bi bi-sun-fill"
+                : "bi bi-moon-stars-fill";
+
+            try {
+                localStorage.setItem("my_website_theme", theme);
+            } catch (error) {
+                // Trình duyệt có thể chặn localStorage.
+            }
+        }
+
+        themeButton.addEventListener("click", () => {
+            const isDark = document.body.classList.contains("dark");
+            setTheme(isDark ? "light" : "dark");
+        });
+
+        /* Khôi phục giao diện đã chọn */
+        try {
+            const savedTheme = localStorage.getItem("my_website_theme");
+
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                setTheme("dark");
+            }
+        } catch (error) {
+            // Bỏ qua nếu localStorage không khả dụng.
+        }
+
+        /* -----------------------------------------------------
+           2. BẢNG THÔNG BÁO
+        ----------------------------------------------------- */
+
+        const notificationButton = document.getElementById("notificationButton");
+        const notificationPanel = document.getElementById("notificationPanel");
+        const notificationOverlay = document.getElementById("notificationOverlay");
+        const notificationClose = document.getElementById("notificationClose");
+
+        function openNotifications() {
+            notificationPanel.classList.add("show");
+            notificationOverlay.classList.add("show");
+        }
+
+        function closeNotifications() {
+            notificationPanel.classList.remove("show");
+            notificationOverlay.classList.remove("show");
+        }
+
+        notificationButton.addEventListener("click", openNotifications);
+        notificationClose.addEventListener("click", closeNotifications);
+        notificationOverlay.addEventListener("click", closeNotifications);
+
+        /* -----------------------------------------------------
+           3. CHỮ TỰ ĐỘNG THAY ĐỔI
+        ----------------------------------------------------- */
+
+        const typedText = document.getElementById("typedText");
+
+        const words = [
+            "Developer",
+            "Content Creator",
+            "Technology Lover"
+        ];
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+
+            if (!deleting) {
+                charIndex++;
+                typedText.textContent = currentWord.slice(0, charIndex);
+
+                if (charIndex >= currentWord.length) {
+                    deleting = true;
+                    setTimeout(typeEffect, 1200);
+                    return;
+                }
+            } else {
+                charIndex--;
+                typedText.textContent = currentWord.slice(0, charIndex);
+
+                if (charIndex <= 0) {
+                    deleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+            }
+
+            setTimeout(typeEffect, deleting ? 45 : 90);
+        }
+
+        typeEffect();
+
+        /* -----------------------------------------------------
+           4. MUSIC PLAYER DEMO
+
+           Player này là giao diện mẫu. Để phát nhạc thật,
+           cần kết nối nguồn audio hoặc SoundCloud Embed.
+        ----------------------------------------------------- */
+
+        const musicToggle = document.getElementById("musicToggle");
+        const musicIcon = document.getElementById("musicIcon");
+
+        let musicPlaying = false;
+
+        musicToggle.addEventListener("click", () => {
+            musicPlaying = !musicPlaying;
+
+            musicIcon.className = musicPlaying
+                ? "fa-solid fa-pause"
+                : "fa-solid fa-play";
+
+            if (musicPlaying) {
+                document.getElementById("musicTitle").textContent = "Chưa kết nối playlist";
+                document.getElementById("musicArtist").textContent = "Thay link SoundCloud để phát nhạc";
+            } else {
+                document.getElementById("musicTitle").textContent = "SoundCloud";
+                document.getElementById("musicArtist").textContent = "by vthangios";
+            }
+        });
+
+        document.getElementById("musicPrev").addEventListener("click", () => {
+            alert("Bạn cần kết nối playlist để dùng chức năng bài trước.");
+        });
+
+        document.getElementById("musicNext").addEventListener("click", () => {
+            alert("Bạn cần kết nối playlist để dùng chức năng bài tiếp.");
+        });
+
+        /* -----------------------------------------------------
+           5. NGĂN LINK # CUỘN LÊN ĐẦU TRANG
+
+           Khi thay # bằng link thật, hành vi mặc định sẽ hoạt động.
+        ----------------------------------------------------- */
+
+        document.querySelectorAll('a[href="#"]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html>
