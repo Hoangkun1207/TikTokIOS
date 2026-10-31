@@ -1,413 +1,304 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Hoàng Kun iOS</title>
-    <meta name="description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
-    <meta name="keywords" content="hoangkunios, Hoàng Kun ios" />
-    <meta name="author" content="Hoàng Kun iOS" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://hoangkunios.xyz/" />
-    <link rel="icon" href="https://hoangkunios.xyz/uploads/intro/1785223665_087e144254b7ed32.png" type="image/png" />
-    <link rel="shortcut icon" href="https://hoangkunios.xyz/uploads/intro/1785223665_087e144254b7ed32.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="https://hoangkunios.xyz/uploads/intro/1785223665_087e144254b7ed32.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="hoangkunios" />
-    <meta property="og:url" content="https://hoangkunios.xyz/" />
-    <meta property="og:title" content="Hoàng Kun iOS" />
-    <meta property="og:description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
-    <meta property="og:image" content="https://hoangkunios.xyz/uploads/intro/1785225956_f40be83fd24a69c4.jpeg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://hoangkunios.xyz/uploads/intro/1785225956_f40be83fd24a69c4.jpeg" />
-    <meta name="twitter:title" content="Hoàng Kun iOS" />
-    <meta name="twitter:description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
-    <link rel="preload" as="image" href="https://hoangkunios.xyz/uploads/intro/1785225956_f40be83fd24a69c4.jpeg" fetchpriority="high" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="https://hoangkunios.xyz/assets/css/style.2.0.css?v=1793368585" />
+    <meta
+        name="description"
+        content="Hoàng Kun iOS - Chia sẻ ứng dụng và công cụ hữu ích."
+    >
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <script>(function(){var t=null;try{t=localStorage.getItem('hoangkunios_theme_v2')}catch(e){}if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches))document.body.classList.add('hoangkunios-dark')})()</script>
-    <main role="main">
-        <!-- NAV -->
-        <nav class="hoangkunios-nav" aria-label="Điều hướng chính">
-            <button class="hoangkunios-bell-btn" id="hoangkunios-bell-btn" aria-label="Thông báo">
-                <i class="fas fa-bell"></i>
-                            </button>
-            <button class="hoangkunios-theme-btn" id="hoangkunios-theme-toggle" onclick="vtToggleTheme()" aria-label="Chuyển chế độ tối/sáng">
-                <i class="bi bi-sun-fill hoangkunios-theme-icon" id="hoangkunios-theme-icon"></i>
+    <!-- ================= HEADER ================= -->
+    <header class="hoangkun-header">
+        <div class="hoangkun-container">
+            <a href="#" class="hoangkun-logo">
+                Hoàng Kun <span>iOS</span>
+            </a>
+
+            <nav class="hoangkun-nav">
+                <a href="#home">Trang chủ</a>
+                <a href="#apps">Ứng dụng</a>
+                <a href="#contact">Liên hệ</a>
+            </nav>
+
+            <button
+                class="hoangkun-theme-button"
+                type="button"
+                onclick="toggleTheme()"
+                aria-label="Đổi giao diện"
+            >
+                <i class="fa-solid fa-moon"></i>
             </button>
-        </nav>
-
-        <!-- NOTIFICATION POPUP -->
-        <div id="hoangkunios-notif-overlay" class="hoangkunios-notif-overlay" onclick="vtCloseNotif(event)"></div>
-        <div id="hoangkunios-notif-panel" class="hoangkunios-notif-panel">
-            <div class="hoangkunios-notif-header">
-                <span><i class="fas fa-bell"></i> Thông Báo</span>
-                <button onclick="vtCloseNotif()" class="hoangkunios-notif-close"><i class="fas fa-xmark"></i></button>
-            </div>
-            <div class="hoangkunios-notif-body">
-                                <div class="hoangkunios-notif-empty"><i class="fas fa-bell-slash"></i><br>Chưa có thông báo</div>
-                            </div>
         </div>
+    </header>
 
-        <!-- AVATAR -->
-        <div class="hoangkunios-avatar-wrap has-frame">
-            <img class="hoangkunios-avatar" src="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg" alt="Ảnh đại diện Hoàng Kun iOS" fetchpriority="high" width="120" height="120">
-                        <img class="hoangkunios-avatar-frame" src="/uploads/intro/1789270294_e1f9986c9748fea3.png" alt="" aria-hidden="true">
-                    </div>
 
-        <!-- NAME & HEADLINE -->
-        <p class="hoangkunios-iam">Hi, i am</p>
-        <h1 class="hoangkunios-name">
-            Hoàng Kun iOS            <img class="hoangkunios-verify" src="assets/img/verify.png" alt="verified" width="27" height="27">
-        </h1>
-        <p class="hoangkunios-headline">and I'm a <span id="typed-text" class="hoangkunios-gradient-text"></span></p>
+    <!-- ================= MAIN ================= -->
+    <main>
+        <!-- Hero -->
+        <section id="home" class="hoangkun-hero">
+            <div class="hoangkun-container">
+                <img
+                    class="hoangkun-avatar"
+                    src="assets/images/avatar.png"
+                    alt="Hoàng Kun"
+                >
 
-        <!-- SOCIALS -->
-        <div class="hoangkunios-socials">
-                            <a href="https://discord.gg/mUA5vf7mzT" class="hoangkunios-social-item" target="_blank" rel="noopener noreferrer" aria-label="Mạng xã hội">
-                    <img src="/uploads/social/1785226212_aaa04016c5aa7392.png" alt="Social" width="40" height="40">
-                </a>
-                            <a href="https://t.me/hoangkunios" class="hoangkunios-social-item" target="_blank" rel="noopener noreferrer" aria-label="Mạng xã hội">
-                    <img src="/uploads/social/1785226222_d9d79e31dfb0b49d.png" alt="Social" width="40" height="40">
-                </a>
-                            <a href="https://youtube.com/@CheaterAOV" class="hoangkunios-social-item" target="_blank" rel="noopener noreferrer" aria-label="Mạng xã hội">
-                    <img src="/uploads/social/1785226233_576f35dc9945948f.png" alt="Social" width="40" height="40">
-                </a>
-                    </div>
+                <h1>Hoàng Kun <span>iOS</span></h1>
 
-        <!-- LINK BOXES -->
-        <div class="hoangkunios-linkbox-section">
-                    </div>
+                <p>
+                    Chia sẻ ứng dụng, công cụ và những thứ hữu ích
+                    dành cho cộng đồng iOS.
+                </p>
 
-        <!-- APP GROUPS -->
-        <section class="hoangkunios-app-section" aria-label="Danh sách ứng dụng">
-                                        <div class="hoangkunios-group-block" id="group-6">
-                <h2 class="hoangkunios-section-title">
-                    APP                                    </h2>
-                                <div class="hoangkunios-app-list">
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1785337074_943e1e8c0be1667c.jpeg" alt="MENU AOV MAP V1" fetchpriority="high">
-                                                                                                                <span class="hoangkunios-app-banner-badges">
-                                                                                    <span class="hoangkunios-platform-badge hoangkunios-platform-ios"><i class="fab fa-apple"></i> iOS</span>
-                                                                                                                    </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1785224151_22760a5eab01424b.jpeg" alt="MENU AOV MAP V1" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        MENU AOV MAP V1                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Cập Nhật Ngày 30/10                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions has-key2">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download MENU AOV MAP V1" onclick="window.open('https://tasksub.io/3adBaHe','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                    <button type="button" class="hoangkunios-app-getkey is-main" aria-label="Get Key Chính MENU AOV MAP V1" onclick="window.open('https://authtool.app/get-key/?code=fc53d583-3caf-47cd-aa78-6460304c31d3','_blank')">
-                                        <i class="fa-solid fa-unlock-keyhole"></i>
-                                        <span>Get Key Chính</span>
-                                    </button>
-                                                                                                    <button type="button" class="hoangkunios-app-getkey is-sub" aria-label="Get Key Phụ MENU AOV MAP V1" onclick="window.open(&quot;https://ads.hoangkunios.xyz/&quot;,'_blank')">
-                                        <i class="fa-solid fa-shield-halved"></i>
-                                        <span>Get Key Phụ</span>
-                                    </button>
-                                                            </div>
-                        </div>
-                        </div>
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1790753362_1d81439ce002af4c.jpeg" alt="MENU AOV MOD V2" loading="lazy">
-                                                                        <span class="hoangkunios-app-banner-badges">
-                                                                                    <span class="hoangkunios-platform-badge hoangkunios-platform-ios"><i class="fab fa-apple"></i> iOS</span>
-                                                                                                                    </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1785228134_3e17a04f549f80df.jpeg" alt="MENU AOV MOD V2" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        MENU AOV MOD V2                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Cập Nhật Ngày 29/10                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions has-key2">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download MENU AOV MOD V2" onclick="window.open('https://tasksub.io/Rg7Mtif','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                    <button type="button" class="hoangkunios-app-getkey is-main" aria-label="Get Key Chính MENU AOV MOD V2" onclick="window.open('https://authtool.app/get-key?code=e6a14fe5-8bc9-4e9a-a147-25948618219f','_blank')">
-                                        <i class="fa-solid fa-unlock-keyhole"></i>
-                                        <span>Get Key Chính</span>
-                                    </button>
-                                                                                                    <button type="button" class="hoangkunios-app-getkey is-sub" aria-label="Get Key Phụ MENU AOV MOD V2" onclick="window.open(&quot;https://ads.hoangkunios.xyz/&quot;,'_blank')">
-                                        <i class="fa-solid fa-shield-halved"></i>
-                                        <span>Get Key Phụ</span>
-                                    </button>
-                                                            </div>
-                        </div>
-                        </div>
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1792567885_ff260e829d1d93d1.jpeg" alt="MENU AOV ESP V3" loading="lazy">
-                                                                        <span class="hoangkunios-app-banner-badges">
-                                                                                    <span class="hoangkunios-platform-badge hoangkunios-platform-ios"><i class="fab fa-apple"></i> iOS</span>
-                                                                                                                    </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1790057670_00bfd2f43fc783c9.jpeg" alt="MENU AOV ESP V3" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        MENU AOV ESP V3                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Cập Nhật Ngày 21/10                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions has-key2">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download MENU AOV ESP V3" onclick="window.open('https://tasksub.io/Nup4','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                    <button type="button" class="hoangkunios-app-getkey is-main" aria-label="Get Key Chính MENU AOV ESP V3" onclick="window.open('https://authtool.app/get-key/?code=e90ec4a3-71ff-4c39-bd01-1f8629d323da','_blank')">
-                                        <i class="fa-solid fa-unlock-keyhole"></i>
-                                        <span>Get Key Chính</span>
-                                    </button>
-                                                                                                    <button type="button" class="hoangkunios-app-getkey is-sub" aria-label="Get Key Phụ MENU AOV ESP V3" onclick="window.open(&quot;https://ads.hoangkunios.xyz/&quot;,'_blank')">
-                                        <i class="fa-solid fa-shield-halved"></i>
-                                        <span>Get Key Phụ</span>
-                                    </button>
-                                                            </div>
-                        </div>
-                        </div>
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1790651701_f0f4500bb4de08ec.jpeg" alt="MENU AOV MAP ADR V1" loading="lazy">
-                                                                        <span class="hoangkunios-app-banner-badges">
-                                                                                                                            <span class="hoangkunios-platform-badge hoangkunios-platform-android"><i class="bi bi-android2"></i> Android</span>
-                                                                            </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1787278805_050439021e9c26f6.jpeg" alt="MENU AOV MAP ADR V1" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        MENU AOV MAP ADR V1                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Cập Nhật Ngày 29/9                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions has-key2">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download MENU AOV MAP ADR V1" onclick="window.open('https://tasksub.io/g6UV','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                    <button type="button" class="hoangkunios-app-getkey is-main" aria-label="Get Key Chính MENU AOV MAP ADR V1" onclick="window.open('https://goctool.vn/GETKEY/hoangkunios','_blank')">
-                                        <i class="fa-solid fa-unlock-keyhole"></i>
-                                        <span>Get Key Chính</span>
-                                    </button>
-                                                                                                    <button type="button" class="hoangkunios-app-getkey is-sub" aria-label="Get Key Phụ MENU AOV MAP ADR V1" onclick="window.open(&quot;https://ads.hoangkunios.xyz/&quot;,'_blank')">
-                                        <i class="fa-solid fa-shield-halved"></i>
-                                        <span>Get Key Phụ</span>
-                                    </button>
-                                                            </div>
-                        </div>
-                        </div>
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1793386623_53b22af3dad541dc.jpg" alt="MENU AOV MAP ADR V2" loading="lazy">
-                                                                        <span class="hoangkunios-app-banner-badges">
-                                                                                                                            <span class="hoangkunios-platform-badge hoangkunios-platform-android"><i class="bi bi-android2"></i> Android</span>
-                                                                            </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1793386623_8821a33ff01b84ce.jpg" alt="MENU AOV MAP ADR V2" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        MENU AOV MAP ADR V2                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Cập Nhật Ngày 31/10                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download MENU AOV MAP ADR V2" onclick="window.open('https://tasksub.io/pYlb','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                    <button type="button" class="hoangkunios-app-getkey is-main" aria-label="Get Key Chính MENU AOV MAP ADR V2" onclick="window.open('https://meostarcheat.com/public/keyfree.php?admin=hoangkunios','_blank')">
-                                        <i class="fa-solid fa-unlock-keyhole"></i>
-                                        <span>Get Key Chính</span>
-                                    </button>
-                                                                                            </div>
-                        </div>
-                        </div>
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1792232611_a92ee83f69ad9150.jpeg" alt="FREE FIRE CHEAT PROXY" loading="lazy">
-                                                                        <span class="hoangkunios-app-banner-badges">
-                                                                                    <span class="hoangkunios-platform-badge hoangkunios-platform-ios"><i class="fab fa-apple"></i> iOS</span>
-                                                                                                                    </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1792232611_55b12dd38115306c.png" alt="FREE FIRE CHEAT PROXY" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        FREE FIRE CHEAT PROXY                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Cập Nhật Ngày 17/10                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download FREE FIRE CHEAT PROXY" onclick="window.open('https://ff.hoangkunios.xyz/','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                                            </div>
-                        </div>
-                        </div>
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1791292171_9f46c439d104121b.jpeg" alt="8 BALL POOL" loading="lazy">
-                                                                        <span class="hoangkunios-app-banner-badges">
-                                                                                    <span class="hoangkunios-platform-badge hoangkunios-platform-ios"><i class="fab fa-apple"></i> iOS</span>
-                                                                                                                    </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1791292171_1c96f0e7332a61d2.jpeg" alt="8 BALL POOL" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        8 BALL POOL                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Cập Nhật Ngày 26/10                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download 8 BALL POOL" onclick="window.open('https://ads.hoangkunios.xyz/CDZNmS','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                                            </div>
-                        </div>
-                        </div>
-                                                                    <div class="hoangkunios-app-entry">
-                        <div class="hoangkunios-app-item">
-                                                            <div class="hoangkunios-app-banner">
-                                                                            <img src="/uploads/previews/1793165747_d0a5d598f62c1094.jpeg" alt="TIKTOK MOD" loading="lazy">
-                                                                        <span class="hoangkunios-app-banner-badges">
-                                                                                    <span class="hoangkunios-platform-badge hoangkunios-platform-ios"><i class="fab fa-apple"></i> iOS</span>
-                                                                                                                            <span class="hoangkunios-platform-badge hoangkunios-platform-android"><i class="bi bi-android2"></i> Android</span>
-                                                                            </span>
-                                </div>
-                                                        <div class="hoangkunios-app-info">
-                                <div class="hoangkunios-app-icon-wrap">
-                                    <img src="/uploads/apps/1791309784_3a36086979212b10.png" alt="TIKTOK MOD" width="78" height="78" loading="lazy">
-                                                                    </div>
-                                <div>
-                                    <span class="hoangkunios-app-name">
-                                        TIKTOK MOD                                    </span>
-                                                                            <span class="hoangkunios-app-desc">
-                                            Updated: Oct 27, 2026                                        </span>
-                                                                    </div>
-                            </div>
-                            <div class="hoangkunios-app-actions">
-                                <button class="hoangkunios-download-btn hoangkunios-app-cta " aria-label="Download TIKTOK MOD" onclick="window.open('https://ads.hoangkunios.xyz/wGzzsH','_blank')">
-                                    <i class="bi bi-download"></i>
-                                    <span>Download</span>
-                                </button>
-                                                                                            </div>
-                        </div>
-                        </div>
-                                    </div>
-                </div>
-                    </section>
+                <div class="hoangkun-socials">
+                    <a href="https://discord.com/" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-discord"></i>
+                        Discord
+                    </a>
 
-        <!-- SNOW -->
-        <!--<div id="snows" aria-hidden="true"></div>-->
+                    <a href="https://t.me/" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-telegram"></i>
+                        Telegram
+                    </a>
 
-        <div class="hoangkunios-widgets">
-                <!-- MUSIC PLAYER -->
-        <div class="hoangkunios-music-card" id="vt-music-card" data-sources="[&quot;https://api.soundcloud.com/playlists/1943866767&quot;]">
-            <div class="hoangkunios-music-art-wrap">
-                <div class="hoangkunios-music-art" id="vt-music-art"><i class="fa-brands fa-soundcloud"></i></div>
-            </div>
-            <div class="hoangkunios-music-info">
-                <div class="hoangkunios-music-row">
-                    <div class="hoangkunios-music-text">
-                        <div class="hoangkunios-music-head">
-                            <p class="hoangkunios-music-title" id="vt-music-title">SoundCloud</p>
-                        </div>
-                        <p class="hoangkunios-music-artist" id="vt-music-artist">by hoangkunios</p>
-                    </div>
-                    <div class="hoangkunios-music-controls">
-                        <button type="button" class="hoangkunios-music-btn" id="vt-music-prev" aria-label="Bài trước"><i class="bi bi-skip-start-fill"></i></button>
-                        <button type="button" class="hoangkunios-music-toggle" id="vt-music-toggle" aria-label="Phát nhạc"><i class="fa-solid fa-play" id="vt-music-icon"></i></button>
-                        <button type="button" class="hoangkunios-music-btn" id="vt-music-next" aria-label="Bài tiếp"><i class="bi bi-skip-end-fill"></i></button>
-                    </div>
-                </div>
-                <div class="hoangkunios-music-progress-row">
-                    <span class="hoangkunios-music-time" id="vt-music-time-cur">0:00</span>
-                    <div class="hoangkunios-music-progress" id="vt-music-progress" role="slider" aria-label="Tua nhạc">
-                        <div class="hoangkunios-music-progress-fill" id="vt-music-progress-fill"></div>
-                    </div>
-                    <span class="hoangkunios-music-time" id="vt-music-time-total">0:00</span>
+                    <a href="https://youtube.com/" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-youtube"></i>
+                        YouTube
+                    </a>
                 </div>
             </div>
-            <div id="vt-music-frame-holder" aria-hidden="true"></div>
-        </div>
-        
-        <!-- YOUTUBE SUBSCRIBE BANNER -->
-        <div class="hoangkunios-yt-banner">
-            <div class="hoangkunios-yt-main">
-                <div class="hoangkunios-yt-head">
-                                                                    <img class="hoangkunios-yt-avatar" src="/uploads/intro/1785225956_f40be83fd24a69c4.jpeg" alt="Hoàng Kun iOS" width="80" height="80" loading="lazy">
-                                        <div class="hoangkunios-yt-text">
-                        <p class="hoangkunios-yt-title">Hoàng Kun iOS</p>
-                        <p class="hoangkunios-yt-handle">@hoangkunios</p>
-                        <p class="hoangkunios-yt-meta">
-                                                            <span>999 N người đăng ký</span>
-                                                                                </p>
-                    </div>
+        </section>
+
+
+        <!-- Apps -->
+        <section id="apps" class="hoangkun-apps">
+            <div class="hoangkun-container">
+                <div class="hoangkun-section-heading">
+                    <h2>Ứng dụng & Công cụ</h2>
+                    <p>Những ứng dụng và tiện ích được chia sẻ.</p>
                 </div>
-                            </div>
-            <a href="https://youtube.com/@hoangkunios?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="hoangkunios-yt-btn">Đăng ký</a>
-        </div>
 
-        </div>
+                <div class="hoangkun-app-grid">
 
-        <!-- FOOTER -->
-        <footer class="hoangkunios-footer">
-            &copy; Designer by Hoàng Kun iOS 2026        </footer>
+                    <!-- App 1 -->
+                    <article class="hoangkun-app-card">
+                        <img
+                            src="assets/images/app-1.png"
+                            alt="Ứng dụng 1"
+                            class="hoangkun-app-icon"
+                        >
+
+                        <div class="hoangkun-app-info">
+                            <h3>Ứng dụng 1</h3>
+                            <p>Mô tả ngắn về ứng dụng.</p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="hoangkun-app-button"
+                            onclick="showComingSoon()"
+                        >
+                            Xem thêm
+                        </button>
+                    </article>
+
+
+                    <!-- App 2 -->
+                    <article class="hoangkun-app-card">
+                        <img
+                            src="assets/images/app-2.png"
+                            alt="Ứng dụng 2"
+                            class="hoangkun-app-icon"
+                        >
+
+                        <div class="hoangkun-app-info">
+                            <h3>Ứng dụng 2</h3>
+                            <p>Mô tả ngắn về ứng dụng.</p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="hoangkun-app-button"
+                            onclick="showComingSoon()"
+                        >
+                            Xem thêm
+                        </button>
+                    </article>
+
+
+                    <!-- App 3 -->
+                    <article class="hoangkun-app-card">
+                        <img
+                            src="assets/images/app-3.png"
+                            alt="Ứng dụng 3"
+                            class="hoangkun-app-icon"
+                        >
+
+                        <div class="hoangkun-app-info">
+                            <h3>Ứng dụng 3</h3>
+                            <p>Mô tả ngắn về ứng dụng.</p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="hoangkun-app-button"
+                            onclick="showComingSoon()"
+                        >
+                            Xem thêm
+                        </button>
+                    </article>
+
+
+                    <!-- App 4 -->
+                    <article class="hoangkun-app-card">
+                        <img
+                            src="assets/images/app-4.png"
+                            alt="Ứng dụng 4"
+                            class="hoangkun-app-icon"
+                        >
+
+                        <div class="hoangkun-app-info">
+                            <h3>Ứng dụng 4</h3>
+                            <p>Mô tả ngắn về ứng dụng.</p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="hoangkun-app-button"
+                            onclick="showComingSoon()"
+                        >
+                            Xem thêm
+                        </button>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- YouTube -->
+        <section class="hoangkun-youtube">
+            <div class="hoangkun-container">
+                <h2>Kênh YouTube</h2>
+
+                <p>
+                    Theo dõi kênh để cập nhật video và nội dung mới.
+                </p>
+
+                <a
+                    href="https://youtube.com/"
+                    target="_blank"
+                    rel="noopener"
+                    class="hoangkun-youtube-button"
+                >
+                    <i class="fa-brands fa-youtube"></i>
+                    Đăng ký kênh
+                </a>
+            </div>
+        </section>
     </main>
 
-    <script src="https://hoangkunios.xyz/assets/js/main.2.0.js?v=1793368936"></script>
-    <script src="assets/js/main.js"></script>
-    
+
+    <!-- ================= FOOTER ================= -->
+    <footer id="contact" class="hoangkun-footer">
+        <div class="hoangkun-container">
+            <p>
+                © <span id="currentYear"></span>
+                Hoàng Kun iOS. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- ================= NOTIFICATION ================= -->
+    <div id="hoangkun-notification" class="hoangkun-notification">
+        <span id="notificationMessage"></span>
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // Hiển thị thông báo
+        function showNotification(message) {
+            const notification = document.getElementById(
+                "hoangkun-notification"
+            );
+
+            const notificationMessage = document.getElementById(
+                "notificationMessage"
+            );
+
+            notificationMessage.textContent = message;
+            notification.classList.add("show");
+
+            setTimeout(() => {
+                notification.classList.remove("show");
+            }, 2500);
+        }
+
+
+        // Thông báo ứng dụng chưa sẵn sàng
+        function showComingSoon() {
+            showNotification("Ứng dụng sẽ được cập nhật sớm!");
+        }
+
+
+        // Chuyển đổi giao diện sáng / tối
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+
+            const isDarkMode = document.body.classList.contains("dark-mode");
+
+            localStorage.setItem("hoangkun-theme", isDarkMode ? "dark" : "light");
+        }
+
+
+        // Khôi phục giao diện đã chọn
+        function loadTheme() {
+            const savedTheme = localStorage.getItem("hoangkun-theme");
+
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+        }
+
+
+        // Cập nhật năm hiện tại
+        function updateYear() {
+            document.getElementById("currentYear").textContent =
+                new Date().getFullYear();
+        }
+
+
+        // Khởi chạy
+        document.addEventListener("DOMContentLoaded", () => {
+            loadTheme();
+            updateYear();
+        });
+    </script>
 </body>
 </html>
-
