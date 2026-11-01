@@ -1,94 +1,1132 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4f6fb">
-<title>Hoàng Kun iOS – Tải ứng dụng</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{color-scheme:light dark;--bg:#f4f6fb;--card:#fff;--text:#101522;--sub:#687184;--line:rgba(20,35,60,.09);--blue:#2563ff;--cyan:#00c2ff;--green:#20b968;--orange:#ed9b20;--bar:rgba(244,246,251,.82);--shadow:0 8px 28px rgba(20,35,60,.06)}
-@media(prefers-color-scheme:dark){:root{--bg:#070b14;--card:#101827;--text:#f5f7ff;--sub:#9ba8bd;--line:rgba(150,180,230,.13);--bar:rgba(7,11,20,.82);--shadow:none}}
-body{font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);background-image:radial-gradient(60% 35% at 0 0,rgba(37,99,255,.13),transparent 75%),radial-gradient(55% 35% at 100% 0,rgba(0,194,255,.12),transparent 75%);background-attachment:fixed;color:var(--text);min-height:100vh;overflow-x:hidden}
-.header{position:sticky;top:0;z-index:10;background:var(--bar);backdrop-filter:blur(22px);border-bottom:1px solid var(--line);padding:env(safe-area-inset-top) 16px 0}
-.header-in{height:54px;max-width:640px;margin:auto;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.4px;background:linear-gradient(90deg,#2563ff,#00c2ff,#8b5cf6);background-clip:text;-webkit-background-clip:text;color:transparent}
-.brandmark{width:31px;height:31px;border-radius:10px;background:linear-gradient(135deg,#2563ff,#00c2ff);color:white;display:grid;place-items:center;font-size:15px;box-shadow:0 5px 14px #2563ff40}
-.share{border:0;background:none;color:var(--blue);font-size:20px;padding:8px;cursor:pointer}
-main{width:calc(100% - 32px);max-width:640px;margin:20px auto 30px}
-.section{margin-bottom:20px;animation:up .4s ease both}.section:nth-child(2){animation-delay:.06s}.section:nth-child(3){animation-delay:.12s}
-@keyframes up{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
-.hero{padding:18px 18px 0}.hero-top{display:flex;gap:16px;align-items:center}
-.appicon{width:112px;height:112px;flex:0 0 112px;border-radius:25px;object-fit:cover;background:#111;box-shadow:0 9px 24px #0002}
-.appinfo{min-width:0;flex:1}.appname{font-size:22px;font-weight:800;line-height:1.25;overflow-wrap:anywhere}.date{font-size:13px;color:var(--sub);margin-top:5px}
-.install{margin-top:13px;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:30px;padding:9px 18px;background:linear-gradient(120deg,#2563ff,#00aef5);color:#fff;font:700 14px inherit;cursor:pointer;box-shadow:0 7px 18px #2563ff38}.install:active{transform:scale(.97)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:18px -18px 0;padding:14px 4px 16px;border-top:1px solid var(--line)}
-.stat{text-align:center;min-width:0;padding:0 5px}.stat+.stat{border-left:1px solid var(--line)}.stat i{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;margin:0 auto 7px;background:#2563ff18;color:var(--blue)}.stat b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stat small{display:block;color:var(--sub);font-size:10px;font-weight:700;text-transform:uppercase;margin-top:3px;letter-spacing:.4px}
-.status{display:flex;justify-content:space-between;align-items:center;margin:7px;padding:12px;border-radius:14px;background:#20b96816}.status-left{display:flex;align-items:center;gap:11px}.check{width:34px;height:34px;border-radius:11px;background:var(--green);color:white;display:grid;place-items:center}.status strong{font-size:14px;color:var(--green)}.status small{display:block;color:var(--sub);font-size:12px;margin-top:2px}.pill{font-size:11px;font-weight:800;color:var(--green);background:#20b96820;border-radius:20px;padding:5px 10px}
-.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:1px solid var(--line);font-size:14px}.key{color:var(--sub);display:flex;align-items:center;gap:9px}.key i{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:#2563ff16;color:var(--blue)}.val{font-weight:700;text-align:right;overflow-wrap:anywhere}
-.heading{font-size:12px;color:var(--sub);font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin:0 0 8px 4px}
-.guide{padding:17px}.guide-title{font-size:16px;font-weight:800;display:flex;align-items:center;gap:10px}.guide-title i{color:var(--orange)}.guide p{font-size:13px;color:var(--sub);line-height:1.55;margin:7px 0 12px}
-.steps{list-style:none;counter-reset:step}.steps li{counter-increment:step;display:flex;gap:11px;padding:7px 0;font-size:13px;line-height:1.55}.steps li:before{content:counter(step);flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#2563ff18;color:var(--blue);font-size:11px;font-weight:800}
-.note{padding:11px 12px;background:rgba(120,130,150,.1);border-radius:12px;color:var(--sub);font-size:12px;line-height:1.5;margin-top:10px}.links{padding:15px 16px}.links a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;color:var(--blue);font-size:13px;font-weight:600;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.links a:last-child{border:0}.links a span{min-width:0;overflow-wrap:anywhere}.foot{text-align:center;color:var(--sub);font-size:11px;padding:5px 12px 25px;line-height:1.7}
-@media(max-width:390px){.appicon{width:94px;height:94px;flex-basis:94px}.appname{font-size:19px}.hero{padding:15px 14px 0}.stats{margin-left:-14px;margin-right:-14px}.install{padding:8px 13px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#080d1b">
+    <meta name="description" content="Hoàng Kun iOS - Trang giới thiệu và cài đặt ứng dụng iOS.">
+
+    <title>Hoàng Kun iOS - Tải ứng dụng</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ========================================
+           1. CẤU HÌNH GIAO DIỆN
+        ======================================== */
+
+        :root {
+            --bg: #080d1b;
+            --card: rgba(17, 26, 48, 0.88);
+            --card-hover: #17233e;
+
+            --text: #f5f7ff;
+            --sub: #94a3b8;
+
+            --blue: #4385ff;
+            --cyan: #00d4ff;
+            --purple: #9865ff;
+            --green: #24d18b;
+            --orange: #ffad42;
+
+            --border: rgba(255,255,255,0.08);
+            --gradient: linear-gradient(120deg, #4385ff, #00d4ff);
+            --shadow: 0 15px 45px rgba(0,0,0,0.22);
+        }
+
+        /* ========================================
+           2. RESET & CƠ BẢN
+        ======================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Be Vietnam Pro", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        button, a {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========================================
+           3. BACKGROUND EFFECTS
+        ======================================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 10% 10%, #173d85 0%, transparent 35%),
+                radial-gradient(circle at 90% 20%, #302064 0%, transparent 35%),
+                #080d1b;
+        }
+
+        .glow {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.22;
+            animation: floatGlow 12s ease-in-out infinite alternate;
+        }
+
+        .glow-one {
+            background: #176aff;
+            top: -150px;
+            left: -100px;
+        }
+
+        .glow-two {
+            background: #8b42ff;
+            right: -130px;
+            top: 35%;
+            animation-delay: -5s;
+        }
+
+        .glow-three {
+            background: #00cfff;
+            left: 15%;
+            bottom: -200px;
+            animation-delay: -8s;
+        }
+
+        @keyframes floatGlow {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(70px, 60px) scale(1.25);
+            }
+        }
+
+        /* ========================================
+           4. HEADER
+        ======================================== */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 13, 27, 0.78);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-bottom: 1px solid var(--border);
+            padding: env(safe-area-inset-top) 16px 0;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            height: 65px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-icon {
+            width: 39px;
+            height: 39px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--gradient);
+            box-shadow: 0 5px 22px #4385ff55;
+            color: white;
+            font-size: 19px;
+        }
+
+        .brand-name {
+            background: var(--gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: rgba(255,255,255,0.04);
+            color: white;
+            font-size: 17px;
+            transition: .3s;
+        }
+
+        .share-btn:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        /* ========================================
+           5. MAIN LAYOUT
+        ======================================== */
+
+        .container {
+            width: calc(100% - 32px);
+            max-width: 700px;
+            margin: 35px auto;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 23px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: .35s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(67,133,255,0.35);
+            transform: translateY(-3px);
+        }
+
+        .section-heading {
+            color: var(--sub);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin: 0 0 11px 5px;
+        }
+
+        /* ========================================
+           6. APP INFORMATION
+        ======================================== */
+
+        .app-card {
+            padding: 22px 22px 0;
+        }
+
+        .app-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+            object-fit: cover;
+            border-radius: 27px;
+            background: #151b2b;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            transition: .4s;
+        }
+
+        .app-icon:hover {
+            transform: rotate(-5deg) scale(1.06);
+        }
+
+        .app-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .app-name {
+            font-size: 25px;
+            font-weight: 900;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+        .app-subtitle {
+            color: var(--sub);
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .install-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 17px;
+            padding: 11px 23px;
+            border: 0;
+            border-radius: 30px;
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+            background: var(--gradient);
+            box-shadow: 0 6px 25px #4385ff45;
+            transition: .3s;
+            animation: buttonPulse 3s infinite;
+        }
+
+        .install-btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 10px 35px #4385ff70;
+        }
+
+        .install-btn:active {
+            transform: scale(.95);
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 6px 25px #4385ff35;
+            }
+
+            50% {
+                box-shadow: 0 6px 32px #00d4ff65;
+            }
+        }
+
+        /* ========================================
+           7. APP STATISTICS
+        ======================================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 22px -22px 0;
+            padding: 18px 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat {
+            min-width: 0;
+            text-align: center;
+            padding: 0 6px;
+        }
+
+        .stat + .stat {
+            border-left: 1px solid var(--border);
+        }
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+            margin: auto auto 9px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--blue);
+            background: rgba(67,133,255,0.13);
+        }
+
+        .stat:nth-child(2) .stat-icon {
+            color: var(--purple);
+            background: rgba(152,101,255,0.13);
+        }
+
+        .stat:nth-child(3) .stat-icon {
+            color: var(--green);
+            background: rgba(36,209,139,0.13);
+        }
+
+        .stat-value {
+            font-size: 14px;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .stat-label {
+            color: var(--sub);
+            font-size: 10px;
+            font-weight: 700;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        /* ========================================
+           8. CERTIFICATE INFORMATION
+        ======================================== */
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 9px;
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(36,209,139,0.09);
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-icon {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: var(--green);
+            color: white;
+        }
+
+        .status-title {
+            color: var(--green);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .status-desc {
+            color: var(--sub);
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .status-badge {
+            padding: 6px 11px;
+            border-radius: 20px;
+            color: var(--green);
+            background: rgba(36,209,139,0.13);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 17px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--sub);
+        }
+
+        .info-label i {
+            width: 29px;
+            height: 29px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            color: var(--blue);
+            background: rgba(67,133,255,0.13);
+        }
+
+        .info-value {
+            text-align: right;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        /* ========================================
+           9. INSTALLATION GUIDE
+        ======================================== */
+
+        .guide {
+            padding: 20px;
+        }
+
+        .guide-title {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .guide-title i {
+            color: var(--orange);
+        }
+
+        .guide-description {
+            color: var(--sub);
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 10px 0 15px;
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .steps li {
+            counter-increment: step;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 9px 0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            width: 25px;
+            height: 25px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            background: var(--gradient);
+        }
+
+        .note {
+            padding: 13px;
+            margin-top: 13px;
+            border-radius: 13px;
+            background: rgba(67,133,255,0.09);
+            color: var(--sub);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .note i {
+            color: var(--cyan);
+            margin-right: 5px;
+        }
+
+        /* ========================================
+           10. SOURCE LINKS
+        ======================================== */
+
+        .links {
+            padding: 8px 17px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            font-size: 13px;
+            transition: .25s;
+        }
+
+        .link-item:last-child {
+            border-bottom: 0;
+        }
+
+        .link-item:hover {
+            color: var(--cyan);
+            padding-left: 6px;
+        }
+
+        .link-item span {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 0;
+        }
+
+        .link-item span i {
+            color: var(--blue);
+            font-size: 15px;
+        }
+
+        .link-item > i {
+            color: var(--sub);
+            font-size: 12px;
+        }
+
+        /* ========================================
+           11. FOOTER
+        ======================================== */
+
+        .footer {
+            text-align: center;
+            padding: 15px 10px 35px;
+            color: var(--sub);
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .footer strong {
+            color: var(--text);
+        }
+
+        /* ========================================
+           12. TOAST NOTIFICATION
+        ======================================== */
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            z-index: 999;
+            transform: translate(-50%, 20px);
+            padding: 12px 20px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: #17233e;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        /* ========================================
+           13. RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 480px) {
+            .container {
+                margin-top: 22px;
+            }
+
+            .app-card {
+                padding: 16px 15px 0;
+            }
+
+            .app-top {
+                gap: 14px;
+            }
+
+            .app-icon {
+                width: 95px;
+                height: 95px;
+                border-radius: 22px;
+            }
+
+            .app-name {
+                font-size: 20px;
+            }
+
+            .app-subtitle {
+                font-size: 11px;
+            }
+
+            .install-btn {
+                padding: 9px 16px;
+                font-size: 12px;
+            }
+
+            .stats {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+
+            .stat-value {
+                font-size: 12px;
+            }
+
+            .info-row {
+                font-size: 12px;
+                padding: 13px;
+            }
+
+            .info-label {
+                gap: 7px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<header class="header"><div class="header-in"><div class="brand"><span class="brandmark"><i class="fa-brands fa-apple"></i></span>HOÀNG KUN iOS</div><button class="share" onclick="sharePage()" aria-label="Chia sẻ"><i class="fa-solid fa-arrow-up-from-bracket"></i></button></div></header>
-<main>
-<section class="section">
-<div class="card hero">
-<div class="hero-top">
-<img class="appicon" src="https://storeipa.com/QgNbxM/icon.png?v=1793041359" alt="Biểu tượng ứng dụng" onerror="this.style.visibility='hidden'">
-<div class="appinfo"><div class="appname">TikTok</div><div class="date">Bản cài đặt iOS · Cập nhật 27/10/2026</div>
-<button class="install" onclick="installApp()"><i class="fa-solid fa-cloud-arrow-down"></i> Cài đặt</button>
-</div></div>
-<div class="stats">
-<div class="stat"><i class="fa-solid fa-code-branch"></i><b>46.7.0</b><small>Phiên bản</small></div>
-<div class="stat"><i class="fa-solid fa-hard-drive"></i><b>428.4 MB</b><small>Kích cỡ</small></div>
-<div class="stat"><i class="fa-solid fa-user"></i><b>Hoàng Kun</b><small>Đăng tải</small></div>
-</div></div></section>
-<section class="section">
-<div class="heading">Thông tin chứng chỉ</div>
-<div class="card">
-<div class="status"><div class="status-left"><div class="check"><i class="fa-solid fa-check"></i></div><div><strong>Thông tin chứng chỉ</strong><small>Được lấy từ nguồn cài đặt bên ngoài</small></div></div><span class="pill">Enterprise</span></div>
-<div class="row"><span class="key"><i class="fa-solid fa-certificate"></i> Nhà phát triển</span><span class="val">Chengdu Railway Bureau</span></div>
-<div class="row"><span class="key"><i class="fa-solid fa-calendar-xmark"></i> Hạn chứng chỉ theo trang nguồn</span><span class="val">02/10/2027</span></div>
-<div class="row"><span class="key"><i class="fa-solid fa-shield-halved"></i> Trạng thái</span><span class="val">Chưa xác minh trực tiếp</span></div>
-</div></section>
-<section class="section">
-<div class="heading">Hướng dẫn cài đặt</div>
-<div class="card guide">
-<div class="guide-title"><i class="fa-solid fa-mobile-screen-button"></i> Cài ứng dụng trên iPhone</div>
-<p>Nhấn nút Cài đặt ở phía trên bằng Safari trên iPhone/iPad. Nếu iOS yêu cầu xác nhận cài đặt, hãy làm theo hướng dẫn trên thiết bị.</p>
-<ol class="steps">
-<li>Mở trang này bằng trình duyệt Safari trên iPhone hoặc iPad.</li>
-<li>Nhấn <b>Cài đặt</b> và xác nhận khi hộp thoại cài ứng dụng xuất hiện.</li>
-<li>Chờ biểu tượng ứng dụng xuất hiện trên màn hình chính.</li>
-<li>Nếu iOS hiển thị cảnh báo nhà phát triển hoặc chứng chỉ, hãy kiểm tra kỹ nguồn và chỉ tiếp tục khi bạn tin tưởng nguồn phát hành.</li>
-</ol>
-<div class="note"><i class="fa-solid fa-circle-info"></i> Hoàng Kun iOS là trang giới thiệu liên kết. Gói ứng dụng và chứng chỉ vẫn được lưu trữ bởi máy chủ StoreIPA bên thứ ba; trang này không kiểm soát tính an toàn, tính hợp lệ hoặc tình trạng thu hồi chứng chỉ.</div>
-</div></section>
-<section class="section">
-<div class="heading">Liên kết nguồn đầy đủ</div>
-<div class="card links">
-<a href="https://storeipa.com/QgNbxM/manifest.plist" target="_blank" rel="noopener"><span><i class="fa-solid fa-file-code"></i> Manifest cài đặt (.plist)</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-<a href="https://storeipa.com/QgNbxM/icon.png?v=1793041359" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Icon ứng dụng</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-<a href="https://storeipa.com/QgNbxM/hd1.png" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Ảnh hướng dẫn 1</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-<a href="https://storeipa.com/QgNbxM/hd2.png" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Ảnh hướng dẫn 2</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-<a href="https://storeipa.com/QgNbxM/hd3.png" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Ảnh hướng dẫn 3</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-</div></section>
-</main>
-<footer class="foot">© <span id="year"></span> Hoàng Kun iOS · Giao diện độc lập<br>Liên kết cài đặt do StoreIPA cung cấp.</footer>
-<script>
-const manifestURL="https://storeipa.com/QgNbxM/manifest.plist";
-function installApp(){if(!/^https?:$/.test(location.protocol)){alert("Hãy mở trang bằng Safari trên iPhone/iPad để cài đặt.");return;}location.href="itms-services://?action=download-manifest&url="+encodeURIComponent(manifestURL);}
-async function sharePage(){const data={title:"Hoàng Kun iOS",url:location.href};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert("Đã sao chép liên kết trang!");}}catch(e){if(e.name!=="AbortError")alert("Không thể chia sẻ liên kết.");}}
-document.getElementById("year").textContent=new Date().getFullYear();
-</script>
-</body></html>
+
+    <!-- BACKGROUND -->
+    <div class="background">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="glow glow-three"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-brands fa-apple"></i>
+                </div>
+
+                <span class="brand-name">HOÀNG KUN iOS</span>
+            </div>
+
+            <button class="share-btn" onclick="sharePage()" aria-label="Chia sẻ">
+                <i class="fa-solid fa-share-nodes"></i>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <!-- APP CARD -->
+        <section class="section">
+            <div class="card app-card">
+
+                <div class="app-top">
+
+                    <img id="appIcon" class="app-icon" src="" alt="App icon">
+
+                    <div class="app-info">
+
+                        <h1 class="app-name" id="appName"></h1>
+
+                        <p class="app-subtitle">
+                            Ứng dụng dành cho iPhone và iPad
+                        </p>
+
+                        <button class="install-btn" onclick="installApp()">
+                            <i class="fa-solid fa-cloud-arrow-down"></i>
+                            Cài đặt ngay
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="stats">
+
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-code-branch"></i>
+                        </div>
+                        <div class="stat-value" id="appVersion"></div>
+                        <div class="stat-label">Phiên bản</div>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-hard-drive"></i>
+                        </div>
+                        <div class="stat-value" id="appSize"></div>
+                        <div class="stat-label">Kích cỡ</div>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="stat-value" id="appAuthor"></div>
+                        <div class="stat-label">Tác giả</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CERTIFICATE -->
+        <section class="section">
+
+            <h2 class="section-heading">
+                Thông tin chứng chỉ
+            </h2>
+
+            <div class="card">
+
+                <div class="status">
+
+                    <div class="status-left">
+                        <div class="status-icon">
+                            <i class="fa-solid fa-shield-check"></i>
+                        </div>
+
+                        <div>
+                            <div class="status-title">Thông tin chứng chỉ</div>
+                            <div class="status-desc">Thông tin từ máy chủ nguồn</div>
+                        </div>
+                    </div>
+
+                    <span class="status-badge">Enterprise</span>
+
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">
+                        <i class="fa-solid fa-certificate"></i>
+                        Nhà phát triển
+                    </span>
+                    <span class="info-value" id="certName"></span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Ngày hết hạn
+                    </span>
+                    <span class="info-value" id="certExpiry"></span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Trạng thái xác minh
+                    </span>
+                    <span class="info-value">Chưa xác minh</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INSTALL GUIDE -->
+        <section class="section">
+
+            <h2 class="section-heading">
+                Hướng dẫn cài đặt
+            </h2>
+
+            <div class="card guide">
+
+                <h3 class="guide-title">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    Cài ứng dụng trên iPhone
+                </h3>
+
+                <p class="guide-description">
+                    Sử dụng trình duyệt Safari trên iPhone hoặc iPad
+                    để mở liên kết cài đặt.
+                </p>
+
+                <ol class="steps">
+                    <li>Mở website bằng trình duyệt Safari.</li>
+                    <li>Nhấn nút Cài đặt ngay ở phía trên.</li>
+                    <li>Xác nhận cài đặt nếu iOS hiển thị yêu cầu.</li>
+                    <li>Chờ ứng dụng xuất hiện trên màn hình chính.</li>
+                    <li>Kiểm tra kỹ nguồn phát hành trước khi tin cậy chứng chỉ doanh nghiệp.</li>
+                </ol>
+
+                <div class="note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Hoàng Kun iOS là trang giới thiệu liên kết cài đặt.
+                    Ứng dụng và chứng chỉ được lưu trữ trên máy chủ bên thứ ba.
+                    Hãy kiểm tra độ tin cậy trước khi cài đặt.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SOURCE LINKS -->
+        <section class="section">
+
+            <h2 class="section-heading">
+                Liên kết nguồn đầy đủ
+            </h2>
+
+            <div class="card links">
+
+                <a class="link-item" id="manifestLink" target="_blank" rel="noopener">
+                    <span>
+                        <i class="fa-solid fa-file-code"></i>
+                        Manifest cài đặt (.plist)
+                    </span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a class="link-item" id="iconLink" target="_blank" rel="noopener">
+                    <span>
+                        <i class="fa-regular fa-image"></i>
+                        Icon ứng dụng
+                    </span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a class="link-item" id="guide1Link" target="_blank" rel="noopener">
+                    <span>
+                        <i class="fa-regular fa-image"></i>
+                        Ảnh hướng dẫn 1
+                    </span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a class="link-item" id="guide2Link" target="_blank" rel="noopener">
+                    <span>
+                        <i class="fa-regular fa-image"></i>
+                        Ảnh hướng dẫn 2
+                    </span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a class="link-item" id="guide3Link" target="_blank" rel="noopener">
+                    <span>
+                        <i class="fa-regular fa-image"></i>
+                        Ảnh hướng dẫn 3
+                    </span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <strong>© <span id="year"></span> Hoàng Kun iOS</strong>
+        <br>
+        All Rights Reserved.
+        <br>
+        Designed with ❤️ by Hoàng Kun
+    </footer>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        /* ========================================
+           1. CONFIG - CHỈNH THÔNG TIN TẠI ĐÂY
+        ======================================== */
+
+        const CONFIG = {
+
+            // Thông tin ứng dụng
+            appName: "TikTok",
+            appVersion: "46.7.0",
+            appSize: "428.4 MB",
+            appAuthor: "Hoàng Kun",
+
+            // Hình ảnh
+            appIcon: "https://storeipa.com/QgNbxM/icon.png?v=1793041359",
+
+            // Liên kết cài đặt
+            manifestURL: "https://storeipa.com/QgNbxM/manifest.plist",
+
+            // Thông tin chứng chỉ theo trang nguồn
+            certName: "Chengdu Railway Bureau",
+            certExpiry: "02/10/2027",
+
+            // Ảnh hướng dẫn
+            guideImages: [
+                "https://storeipa.com/QgNbxM/hd1.png",
+                "https://storeipa.com/QgNbxM/hd2.png",
+                "https://storeipa.com/QgNbxM/hd3.png"
+            ]
+        };
+
+
+        /* ========================================
+           2. HIỂN THỊ THÔNG TIN
+        ======================================== */
+
+        function loadAppInfo() {
+
+            document.title = CONFIG.appName + " - Hoàng Kun iOS";
+
+            document.getElementById("appName").textContent = CONFIG.appName;
+            document.getElementById("appVersion").textContent = CONFIG.appVersion;
+            document.getElementById("appSize").textContent = CONFIG.appSize;
+            document.getElementById("appAuthor").textContent = CONFIG.appAuthor;
+
+            document.getElementById("appIcon").src = CONFIG.appIcon;
+
+            document.getElementById("certName").textContent = CONFIG.certName;
+            document.getElementById("certExpiry").textContent = CONFIG.certExpiry;
+
+            // Liên kết
+            document.getElementById("manifestLink").href = CONFIG.manifestURL;
+            document.getElementById("iconLink").href = CONFIG.appIcon;
+
+            document.getElementById("guide1Link").href = CONFIG.guideImages[0];
+            document.getElementById("guide2Link").href = CONFIG.guideImages[1];
+            document.getElementById("guide3Link").href = CONFIG.guideImages[2];
+
+            // Năm hiện tại
+            document.getElementById("year").textContent = new Date().getFullYear();
+        }
+
+
+        /* ========================================
+           3. CÀI ĐẶT ỨNG DỤNG
+        ======================================== */
+
+        function installApp() {
+
+            if (!/^https?:$/.test(location.protocol)) {
+                showToast("Hãy mở website bằng Safari trên iPhone!");
+                return;
+            }
+
+            if (!CONFIG.manifestURL) {
+                showToast("Chưa cấu hình link cài đặt!");
+                return;
+            }
+
+            const installURL =
+                "itms-services://?action=download-manifest&url=" +
+                encodeURIComponent(CONFIG.manifestURL);
+
+            window.location.href = installURL;
+        }
+
+
+        /* ========================================
+           4. CHIA SẺ WEBSITE
+        ======================================== */
+
+        async function sharePage() {
+
+            const shareData = {
+                title: "Hoàng Kun iOS",
+                text: "Truy cập Hoàng Kun iOS",
+                url: window.location.href
+            };
+
+            try {
+
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                    return;
+                }
+
+                await navigator.clipboard.writeText(window.location.href);
+
+                showToast("Đã sao chép liên kết website!");
+
+            } catch (error) {
+
+                if (error.name !== "AbortError") {
+                    showToast("Không thể chia sẻ liên kết!");
+                }
+
+            }
+        }
+
+
+        /* ========================================
+           5. TOAST NOTIFICATION
+        ======================================== */
+
+        let toastTimer;
+
+        function showToast(message) {
+
+            const toast = document.getElementById("toast");
+
+            toast.textContent = message;
+            toast.classList.add("show");
+
+            clearTimeout(toastTimer);
+
+            toastTimer = setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2500);
+        }
+
+
+        /* ========================================
+           6. SCROLL REVEAL EFFECT
+        ======================================== */
+
+        function initScrollReveal() {
+
+            const sections = document.querySelectorAll(".section");
+
+            const observer = new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(entry.target);
+                    }
+
+                });
+
+            }, {
+                threshold: 0.12
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+
+        /* ========================================
+           7. KHỞI ĐỘNG WEBSITE
+        ======================================== */
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            loadAppInfo();
+
+            initScrollReveal();
+
+        });
+    </script>
+
+</body>
+</html>
