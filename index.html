@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#080d1b">
-    <meta name="description" content="Hoàng Kun iOS - Trang giới thiệu và cài đặt ứng dụng iOS.">
-
+    <meta name="description" content="Hoàng Kun iOS - Trang giới thiệu và tải ứng dụng iOS.">
     <title>Hoàng Kun iOS - Tải ứng dụng</title>
 
     <!-- Fonts & Icons -->
@@ -15,32 +15,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        /* ========================================
-           1. CẤU HÌNH GIAO DIỆN
-        ======================================== */
-
         :root {
             --bg: #080d1b;
-            --card: rgba(17, 26, 48, 0.88);
-            --card-hover: #17233e;
-
+            --card: rgba(17,26,48,.88);
             --text: #f5f7ff;
             --sub: #94a3b8;
-
             --blue: #4385ff;
             --cyan: #00d4ff;
             --purple: #9865ff;
             --green: #24d18b;
             --orange: #ffad42;
-
-            --border: rgba(255,255,255,0.08);
-            --gradient: linear-gradient(120deg, #4385ff, #00d4ff);
-            --shadow: 0 15px 45px rgba(0,0,0,0.22);
+            --border: rgba(255,255,255,.08);
+            --gradient: linear-gradient(120deg,#4385ff,#00d4ff);
+            --shadow: 0 15px 45px rgba(0,0,0,.22);
         }
-
-        /* ========================================
-           2. RESET & CƠ BẢN
-        ======================================== */
 
         * {
             box-sizing: border-box;
@@ -54,14 +42,14 @@
         }
 
         body {
-            font-family: "Be Vietnam Pro", sans-serif;
-            color: var(--text);
-            background: var(--bg);
             min-height: 100vh;
             overflow-x: hidden;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Be Vietnam Pro",sans-serif;
         }
 
-        button, a {
+        button,a {
             font: inherit;
         }
 
@@ -70,14 +58,11 @@
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
-        /* ========================================
-           3. BACKGROUND EFFECTS
-        ======================================== */
-
+        /* BACKGROUND */
         .background {
             position: fixed;
             inset: 0;
@@ -85,8 +70,8 @@
             overflow: hidden;
             pointer-events: none;
             background:
-                radial-gradient(circle at 10% 10%, #173d85 0%, transparent 35%),
-                radial-gradient(circle at 90% 20%, #302064 0%, transparent 35%),
+                radial-gradient(circle at 10% 10%,#173d85 0%,transparent 35%),
+                radial-gradient(circle at 90% 20%,#302064 0%,transparent 35%),
                 #080d1b;
         }
 
@@ -96,53 +81,45 @@
             height: 350px;
             border-radius: 50%;
             filter: blur(100px);
-            opacity: 0.22;
+            opacity: .22;
             animation: floatGlow 12s ease-in-out infinite alternate;
         }
 
         .glow-one {
-            background: #176aff;
             top: -150px;
             left: -100px;
+            background: #176aff;
         }
 
         .glow-two {
-            background: #8b42ff;
-            right: -130px;
             top: 35%;
+            right: -130px;
+            background: #8b42ff;
             animation-delay: -5s;
         }
 
         .glow-three {
-            background: #00cfff;
-            left: 15%;
             bottom: -200px;
+            left: 15%;
+            background: #00cfff;
             animation-delay: -8s;
         }
 
         @keyframes floatGlow {
-            from {
-                transform: translate(0, 0) scale(1);
-            }
-
-            to {
-                transform: translate(70px, 60px) scale(1.25);
-            }
+            from { transform: translate(0,0) scale(1); }
+            to { transform: translate(70px,60px) scale(1.25); }
         }
 
-        /* ========================================
-           4. HEADER
-        ======================================== */
-
+        /* HEADER */
         .header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(8, 13, 27, 0.78);
+            padding: env(safe-area-inset-top) 16px 0;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8,13,27,.78);
             backdrop-filter: blur(22px);
             -webkit-backdrop-filter: blur(22px);
-            border-bottom: 1px solid var(--border);
-            padding: env(safe-area-inset-top) 16px 0;
         }
 
         .header-inner {
@@ -160,7 +137,7 @@
             gap: 11px;
             font-size: 19px;
             font-weight: 900;
-            letter-spacing: -0.5px;
+            letter-spacing: -.5px;
         }
 
         .brand-icon {
@@ -176,10 +153,11 @@
         }
 
         .brand-name {
+            color: var(--cyan);
             background: var(--gradient);
             background-clip: text;
             -webkit-background-clip: text;
-            color: transparent;
+            -webkit-text-fill-color: transparent;
         }
 
         .share-btn {
@@ -187,21 +165,18 @@
             height: 40px;
             border: 1px solid var(--border);
             border-radius: 13px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,.04);
             color: white;
             font-size: 17px;
             transition: .3s;
         }
 
         .share-btn:hover {
-            background: var(--gradient);
             transform: translateY(-3px);
+            background: var(--gradient);
         }
 
-        /* ========================================
-           5. MAIN LAYOUT
-        ======================================== */
-
+        /* MAIN */
         .container {
             width: calc(100% - 32px);
             max-width: 700px;
@@ -212,7 +187,7 @@
             margin-bottom: 25px;
             opacity: 0;
             transform: translateY(25px);
-            transition: opacity .7s ease, transform .7s ease;
+            transition: opacity .7s ease,transform .7s ease;
         }
 
         .section.show {
@@ -221,32 +196,29 @@
         }
 
         .card {
-            background: var(--card);
+            overflow: hidden;
             border: 1px solid var(--border);
             border-radius: 23px;
+            background: var(--card);
             box-shadow: var(--shadow);
-            overflow: hidden;
             transition: .35s ease;
         }
 
         .card:hover {
-            border-color: rgba(67,133,255,0.35);
+            border-color: rgba(67,133,255,.35);
             transform: translateY(-3px);
         }
 
         .section-heading {
+            margin: 0 0 11px 5px;
             color: var(--sub);
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            margin: 0 0 11px 5px;
         }
 
-        /* ========================================
-           6. APP INFORMATION
-        ======================================== */
-
+        /* APP INFORMATION */
         .app-card {
             padding: 22px 22px 0;
         }
@@ -262,10 +234,10 @@
             height: 120px;
             flex-shrink: 0;
             object-fit: cover;
+            border: 1px solid var(--border);
             border-radius: 27px;
             background: #151b2b;
-            border: 1px solid var(--border);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            box-shadow: 0 12px 30px rgba(0,0,0,.35);
             transition: .4s;
         }
 
@@ -286,9 +258,9 @@
         }
 
         .app-subtitle {
+            margin-top: 6px;
             color: var(--sub);
             font-size: 13px;
-            margin-top: 6px;
         }
 
         .install-btn {
@@ -300,11 +272,11 @@
             padding: 11px 23px;
             border: 0;
             border-radius: 30px;
+            background: var(--gradient);
+            box-shadow: 0 6px 25px #4385ff45;
             color: white;
             font-size: 14px;
             font-weight: 800;
-            background: var(--gradient);
-            box-shadow: 0 6px 25px #4385ff45;
             transition: .3s;
             animation: buttonPulse 3s infinite;
         }
@@ -319,22 +291,14 @@
         }
 
         @keyframes buttonPulse {
-            0%, 100% {
-                box-shadow: 0 6px 25px #4385ff35;
-            }
-
-            50% {
-                box-shadow: 0 6px 32px #00d4ff65;
-            }
+            0%,100% { box-shadow: 0 6px 25px #4385ff35; }
+            50% { box-shadow: 0 6px 32px #00d4ff65; }
         }
 
-        /* ========================================
-           7. APP STATISTICS
-        ======================================== */
-
+        /* STATISTICS */
         .stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3,1fr);
             margin: 22px -22px 0;
             padding: 18px 8px;
             border-top: 1px solid var(--border);
@@ -342,8 +306,8 @@
 
         .stat {
             min-width: 0;
-            text-align: center;
             padding: 0 6px;
+            text-align: center;
         }
 
         .stat + .stat {
@@ -353,22 +317,22 @@
         .stat-icon {
             width: 38px;
             height: 38px;
-            margin: auto auto 9px;
             display: grid;
             place-items: center;
+            margin: 0 auto 9px;
             border-radius: 12px;
+            background: rgba(67,133,255,.13);
             color: var(--blue);
-            background: rgba(67,133,255,0.13);
         }
 
         .stat:nth-child(2) .stat-icon {
+            background: rgba(152,101,255,.13);
             color: var(--purple);
-            background: rgba(152,101,255,0.13);
         }
 
         .stat:nth-child(3) .stat-icon {
+            background: rgba(36,209,139,.13);
             color: var(--green);
-            background: rgba(36,209,139,0.13);
         }
 
         .stat-value {
@@ -378,17 +342,14 @@
         }
 
         .stat-label {
+            margin-top: 5px;
             color: var(--sub);
             font-size: 10px;
             font-weight: 700;
-            margin-top: 5px;
             text-transform: uppercase;
         }
 
-        /* ========================================
-           8. CERTIFICATE INFORMATION
-        ======================================== */
-
+        /* CERTIFICATE */
         .status {
             display: flex;
             align-items: center;
@@ -397,7 +358,7 @@
             margin: 9px;
             padding: 14px;
             border-radius: 16px;
-            background: rgba(36,209,139,0.09);
+            background: rgba(36,209,139,.09);
         }
 
         .status-left {
@@ -424,16 +385,16 @@
         }
 
         .status-desc {
+            margin-top: 3px;
             color: var(--sub);
             font-size: 11px;
-            margin-top: 3px;
         }
 
         .status-badge {
             padding: 6px 11px;
             border-radius: 20px;
+            background: rgba(36,209,139,.13);
             color: var(--green);
-            background: rgba(36,209,139,0.13);
             font-size: 11px;
             font-weight: 800;
         }
@@ -461,8 +422,8 @@
             display: grid;
             place-items: center;
             border-radius: 9px;
+            background: rgba(67,133,255,.13);
             color: var(--blue);
-            background: rgba(67,133,255,0.13);
         }
 
         .info-value {
@@ -471,10 +432,7 @@
             overflow-wrap: anywhere;
         }
 
-        /* ========================================
-           9. INSTALLATION GUIDE
-        ======================================== */
-
+        /* INSTALL GUIDE */
         .guide {
             padding: 20px;
         }
@@ -492,10 +450,10 @@
         }
 
         .guide-description {
+            margin: 10px 0 15px;
             color: var(--sub);
             font-size: 13px;
             line-height: 1.7;
-            margin: 10px 0 15px;
         }
 
         .steps {
@@ -504,138 +462,133 @@
         }
 
         .steps li {
-            counter-increment: step;
             display: flex;
             align-items: flex-start;
             gap: 12px;
             padding: 9px 0;
+            counter-increment: step;
             font-size: 13px;
             line-height: 1.6;
         }
 
         .steps li::before {
-            content: counter(step);
             width: 25px;
             height: 25px;
-            flex-shrink: 0;
             display: grid;
             place-items: center;
+            flex-shrink: 0;
             border-radius: 50%;
+            background: var(--gradient);
             color: white;
+            content: counter(step);
             font-size: 11px;
             font-weight: 800;
-            background: var(--gradient);
         }
 
         .note {
-            padding: 13px;
             margin-top: 13px;
+            padding: 13px;
             border-radius: 13px;
-            background: rgba(67,133,255,0.09);
+            background: rgba(67,133,255,.09);
             color: var(--sub);
             font-size: 12px;
             line-height: 1.7;
         }
 
         .note i {
-            color: var(--cyan);
             margin-right: 5px;
-        }
-
-        /* ========================================
-           10. SOURCE LINKS
-        ======================================== */
-
-        .links {
-            padding: 8px 17px;
-        }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--text);
-            font-size: 13px;
-            transition: .25s;
-        }
-
-        .link-item:last-child {
-            border-bottom: 0;
-        }
-
-        .link-item:hover {
             color: var(--cyan);
-            padding-left: 6px;
         }
 
-        .link-item span {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            min-width: 0;
+        /* SOURCE IMAGES */
+        .guide-gallery {
+            display: grid;
+            grid-template-columns: repeat(3,minmax(0,1fr));
+            gap: 12px;
+            padding: 14px;
         }
 
-        .link-item span i {
-            color: var(--blue);
-            font-size: 15px;
+        .guide-image-card {
+            display: block;
+            overflow: hidden;
+            border: 1px solid rgba(59,130,246,.25);
+            border-radius: 12px;
+            background: #0b1222;
+            transition: .3s ease;
         }
 
-        .link-item > i {
-            color: var(--sub);
-            font-size: 12px;
+        .guide-image-card:hover {
+            transform: translateY(-4px);
+            border-color: #2196f3;
+            box-shadow: 0 5px 20px rgba(33,150,243,.2);
         }
 
-        /* ========================================
-           11. FOOTER
-        ======================================== */
+        .guide-image-card img {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+        }
 
-        .footer {
+        .guide-image-card span {
+            display: block;
+            padding: 10px;
+            color: white;
+            font-size: 13px;
             text-align: center;
+        }
+
+        /* FOOTER */
+        .footer {
             padding: 15px 10px 35px;
             color: var(--sub);
             font-size: 11px;
             line-height: 1.8;
+            text-align: center;
         }
 
         .footer strong {
             color: var(--text);
         }
 
-        /* ========================================
-           12. TOAST NOTIFICATION
-        ======================================== */
-
+        /* TOAST */
         .toast {
             position: fixed;
-            left: 50%;
             bottom: 30px;
+            left: 50%;
             z-index: 999;
-            transform: translate(-50%, 20px);
+            max-width: calc(100% - 30px);
             padding: 12px 20px;
+            transform: translate(-50%,20px);
             border: 1px solid var(--border);
             border-radius: 30px;
             background: #17233e;
+            box-shadow: var(--shadow);
             color: white;
             font-size: 13px;
             font-weight: 700;
-            box-shadow: var(--shadow);
             opacity: 0;
             pointer-events: none;
+            text-align: center;
             transition: .3s;
-            white-space: nowrap;
         }
 
         .toast.show {
+            transform: translate(-50%,0);
             opacity: 1;
-            transform: translate(-50%, 0);
         }
 
-        /* ========================================
-           13. RESPONSIVE
-        ======================================== */
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .guide-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .guide-image-card img {
+                height: auto;
+                max-height: 500px;
+            }
+        }
 
         @media (max-width: 480px) {
             .container {
@@ -670,8 +623,8 @@
             }
 
             .stats {
-                margin-left: -15px;
                 margin-right: -15px;
+                margin-left: -15px;
             }
 
             .stat-value {
@@ -679,77 +632,31 @@
             }
 
             .info-row {
-                font-size: 12px;
                 padding: 13px;
+                font-size: 12px;
             }
 
             .info-label {
                 gap: 7px;
             }
-        }
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
+            .status-badge {
+                font-size: 10px;
             }
         }
 
-        .guide-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 14px;
-}
-
-.guide-image-card {
-    display: block;
-    overflow: hidden;
-    border: 1px solid rgba(59,130,246,.25);
-    border-radius: 12px;
-    background: #0b1222;
-    text-decoration: none;
-    transition: .3s ease;
-}
-
-.guide-image-card:hover {
-    transform: translateY(-4px);
-    border-color: #2196f3;
-    box-shadow: 0 5px 20px rgba(33,150,243,.2);
-}
-
-.guide-image-card img {
-    display: block;
-    width: 100%;
-    height: 220px;
-    object-fit: contain;
-}
-
-.guide-image-card span {
-    display: block;
-    padding: 10px;
-    color: #fff;
-    font-size: 13px;
-    text-align: center;
-}
-
-@media (max-width: 600px) {
-    .guide-gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .guide-image-card img {
-        height: auto;
-        max-height: 500px;
-    }
-}
+        @media (prefers-reduced-motion: reduce) {
+            *,*::before,*::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-
     <!-- BACKGROUND -->
     <div class="background">
         <div class="glow glow-one"></div>
@@ -760,52 +667,40 @@
     <!-- HEADER -->
     <header class="header">
         <div class="header-inner">
-
             <div class="brand">
                 <div class="brand-icon">
                     <i class="fa-brands fa-apple"></i>
                 </div>
-
                 <span class="brand-name">HOÀNG KUN iOS</span>
             </div>
 
-            <button class="share-btn" onclick="sharePage()" aria-label="Chia sẻ">
+            <button class="share-btn" onclick="sharePage()" aria-label="Chia sẻ website">
                 <i class="fa-solid fa-share-nodes"></i>
             </button>
-
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <main class="container">
 
         <!-- APP CARD -->
         <section class="section">
             <div class="card app-card">
-
                 <div class="app-top">
-
-                    <img id="appIcon" class="app-icon" src="" alt="App icon">
+                    <img id="appIcon" class="app-icon" src="" alt="Icon ứng dụng">
 
                     <div class="app-info">
-
                         <h1 class="app-name" id="appName"></h1>
-
-                        <p class="app-subtitle">
-                            Ứng dụng dành cho iPhone và iPad
-                        </p>
+                        <p class="app-subtitle">Ứng dụng dành cho iPhone và iPad</p>
 
                         <button class="install-btn" onclick="installApp()">
                             <i class="fa-solid fa-cloud-arrow-down"></i>
-                            Cài đặt ngay
+                            Tải ứng dụng
                         </button>
-
                     </div>
-
                 </div>
 
                 <div class="stats">
-
                     <div class="stat">
                         <div class="stat-icon">
                             <i class="fa-solid fa-code-branch"></i>
@@ -829,36 +724,28 @@
                         <div class="stat-value" id="appAuthor"></div>
                         <div class="stat-label">Tác giả</div>
                     </div>
-
                 </div>
-
             </div>
         </section>
 
         <!-- CERTIFICATE -->
         <section class="section">
-
-            <h2 class="section-heading">
-                Thông tin chứng chỉ
-            </h2>
+            <h2 class="section-heading">Thông tin chứng chỉ</h2>
 
             <div class="card">
-
                 <div class="status">
-
                     <div class="status-left">
                         <div class="status-icon">
-                            <i class="fa-solid fa-shield-check"></i>
+                            <i class="fa-solid fa-shield-halved"></i>
                         </div>
 
                         <div>
                             <div class="status-title">Thông tin chứng chỉ</div>
-                            <div class="status-desc">Thông tin từ máy chủ nguồn</div>
+                            <div class="status-desc">Thông tin theo máy chủ nguồn</div>
                         </div>
                     </div>
 
                     <span class="status-badge">Enterprise</span>
-
                 </div>
 
                 <div class="info-row">
@@ -882,93 +769,64 @@
                         <i class="fa-solid fa-circle-info"></i>
                         Trạng thái xác minh
                     </span>
-                    <span class="info-value">Đã xác minh</span>
+                    <span class="info-value">Đã Xác Minh </span>
                 </div>
-
             </div>
         </section>
 
         <!-- INSTALL GUIDE -->
         <section class="section">
-
-            <h2 class="section-heading">
-                Hướng dẫn cài đặt
-            </h2>
+            <h2 class="section-heading">Hướng dẫn cài đặt</h2>
 
             <div class="card guide">
-
                 <h3 class="guide-title">
                     <i class="fa-solid fa-mobile-screen-button"></i>
                     Cài ứng dụng trên iPhone
                 </h3>
 
                 <p class="guide-description">
-                    Sử dụng trình duyệt Safari trên iPhone hoặc iPad
-                    để mở liên kết cài đặt.
+                    Sử dụng trình duyệt Safari trên iPhone hoặc iPad để mở liên kết tải ứng dụng.
                 </p>
 
                 <ol class="steps">
                     <li>Mở website bằng trình duyệt Safari.</li>
-                    <li>Nhấn nút Cài đặt ngay ở phía trên.</li>
-                    <li>Xác nhận cài đặt nếu iOS hiển thị yêu cầu.</li>
-                    <li>Chờ ứng dụng xuất hiện trên màn hình chính.</li>
-                    <li>Kiểm tra kỹ nguồn phát hành trước khi tin cậy chứng chỉ doanh nghiệp.</li>
+                    <li>Nhấn nút Tải ứng dụng ở phía trên.</li>
+                    <li>Trình duyệt sẽ mở liên kết tải file IPA.</li>
+                    <li>Kiểm tra file đã tải xuống trong ứng dụng Tệp.</li>
+                    <li>Việc cài đặt cần ứng dụng hoặc phương thức hỗ trợ IPA phù hợp.</li>
                 </ol>
 
                 <div class="note">
                     <i class="fa-solid fa-circle-info"></i>
-                    Hoàng Kun iOS là trang giới thiệu liên kết cài đặt.
-                    Ứng dụng và chứng chỉ được lưu trữ trên máy chủ bên thứ ba.
-                    Hãy kiểm tra độ tin cậy trước khi cài đặt.
+                    File IPA tải trực tiếp không tự động cài đặt trên iPhone.
+                    Hãy kiểm tra nguồn phát hành và chữ ký ứng dụng trước khi sử dụng.
                 </div>
-
             </div>
         </section>
 
-     <!-- SOURCE LINKS -->
-<section class="section">
-    <h2 class="section-heading">
-        Liên kết nguồn đầy đủ
-    </h2>
+        <!-- SOURCE IMAGES -->
+        <section class="section">
+            <h2 class="section-heading">Hình ảnh hướng dẫn</h2>
 
-    <div class="card links">
+            <div class="card">
+                <div class="guide-gallery">
+                    <a href="https://storeipa.com/QgNbxM/hd1.png" target="_blank" rel="noopener noreferrer" class="guide-image-card">
+                        <img src="https://storeipa.com/QgNbxM/hd1.png" alt="Ảnh hướng dẫn 1" loading="lazy">
+                        <span>Ảnh hướng dẫn 1</span>
+                    </a>
 
-        <a class="link-item" id="manifestLink" target="_blank" rel="noopener">
-            <span>
-                <i class="fa-solid fa-file-code"></i>
-                Manifest cài đặt (.plist)
-            </span>
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
+                    <a href="https://storeipa.com/QgNbxM/hd2.png" target="_blank" rel="noopener noreferrer" class="guide-image-card">
+                        <img src="https://storeipa.com/QgNbxM/hd2.png" alt="Ảnh hướng dẫn 2" loading="lazy">
+                        <span>Ảnh hướng dẫn 2</span>
+                    </a>
 
-        <a class="link-item" id="iconLink" target="_blank" rel="noopener">
-            <span>
-                <i class="fa-regular fa-image"></i>
-                Icon ứng dụng
-            </span>
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-
-        <!-- ẢNH HƯỚNG DẪN -->
-        <div class="guide-gallery">
-            <a href="https://storeipa.com/QgNbxM/hd1.png" target="_blank" rel="noopener" class="guide-image-card">
-                <img src="https://storeipa.com/QgNbxM/hd1.png" alt="Ảnh hướng dẫn 1" loading="lazy">
-                <span>Ảnh hướng dẫn 1</span>
-            </a>
-
-            <a href="https://storeipa.com/QgNbxM/hd2.png" target="_blank" rel="noopener" class="guide-image-card">
-                <img src="https://storeipa.com/QgNbxM/hd2.png" alt="Ảnh hướng dẫn 2" loading="lazy">
-                <span>Ảnh hướng dẫn 2</span>
-            </a>
-
-            <a href="https://storeipa.com/QgNbxM/hd3.png" target="_blank" rel="noopener" class="guide-image-card">
-                <img src="https://storeipa.com/QgNbxM/hd3.png" alt="Ảnh hướng dẫn 3" loading="lazy">
-                <span>Ảnh hướng dẫn 3</span>
-            </a>
-        </div>
-
-    </div>
-</section>
+                    <a href="https://storeipa.com/QgNbxM/hd3.png" target="_blank" rel="noopener noreferrer" class="guide-image-card">
+                        <img src="https://storeipa.com/QgNbxM/hd3.png" alt="Ảnh hướng dẫn 3" loading="lazy">
+                        <span>Ảnh hướng dẫn 3</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -982,7 +840,7 @@
     </footer>
 
     <!-- TOAST -->
-    <div class="toast" id="toast"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
         /* ========================================
@@ -990,32 +848,25 @@
         ======================================== */
 
         const CONFIG = {
-
-            // Thông tin ứng dụng
             appName: "TikTok",
             appVersion: "46.7.0",
             appSize: "428.4 MB",
             appAuthor: "Hoàng Kun",
 
-            // Hình ảnh
             appIcon: "https://storeipa.com/QgNbxM/icon.png?v=1793041359",
 
-            // Liên kết cài đặt
-            manifestURL: "https://storeipa.com/QgNbxM/TikTokV3.1.ipa",
+            // Link tải trực tiếp file IPA
+            ipaURL: "https://storeipa.com/QgNbxM/TikTokV3.1.ipa",
 
-            // Thông tin chứng chỉ theo trang nguồn
             certName: "Chengdu Railway Bureau",
-            certExpiry: "02/10/2027",
-
+            certExpiry: "02/10/2027"
         };
-
 
         /* ========================================
            2. HIỂN THỊ THÔNG TIN
         ======================================== */
 
         function loadAppInfo() {
-
             document.title = CONFIG.appName + " - Hoàng Kun iOS";
 
             document.getElementById("appName").textContent = CONFIG.appName;
@@ -1024,45 +875,36 @@
             document.getElementById("appAuthor").textContent = CONFIG.appAuthor;
 
             document.getElementById("appIcon").src = CONFIG.appIcon;
-
             document.getElementById("certName").textContent = CONFIG.certName;
             document.getElementById("certExpiry").textContent = CONFIG.certExpiry;
-
-            // Năm hiện tại
             document.getElementById("year").textContent = new Date().getFullYear();
         }
 
-
         /* ========================================
-           3. CÀI ĐẶT ỨNG DỤNG
+           3. TẢI FILE IPA
         ======================================== */
 
         function installApp() {
+            const ipaURL = CONFIG.ipaURL;
 
-            if (!/^https?:$/.test(location.protocol)) {
-                showToast("Hãy mở website bằng Safari trên iPhone!");
+            if (!ipaURL || !/^https?:\/\//i.test(ipaURL)) {
+                showToast("Link tải IPA chưa hợp lệ!");
                 return;
             }
 
-            if (!CONFIG.manifestURL) {
-                showToast("Chưa cấu hình link cài đặt!");
+            if (!/\.ipa(?:$|[?#])/i.test(ipaURL)) {
+                showToast("Đường dẫn hiện tại không phải file IPA!");
                 return;
             }
 
-            const installURL =
-                "itms-services://?action=download-manifest&url=" +
-                encodeURIComponent(CONFIG.manifestURL);
-
-            window.location.href = installURL;
+            window.open(ipaURL, "_blank", "noopener");
         }
-
 
         /* ========================================
            4. CHIA SẺ WEBSITE
         ======================================== */
 
         async function sharePage() {
-
             const shareData = {
                 title: "Hoàng Kun iOS",
                 text: "Truy cập Hoàng Kun iOS",
@@ -1070,25 +912,34 @@
             };
 
             try {
-
                 if (navigator.share) {
                     await navigator.share(shareData);
                     return;
                 }
 
-                await navigator.clipboard.writeText(window.location.href);
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(window.location.href);
+                    showToast("Đã sao chép liên kết website!");
+                    return;
+                }
 
-                showToast("Đã sao chép liên kết website!");
+                const textArea = document.createElement("textarea");
+                textArea.value = window.location.href;
+                textArea.style.position = "fixed";
+                textArea.style.opacity = "0";
+                document.body.appendChild(textArea);
+                textArea.select();
 
+                const copied = document.execCommand("copy");
+                textArea.remove();
+
+                showToast(copied ? "Đã sao chép liên kết website!" : "Không thể sao chép liên kết!");
             } catch (error) {
-
                 if (error.name !== "AbortError") {
                     showToast("Không thể chia sẻ liên kết!");
                 }
-
             }
         }
-
 
         /* ========================================
            5. TOAST NOTIFICATION
@@ -1097,7 +948,6 @@
         let toastTimer;
 
         function showToast(message) {
-
             const toast = document.getElementById("toast");
 
             toast.textContent = message;
@@ -1110,50 +960,40 @@
             }, 2500);
         }
 
-
         /* ========================================
            6. SCROLL REVEAL EFFECT
         ======================================== */
 
         function initScrollReveal() {
-
             const sections = document.querySelectorAll(".section");
 
+            if (!("IntersectionObserver" in window)) {
+                sections.forEach(section => section.classList.add("show"));
+                return;
+            }
+
             const observer = new IntersectionObserver((entries) => {
-
                 entries.forEach(entry => {
-
                     if (entry.isIntersecting) {
-
                         entry.target.classList.add("show");
-
                         observer.unobserve(entry.target);
                     }
-
                 });
-
             }, {
                 threshold: 0.12
             });
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            sections.forEach(section => observer.observe(section));
         }
-
 
         /* ========================================
            7. KHỞI ĐỘNG WEBSITE
         ======================================== */
 
         document.addEventListener("DOMContentLoaded", () => {
-
             loadAppInfo();
-
             initScrollReveal();
-
         });
     </script>
-
 </body>
 </html>
