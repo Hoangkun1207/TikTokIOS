@@ -949,5 +949,103 @@ document.addEventListener("drop", function(e) {
 });
 
     </script>
+    <script>
+/* THÔNG BÁO KHI NGƯỜI DÙNG THAO TÁC */
+
+// Tạo hộp thông báo
+function showSecurityNotice(message) {
+    let notice = document.getElementById("securityNotice");
+
+    if (!notice) {
+        notice = document.createElement("div");
+        notice.id = "securityNotice";
+        notice.style.cssText = `
+            position:fixed;
+            top:20px;
+            left:50%;
+            transform:translateX(-50%) translateY(-20px);
+            background:rgba(20,20,25,.96);
+            color:#fff;
+            padding:13px 20px;
+            border:1px solid rgba(255,255,255,.15);
+            border-radius:12px;
+            font:600 14px Arial,sans-serif;
+            box-shadow:0 8px 30px rgba(0,0,0,.3);
+            z-index:999999;
+            opacity:0;
+            transition:.25s ease;
+            text-align:center;
+            max-width:85%;
+            pointer-events:none;
+        `;
+        document.body.appendChild(notice);
+    }
+
+    notice.textContent = "⚠️ " + message;
+    notice.style.opacity = "1";
+    notice.style.transform = "translateX(-50%) translateY(0)";
+
+    clearTimeout(window.securityNoticeTimer);
+    window.securityNoticeTimer = setTimeout(() => {
+        notice.style.opacity = "0";
+        notice.style.transform = "translateX(-50%) translateY(-20px)";
+    }, 2200);
+}
+
+// Chuột phải
+document.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    showSecurityNotice("Chuột phải đã bị vô hiệu hóa!");
+});
+
+// F12 và các phím tắt DevTools
+document.addEventListener("keydown", e => {
+    const key = (e.key || "").toLowerCase();
+
+    if (
+        key === "f12" ||
+        (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(key)) ||
+        (e.ctrlKey && ["u","s"].includes(key)) ||
+        (e.metaKey && e.altKey && ["i","j","c"].includes(key))
+    ) {
+        e.preventDefault();
+        e.stopPropagation();
+        showSecurityNotice("Bạn không được phép sử dụng thao tác này!");
+    }
+}, true);
+
+// Sao chép
+document.addEventListener("copy", e => {
+    e.preventDefault();
+    showSecurityNotice("Nội dung không cho phép sao chép!");
+});
+
+// Cắt
+document.addEventListener("cut", e => {
+    e.preventDefault();
+    showSecurityNotice("Thao tác cắt đã bị vô hiệu hóa!");
+});
+
+// Chọn văn bản
+document.addEventListener("selectstart", e => {
+    if (!["INPUT","TEXTAREA"].includes(e.target.tagName)) {
+        e.preventDefault();
+        showSecurityNotice("Không được phép chọn nội dung!");
+    }
+});
+
+// Kéo thả
+document.addEventListener("dragstart", e => {
+    e.preventDefault();
+    showSecurityNotice("Chức năng kéo thả đã bị vô hiệu hóa!");
+});
+
+// Thông báo khi nhấn chuột giữa
+document.addEventListener("auxclick", e => {
+    if (e.button === 1) {
+        showSecurityNotice("Thao tác này không được hỗ trợ!");
+    }
+});
+</script>
 </body>
 </html>
