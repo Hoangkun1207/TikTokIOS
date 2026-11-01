@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f6fb">
+<title>Hoàng Kun iOS – Tải ứng dụng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{color-scheme:light dark;--bg:#f4f6fb;--card:#fff;--text:#101522;--sub:#687184;--line:rgba(20,35,60,.09);--blue:#2563ff;--cyan:#00c2ff;--green:#20b968;--orange:#ed9b20;--bar:rgba(244,246,251,.82);--shadow:0 8px 28px rgba(20,35,60,.06)}
+@media(prefers-color-scheme:dark){:root{--bg:#070b14;--card:#101827;--text:#f5f7ff;--sub:#9ba8bd;--line:rgba(150,180,230,.13);--bar:rgba(7,11,20,.82);--shadow:none}}
+body{font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);background-image:radial-gradient(60% 35% at 0 0,rgba(37,99,255,.13),transparent 75%),radial-gradient(55% 35% at 100% 0,rgba(0,194,255,.12),transparent 75%);background-attachment:fixed;color:var(--text);min-height:100vh;overflow-x:hidden}
+.header{position:sticky;top:0;z-index:10;background:var(--bar);backdrop-filter:blur(22px);border-bottom:1px solid var(--line);padding:env(safe-area-inset-top) 16px 0}
+.header-in{height:54px;max-width:640px;margin:auto;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.4px;background:linear-gradient(90deg,#2563ff,#00c2ff,#8b5cf6);background-clip:text;-webkit-background-clip:text;color:transparent}
+.brandmark{width:31px;height:31px;border-radius:10px;background:linear-gradient(135deg,#2563ff,#00c2ff);color:white;display:grid;place-items:center;font-size:15px;box-shadow:0 5px 14px #2563ff40}
+.share{border:0;background:none;color:var(--blue);font-size:20px;padding:8px;cursor:pointer}
+main{width:calc(100% - 32px);max-width:640px;margin:20px auto 30px}
+.section{margin-bottom:20px;animation:up .4s ease both}.section:nth-child(2){animation-delay:.06s}.section:nth-child(3){animation-delay:.12s}
+@keyframes up{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.hero{padding:18px 18px 0}.hero-top{display:flex;gap:16px;align-items:center}
+.appicon{width:112px;height:112px;flex:0 0 112px;border-radius:25px;object-fit:cover;background:#111;box-shadow:0 9px 24px #0002}
+.appinfo{min-width:0;flex:1}.appname{font-size:22px;font-weight:800;line-height:1.25;overflow-wrap:anywhere}.date{font-size:13px;color:var(--sub);margin-top:5px}
+.install{margin-top:13px;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:30px;padding:9px 18px;background:linear-gradient(120deg,#2563ff,#00aef5);color:#fff;font:700 14px inherit;cursor:pointer;box-shadow:0 7px 18px #2563ff38}.install:active{transform:scale(.97)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:18px -18px 0;padding:14px 4px 16px;border-top:1px solid var(--line)}
+.stat{text-align:center;min-width:0;padding:0 5px}.stat+.stat{border-left:1px solid var(--line)}.stat i{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;margin:0 auto 7px;background:#2563ff18;color:var(--blue)}.stat b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stat small{display:block;color:var(--sub);font-size:10px;font-weight:700;text-transform:uppercase;margin-top:3px;letter-spacing:.4px}
+.status{display:flex;justify-content:space-between;align-items:center;margin:7px;padding:12px;border-radius:14px;background:#20b96816}.status-left{display:flex;align-items:center;gap:11px}.check{width:34px;height:34px;border-radius:11px;background:var(--green);color:white;display:grid;place-items:center}.status strong{font-size:14px;color:var(--green)}.status small{display:block;color:var(--sub);font-size:12px;margin-top:2px}.pill{font-size:11px;font-weight:800;color:var(--green);background:#20b96820;border-radius:20px;padding:5px 10px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:1px solid var(--line);font-size:14px}.key{color:var(--sub);display:flex;align-items:center;gap:9px}.key i{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:#2563ff16;color:var(--blue)}.val{font-weight:700;text-align:right;overflow-wrap:anywhere}
+.heading{font-size:12px;color:var(--sub);font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin:0 0 8px 4px}
+.guide{padding:17px}.guide-title{font-size:16px;font-weight:800;display:flex;align-items:center;gap:10px}.guide-title i{color:var(--orange)}.guide p{font-size:13px;color:var(--sub);line-height:1.55;margin:7px 0 12px}
+.steps{list-style:none;counter-reset:step}.steps li{counter-increment:step;display:flex;gap:11px;padding:7px 0;font-size:13px;line-height:1.55}.steps li:before{content:counter(step);flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#2563ff18;color:var(--blue);font-size:11px;font-weight:800}
+.note{padding:11px 12px;background:rgba(120,130,150,.1);border-radius:12px;color:var(--sub);font-size:12px;line-height:1.5;margin-top:10px}.links{padding:15px 16px}.links a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;color:var(--blue);font-size:13px;font-weight:600;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.links a:last-child{border:0}.links a span{min-width:0;overflow-wrap:anywhere}.foot{text-align:center;color:var(--sub);font-size:11px;padding:5px 12px 25px;line-height:1.7}
+@media(max-width:390px){.appicon{width:94px;height:94px;flex-basis:94px}.appname{font-size:19px}.hero{padding:15px 14px 0}.stats{margin-left:-14px;margin-right:-14px}.install{padding:8px 13px}}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in"><div class="brand"><span class="brandmark"><i class="fa-brands fa-apple"></i></span>HOÀNG KUN iOS</div><button class="share" onclick="sharePage()" aria-label="Chia sẻ"><i class="fa-solid fa-arrow-up-from-bracket"></i></button></div></header>
+<main>
+<section class="section">
+<div class="card hero">
+<div class="hero-top">
+<img class="appicon" src="https://storeipa.com/QgNbxM/icon.png?v=1793041359" alt="Biểu tượng ứng dụng" onerror="this.style.visibility='hidden'">
+<div class="appinfo"><div class="appname">TikTok</div><div class="date">Bản cài đặt iOS · Cập nhật 27/10/2026</div>
+<button class="install" onclick="installApp()"><i class="fa-solid fa-cloud-arrow-down"></i> Cài đặt</button>
+</div></div>
+<div class="stats">
+<div class="stat"><i class="fa-solid fa-code-branch"></i><b>46.7.0</b><small>Phiên bản</small></div>
+<div class="stat"><i class="fa-solid fa-hard-drive"></i><b>428.4 MB</b><small>Kích cỡ</small></div>
+<div class="stat"><i class="fa-solid fa-user"></i><b>Hoàng Kun</b><small>Đăng tải</small></div>
+</div></div></section>
+<section class="section">
+<div class="heading">Thông tin chứng chỉ</div>
+<div class="card">
+<div class="status"><div class="status-left"><div class="check"><i class="fa-solid fa-check"></i></div><div><strong>Thông tin chứng chỉ</strong><small>Được lấy từ nguồn cài đặt bên ngoài</small></div></div><span class="pill">Enterprise</span></div>
+<div class="row"><span class="key"><i class="fa-solid fa-certificate"></i> Nhà phát triển</span><span class="val">Chengdu Railway Bureau</span></div>
+<div class="row"><span class="key"><i class="fa-solid fa-calendar-xmark"></i> Hạn chứng chỉ theo trang nguồn</span><span class="val">02/10/2027</span></div>
+<div class="row"><span class="key"><i class="fa-solid fa-shield-halved"></i> Trạng thái</span><span class="val">Chưa xác minh trực tiếp</span></div>
+</div></section>
+<section class="section">
+<div class="heading">Hướng dẫn cài đặt</div>
+<div class="card guide">
+<div class="guide-title"><i class="fa-solid fa-mobile-screen-button"></i> Cài ứng dụng trên iPhone</div>
+<p>Nhấn nút Cài đặt ở phía trên bằng Safari trên iPhone/iPad. Nếu iOS yêu cầu xác nhận cài đặt, hãy làm theo hướng dẫn trên thiết bị.</p>
+<ol class="steps">
+<li>Mở trang này bằng trình duyệt Safari trên iPhone hoặc iPad.</li>
+<li>Nhấn <b>Cài đặt</b> và xác nhận khi hộp thoại cài ứng dụng xuất hiện.</li>
+<li>Chờ biểu tượng ứng dụng xuất hiện trên màn hình chính.</li>
+<li>Nếu iOS hiển thị cảnh báo nhà phát triển hoặc chứng chỉ, hãy kiểm tra kỹ nguồn và chỉ tiếp tục khi bạn tin tưởng nguồn phát hành.</li>
+</ol>
+<div class="note"><i class="fa-solid fa-circle-info"></i> Hoàng Kun iOS là trang giới thiệu liên kết. Gói ứng dụng và chứng chỉ vẫn được lưu trữ bởi máy chủ StoreIPA bên thứ ba; trang này không kiểm soát tính an toàn, tính hợp lệ hoặc tình trạng thu hồi chứng chỉ.</div>
+</div></section>
+<section class="section">
+<div class="heading">Liên kết nguồn đầy đủ</div>
+<div class="card links">
+<a href="https://storeipa.com/QgNbxM/manifest.plist" target="_blank" rel="noopener"><span><i class="fa-solid fa-file-code"></i> Manifest cài đặt (.plist)</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+<a href="https://storeipa.com/QgNbxM/icon.png?v=1793041359" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Icon ứng dụng</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+<a href="https://storeipa.com/QgNbxM/hd1.png" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Ảnh hướng dẫn 1</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+<a href="https://storeipa.com/QgNbxM/hd2.png" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Ảnh hướng dẫn 2</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+<a href="https://storeipa.com/QgNbxM/hd3.png" target="_blank" rel="noopener"><span><i class="fa-regular fa-image"></i> Ảnh hướng dẫn 3</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+</div></section>
+</main>
+<footer class="foot">© <span id="year"></span> Hoàng Kun iOS · Giao diện độc lập<br>Liên kết cài đặt do StoreIPA cung cấp.</footer>
+<script>
+const manifestURL="https://storeipa.com/QgNbxM/manifest.plist";
+function installApp(){if(!/^https?:$/.test(location.protocol)){alert("Hãy mở trang bằng Safari trên iPhone/iPad để cài đặt.");return;}location.href="itms-services://?action=download-manifest&url="+encodeURIComponent(manifestURL);}
+async function sharePage(){const data={title:"Hoàng Kun iOS",url:location.href};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert("Đã sao chép liên kết trang!");}}catch(e){if(e.name!=="AbortError")alert("Không thể chia sẻ liên kết.");}}
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body></html>
