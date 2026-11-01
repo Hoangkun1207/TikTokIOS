@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -884,6 +883,71 @@
             loadAppInfo();
             initScrollReveal();
         });
+
+    </script>
+        
+<script>
+/* ========================================
+   8. BẢO VỆ GIAO DIỆN CƠ BẢN
+======================================== */
+
+// Chặn chuột phải
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+    showToast("Chức năng này đã bị vô hiệu hóa!");
+});
+
+// Chặn phím tắt mở DevTools / xem mã nguồn
+document.addEventListener("keydown", function(e) {
+    const key = (e.key || "").toLowerCase();
+
+    if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key)) ||
+        (e.ctrlKey && ["u", "s"].includes(key)) ||
+        (e.metaKey && e.altKey && ["i", "j", "c"].includes(key))
+    ) {
+        e.preventDefault();
+        e.stopPropagation();
+        showToast("Thao tác này đã bị vô hiệu hóa!");
+        return false;
+    }
+}, true);
+
+// Chặn kéo thả hình ảnh
+document.addEventListener("dragstart", function(e) {
+    if (e.target.tagName === "IMG") {
+        e.preventDefault();
+    }
+});
+
+// Chặn chọn văn bản trên trang
+document.addEventListener("selectstart", function(e) {
+    if (!["INPUT", "TEXTAREA"].includes(e.target.tagName)) {
+        e.preventDefault();
+    }
+});
+
+// Chặn sao chép nội dung
+document.addEventListener("copy", function(e) {
+    e.preventDefault();
+    showToast("Không thể sao chép nội dung!");
+});
+
+// Chặn cắt nội dung
+document.addEventListener("cut", function(e) {
+    e.preventDefault();
+});
+
+// Chặn kéo thả nội dung
+document.addEventListener("dragover", function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener("drop", function(e) {
+    e.preventDefault();
+});
+
     </script>
 </body>
 </html>
