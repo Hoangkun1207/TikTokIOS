@@ -696,197 +696,243 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script>
-        /* ========================================
-           1. CẤU HÌNH WEBSITE
-        ======================================== */
-
-        const CONFIG = {
-            appName: "TikTok",
-            appVersion: "46.7.0",
-            appSize: "428.4 MB",
-            appAuthor: "Hoàng Kun",
-
-            appIcon: "https://storeipa.com/QgNbxM/icon.png?v=1793041359",
-
-            // Link file IPA gốc
-            ipaURL: "https://storeipa.com/QgNbxM/TikTokV3.1.ipa",
-
-            // Manifest dùng để cài trực tiếp trên iPhone
-            manifestURL: "https://storeipa.com/QgNbxM/manifest.plist",
-
-            certName: "Chengdu Railway Bureau",
-            certExpiry: "02/10/2027",
-
-            // API đếm lượt cài của StoreIPA
-            downloadCountAPI: "https://api.storeipa.com/api/download-count/"
-        };
-
-        /* ========================================
-           2. HIỂN THỊ THÔNG TIN
-        ======================================== */
-
-        function loadAppInfo() {
-            document.title = CONFIG.appName + " - Hoàng Kun iOS";
-
-            document.getElementById("appName").textContent = CONFIG.appName;
-            document.getElementById("appVersion").textContent = CONFIG.appVersion;
-            document.getElementById("appSize").textContent = CONFIG.appSize;
-            document.getElementById("appAuthor").textContent = CONFIG.appAuthor;
-            document.getElementById("appIcon").src = CONFIG.appIcon;
-            document.getElementById("certName").textContent = CONFIG.certName;
-            document.getElementById("certExpiry").textContent = CONFIG.certExpiry;
-            document.getElementById("year").textContent = new Date().getFullYear();
-        }
-
-        /* ========================================
-           3. CÀI ĐẶT TRỰC TIẾP QUA OTA
-        ======================================== */
-
-        function installApp() {
-            const button = document.getElementById("installBtn");
-
-            if (!CONFIG.manifestURL || !/^https:\/\//i.test(CONFIG.manifestURL)) {
-                showToast("Đường dẫn manifest chưa hợp lệ!");
-                return;
-            }
-
-            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-            if (!isIOS) {
-                showToast("Hãy mở website này bằng Safari trên iPhone hoặc iPad!");
-                return;
-            }
-
-            if (!/Safari/i.test(navigator.userAgent) ||
-                /CriOS|FxiOS|EdgiOS|OPiOS/i.test(navigator.userAgent)) {
-                showToast("Bạn hãy mở trang này bằng Safari nhé!");
-                return;
-            }
-
-            button.disabled = true;
-            button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Đang mở cài đặt...</span>';
-
-            // Gửi lượt cài tới API StoreIPA nếu URL có mã trang
-            const pathParts = window.location.pathname.split("/").filter(Boolean);
-            const uuid = pathParts.length ? pathParts[pathParts.length - 1] : "";
-
-            if (uuid && CONFIG.downloadCountAPI) {
-                fetch(CONFIG.downloadCountAPI + encodeURIComponent(uuid), {
-                    method: "POST",
-                    mode: "no-cors"
-                }).catch(() => {});
-            }
-
-            // Mở giao thức cài đặt OTA của iOS
-            const installURL =
-                "itms-services://?action=download-manifest&url=" +
-                encodeURIComponent(CONFIG.manifestURL);
-
-            window.location.href = installURL;
-
-            setTimeout(() => {
-                button.disabled = false;
-                button.innerHTML = '<i class="fa-solid fa-cloud-arrow-down"></i><span>Cài đặt ngay</span>';
-            }, 10000);
-        }
-
-        /* ========================================
-           4. CHIA SẺ WEBSITE
-        ======================================== */
-
-        async function sharePage() {
-            const shareData = {
-                title: "Hoàng Kun iOS",
-                text: "Truy cập Hoàng Kun iOS",
-                url: window.location.href
-            };
-
-            try {
-                if (navigator.share) {
-                    await navigator.share(shareData);
-                    return;
-                }
-
-                if (navigator.clipboard && window.isSecureContext) {
-                    await navigator.clipboard.writeText(window.location.href);
-                    showToast("Đã sao chép liên kết website!");
-                    return;
-                }
-
-                const textArea = document.createElement("textarea");
-                textArea.value = window.location.href;
-                textArea.style.position = "fixed";
-                textArea.style.opacity = "0";
-                document.body.appendChild(textArea);
-                textArea.select();
-
-                const copied = document.execCommand("copy");
-                textArea.remove();
-
-                showToast(copied ? "Đã sao chép liên kết website!" : "Không thể sao chép liên kết!");
-            } catch (error) {
-                if (error.name !== "AbortError") {
-                    showToast("Không thể chia sẻ liên kết!");
-                }
-            }
-        }
-
-        /* ========================================
-           5. THÔNG BÁO
-        ======================================== */
-
-        let toastTimer;
-
-        function showToast(message) {
-            const toast = document.getElementById("toast");
-
-            toast.textContent = message;
-            toast.classList.add("show");
-
-            clearTimeout(toastTimer);
-
-            toastTimer = setTimeout(() => {
-                toast.classList.remove("show");
-            }, 3000);
-        }
-
-        /* ========================================
-           6. HIỆU ỨNG SCROLL
-        ======================================== */
-
-        function initScrollReveal() {
-            const sections = document.querySelectorAll(".section");
-
-            if (!("IntersectionObserver" in window)) {
-                sections.forEach(section => section.classList.add("show"));
-                return;
-            }
-
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("show");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold:0.12 });
-
-            sections.forEach(section => observer.observe(section));
-        }
-
-        /* ========================================
-           7. KHỞI ĐỘNG WEBSITE
-        ======================================== */
-
-        document.addEventListener("DOMContentLoaded", () => {
-            loadAppInfo();
-            initScrollReveal();
-        });
-
-    </script>
-        
 <script>
+/* ========================================
+   1. CẤU HÌNH WEBSITE HOÀNG KUN
+======================================== */
+
+const CONFIG = {
+    appName: "TikTok",
+    appVersion: "46.7.0",
+    appSize: "428.4 MB",
+    appAuthor: "Hoàng Kun",
+
+    appIcon: "https://storeipa.com/QgNbxM/icon.png?v=1793041359",
+
+    // File IPA của bạn
+    ipaURL: "https://storeipa.com/QgNbxM/TikTokV3.1.ipa",
+
+    // Manifest của bạn
+    manifestURL: "https://storeipa.com/QgNbxM/manifest.plist",
+
+    certName: "Chengdu Railway Bureau",
+    certExpiry: "02/10/2027",
+
+    downloadCountAPI: "https://api.storeipa.com/api/download-count/"
+};
+
+
+/* ========================================
+   2. HIỂN THỊ THÔNG TIN ỨNG DỤNG
+======================================== */
+
+function loadAppInfo() {
+    document.title = CONFIG.appName + " - Hoàng Kun iOS";
+
+    const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+    };
+
+    const setImage = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.src = value;
+    };
+
+    setText("appName", CONFIG.appName);
+    setText("appVersion", CONFIG.appVersion);
+    setText("appSize", CONFIG.appSize);
+    setText("appAuthor", CONFIG.appAuthor);
+    setText("certName", CONFIG.certName);
+    setText("certExpiry", CONFIG.certExpiry);
+    setText("year", new Date().getFullYear());
+
+    setImage("appIcon", CONFIG.appIcon);
+}
+
+
+/* ========================================
+   3. CÀI ĐẶT IPA TRỰC TIẾP QUA OTA
+   LÕI ITMS-SERVICES CỦA STOREIPA
+======================================== */
+
+function installApp() {
+    const button = document.getElementById("installBtn");
+
+    if (!CONFIG.manifestURL ||
+        !/^https:\/\//i.test(CONFIG.manifestURL)) {
+        showToast("Đường dẫn Manifest không hợp lệ!");
+        return;
+    }
+
+    // Kiểm tra iPhone / iPad
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (!isIOS) {
+        showToast("Hãy mở website bằng Safari trên iPhone hoặc iPad!");
+        return;
+    }
+
+    // Yêu cầu Safari
+    if (!/Safari/i.test(navigator.userAgent) ||
+        /CriOS|FxiOS|EdgiOS|OPiOS/i.test(navigator.userAgent)) {
+        showToast("Vui lòng mở website bằng Safari!");
+        return;
+    }
+
+    if (button) {
+        button.disabled = true;
+        button.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i>' +
+            '<span>Đang mở cài đặt...</span>';
+    }
+
+    // Đếm lượt tải
+    const pathParts = window.location.pathname
+        .split("/")
+        .filter(Boolean);
+
+    const uuid = pathParts.length
+        ? pathParts[pathParts.length - 1]
+        : "";
+
+    if (uuid) {
+        fetch(
+            CONFIG.downloadCountAPI + encodeURIComponent(uuid),
+            { method: "POST" }
+        ).catch(() => {});
+    }
+
+    // LÕI CÀI ĐẶT OTA
+    const installURL =
+        "itms-services://?action=download-manifest&url=" +
+        encodeURIComponent(CONFIG.manifestURL);
+
+    window.location.href = installURL;
+
+    setTimeout(() => {
+        if (button) {
+            button.disabled = false;
+            button.innerHTML =
+                '<i class="fa-solid fa-cloud-arrow-down"></i>' +
+                '<span>Cài đặt ngay</span>';
+        }
+    }, 10000);
+}
+
+
+/* ========================================
+   4. CHIA SẺ WEBSITE
+======================================== */
+
+async function sharePage() {
+    const shareData = {
+        title: "Hoàng Kun iOS",
+        text: "Truy cập Hoàng Kun iOS",
+        url: window.location.href
+    };
+
+    try {
+        if (navigator.share) {
+            await navigator.share(shareData);
+            return;
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast("Đã sao chép liên kết website!");
+            return;
+        }
+
+        const textArea = document.createElement("textarea");
+        textArea.value = window.location.href;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        const copied = document.execCommand("copy");
+        textArea.remove();
+
+        showToast(
+            copied
+                ? "Đã sao chép liên kết website!"
+                : "Không thể sao chép liên kết!"
+        );
+
+    } catch (error) {
+        if (error.name !== "AbortError") {
+            showToast("Không thể chia sẻ liên kết!");
+        }
+    }
+}
+
+
+/* ========================================
+   5. THÔNG BÁO TOAST
+======================================== */
+
+let toastTimer;
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+
+    if (!toast) {
+        console.warn(message);
+        return;
+    }
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+
+
+/* ========================================
+   6. HIỆU ỨNG SCROLL REVEAL
+======================================== */
+
+function initScrollReveal() {
+    const sections = document.querySelectorAll(".section");
+
+    if (!("IntersectionObserver" in window)) {
+        sections.forEach(section => {
+            section.classList.add("show");
+        });
+        return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12
+    });
+
+    sections.forEach(section => observer.observe(section));
+}
+
+
+/* ========================================
+   7. KHỞI ĐỘNG WEBSITE
+======================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadAppInfo();
+    initScrollReveal();
+});
+
+
 /* ========================================
    8. BẢO VỆ GIAO DIỆN CƠ BẢN
 ======================================== */
@@ -897,22 +943,27 @@ document.addEventListener("contextmenu", function(e) {
     showToast("Chức năng này đã bị vô hiệu hóa!");
 });
 
-// Chặn phím tắt mở DevTools / xem mã nguồn
+
+// Chặn phím tắt DevTools / xem mã nguồn
 document.addEventListener("keydown", function(e) {
     const key = (e.key || "").toLowerCase();
 
     if (
         e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key)) ||
+        (e.ctrlKey && e.shiftKey &&
+            ["i", "j", "c"].includes(key)) ||
         (e.ctrlKey && ["u", "s"].includes(key)) ||
-        (e.metaKey && e.altKey && ["i", "j", "c"].includes(key))
+        (e.metaKey && e.altKey &&
+            ["i", "j", "c"].includes(key))
     ) {
         e.preventDefault();
         e.stopPropagation();
+
         showToast("Thao tác này đã bị vô hiệu hóa!");
         return false;
     }
 }, true);
+
 
 // Chặn kéo thả hình ảnh
 document.addEventListener("dragstart", function(e) {
@@ -921,23 +972,27 @@ document.addEventListener("dragstart", function(e) {
     }
 });
 
-// Chặn chọn văn bản trên trang
+
+// Chặn chọn văn bản ngoài INPUT / TEXTAREA
 document.addEventListener("selectstart", function(e) {
     if (!["INPUT", "TEXTAREA"].includes(e.target.tagName)) {
         e.preventDefault();
     }
 });
 
-// Chặn sao chép nội dung
+
+// Chặn sao chép
 document.addEventListener("copy", function(e) {
     e.preventDefault();
     showToast("Không thể sao chép nội dung!");
 });
 
-// Chặn cắt nội dung
+
+// Chặn cắt
 document.addEventListener("cut", function(e) {
     e.preventDefault();
 });
+
 
 // Chặn kéo thả nội dung
 document.addEventListener("dragover", function(e) {
@@ -948,7 +1003,8 @@ document.addEventListener("drop", function(e) {
     e.preventDefault();
 });
 
-    </script>
+</script>
+
     <script>
 /* THÔNG BÁO KHI NGƯỜI DÙNG THAO TÁC */
 
