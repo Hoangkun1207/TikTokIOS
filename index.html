@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -768,30 +769,43 @@ function loadAppInfo() {
    STOREIPA INSTALL ENGINE
 ======================================== */
 
+let installing = false;
+
 function installApp() {
     const button = document.getElementById("installBtn");
+    const userAgent = navigator.userAgent;
 
-    // Kiểm tra Manifest
-    if (!CONFIG.manifestURL ||
-        !/^https:\/\//i.test(CONFIG.manifestURL)) {
-        showToast("Đường dẫn Manifest không hợp lệ!");
-        return;
-    }
+    if (installing) return;
 
-    // Kiểm tra thiết bị iOS
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // Kiểm tra thiết bị iPhone / iPad
+    const isIOS =
+        /iPhone|iPad|iPod/i.test(userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
     if (!isIOS) {
         showToast("Hãy mở website bằng Safari trên iPhone hoặc iPad!");
         return;
     }
 
-    // Kiểm tra trình duyệt Safari
-    if (!/Safari/i.test(navigator.userAgent) ||
-        /CriOS|FxiOS|EdgiOS|OPiOS/i.test(navigator.userAgent)) {
+    // Kiểm tra Safari, loại trừ trình duyệt bên thứ ba
+    const isSafari =
+        /Safari/i.test(userAgent) &&
+        !/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo|Dolphin/i.test(userAgent);
+
+    if (!isSafari) {
         showToast("Vui lòng mở website bằng Safari!");
         return;
     }
+
+    // Kiểm tra Manifest
+    const manifestURL = CONFIG.manifestURL.trim();
+
+    if (!manifestURL || !/^https:\/\//i.test(manifestURL)) {
+        showToast("Đường dẫn Manifest không hợp lệ!");
+        return;
+    }
+
+    installing = true;
 
     if (button) {
         button.disabled = true;
@@ -813,20 +827,26 @@ function installApp() {
     if (uuid && CONFIG.downloadCountAPI) {
         fetch(
             CONFIG.downloadCountAPI + encodeURIComponent(uuid),
-            { method: "POST" }
+            {
+                method: "POST",
+                keepalive: true
+            }
         ).catch(() => {});
     }
 
-    // Tạo liên kết cài đặt OTA
+    // LÕI CÀI ĐẶT OTA THEO STOREIPA
+    // Không encodeURIComponent URL Manifest
     const installURL =
         "itms-services://?action=download-manifest&url=" +
-        encodeURIComponent(CONFIG.manifestURL);
+        manifestURL;
 
-    // Mở cài đặt iOS
+    // Mở giao thức cài đặt của iOS
     window.location.href = installURL;
 
-    // Khôi phục nút sau 10 giây
+    // Khôi phục nút nếu iOS không chuyển giao thức
     setTimeout(() => {
+        installing = false;
+
         if (button) {
             button.disabled = false;
             button.innerHTML =
