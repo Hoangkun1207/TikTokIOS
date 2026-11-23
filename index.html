@@ -498,29 +498,55 @@ a { color:inherit;text-decoration:none; }
 
 .toast {
     position:fixed;
-    bottom:30px;
     left:50%;
-    z-index:999;
-    max-width:calc(100% - 30px);
-    padding:12px 20px;
-    transform:translate(-50%,20px);
-    border:1px solid var(--border);
-    border-radius:30px;
-    background:#17233e;
-    box-shadow:var(--shadow);
-    color:white;
+    bottom:calc(26px + env(safe-area-inset-bottom));
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:max-content;
+    max-width:calc(100% - 28px);
+    min-width:230px;
+    padding:13px 17px 13px 13px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    background:rgba(18,29,51,.96);
+    box-shadow:0 16px 45px rgba(0,0,0,.38);
+    color:#fff;
     font-size:13px;
     font-weight:700;
+    line-height:1.5;
     opacity:0;
+    visibility:hidden;
     pointer-events:none;
-    text-align:center;
-    transition:.3s;
+    transform:translate(-50%,18px) scale(.96);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    transition:opacity .25s ease,transform .25s ease,visibility .25s;
 }
 
 .toast.show {
-    transform:translate(-50%,0);
     opacity:1;
+    visibility:visible;
+    transform:translate(-50%,0) scale(1);
 }
+
+.toast-icon {
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    flex:0 0 38px;
+    border-radius:12px;
+    background:rgba(67,133,255,.16);
+    color:#65b8ff;
+    font-size:17px;
+}
+
+.toast.success .toast-icon { background:rgba(36,209,139,.15);color:#24d18b; }
+.toast.error .toast-icon { background:rgba(255,91,105,.15);color:#ff6878; }
+.toast.info .toast-icon { background:rgba(67,133,255,.16);color:#65b8ff; }
+.toast-message { overflow-wrap:anywhere; }
 
 @media (max-width:600px) {
     .guide-gallery { grid-template-columns:1fr; }
@@ -705,7 +731,10 @@ a { color:inherit;text-decoration:none; }
     <br>Designed with ❤️ by Hoàng Kun
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast info" id="toast" role="status" aria-live="polite" aria-atomic="true">
+    <span class="toast-icon"><i class="fa-solid fa-circle-info" id="toastIcon"></i></span>
+    <span class="toast-message" id="toastMessage"></span>
+</div>
 
 <script>
 /* ========================================
@@ -771,87 +800,44 @@ function loadAppInfo() {
 let installing = false;
 
 function installApp() {
-    const button = document.getElementById("installBtn");
-    const userAgent = navigator.userAgent;
+    const btn = document.getElementById('installBtn');
 
-    if (installing) return;
-
-    // Kiểm tra thiết bị iPhone / iPad
-    const isIOS =
-        /iPhone|iPad|iPod/i.test(userAgent) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    // Kiểm tra thiết bị iOS
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if (!isIOS) {
-        showToast("Hãy mở website bằng Safari trên iPhone hoặc iPad!");
+        alert('Vui lòng sử dụng iPhone hoặc iPad để cài đặt ứng dụng!');
         return;
     }
 
-    // Kiểm tra Safari, loại trừ trình duyệt bên thứ ba
-    const isSafari =
-        /Safari/i.test(userAgent) &&
-        !/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo|Dolphin/i.test(userAgent);
+    // Kiểm tra Safari
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (!isSafari) {
-        showToast("Vui lòng mở website bằng Safari!");
+        alert('Vui lòng mở website bằng trình duyệt Safari để cài đặt!');
         return;
     }
 
-    // Kiểm tra Manifest
-    const manifestURL = CONFIG.manifestURL.trim();
+    btn.classList.add('loading');
+    btn.disabled = true;
 
-    if (!manifestURL || !/^https:\/\//i.test(manifestURL)) {
-        showToast("Đường dẫn Manifest không hợp lệ!");
-        return;
-    }
+    // Tăng lượt tải
+    const uuid = window.location.pathname.split('/').filter(Boolean).pop();
 
-    installing = true;
-
-    if (button) {
-        button.disabled = true;
-        button.innerHTML =
-            '<i class="fa-solid fa-spinner fa-spin"></i>' +
-            '<span>Đang mở cài đặt...</span>';
-    }
-
-    // Lấy UUID từ đường dẫn website
-    const pathParts = window.location.pathname
-        .split("/")
-        .filter(Boolean);
-
-    const uuid = pathParts.length
-        ? pathParts[pathParts.length - 1]
-        : "";
-
-    // Gửi yêu cầu đếm lượt tải
-    if (uuid && CONFIG.downloadCountAPI) {
+    if (uuid) {
         fetch(
-            CONFIG.downloadCountAPI + encodeURIComponent(uuid),
-            {
-                method: "POST",
-                keepalive: true
-            }
+            'https://api.storeipa.com/api/download-count/' + uuid,
+            { method: 'POST' }
         ).catch(() => {});
     }
 
-    // LÕI CÀI ĐẶT OTA THEO STOREIPA
-    // Không encodeURIComponent URL Manifest
-    const installURL =
-        "itms-services://?action=download-manifest&url=" +
-        manifestURL;
+    // Mở cài đặt ứng dụng bằng Manifest của website kia
+    location.href =
+        'itms-services://?action=download-manifest&url=https://storeipa.com/PxAy4Y/manifest.plist';
 
-    // Mở giao thức cài đặt của iOS
-    window.location.href = installURL;
-
-    // Khôi phục nút nếu iOS không chuyển giao thức
     setTimeout(() => {
-        installing = false;
-
-        if (button) {
-            button.disabled = false;
-            button.innerHTML =
-                '<i class="fa-solid fa-cloud-arrow-down"></i>' +
-                '<span>Cài đặt ngay</span>';
-        }
+        btn.classList.remove('loading');
+        btn.disabled = false;
     }, 10000);
 }
 
@@ -910,22 +896,32 @@ async function sharePage() {
 
 let toastTimer;
 
-function showToast(message) {
+function showToast(message, type = "success") {
     const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    const toastIcon = document.getElementById("toastIcon");
 
-    if (!toast) {
+    if (!toast || !toastMessage || !toastIcon) {
         console.warn(message);
         return;
     }
 
-    toast.textContent = message;
+    const icons = {
+        success: "fa-circle-check",
+        error: "fa-circle-exclamation",
+        info: "fa-circle-info"
+    };
+
+    toast.classList.remove("success", "error", "info");
+    toast.classList.add(["success", "error", "info"].includes(type) ? type : "info");
+    toastIcon.className = "fa-solid " + (icons[type] || icons.info);
+    toastMessage.textContent = message;
     toast.classList.add("show");
 
     clearTimeout(toastTimer);
-
     toastTimer = setTimeout(() => {
         toast.classList.remove("show");
-    }, 3000);
+    }, 3600);
 }
 
 
@@ -975,7 +971,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Chặn chuột phải
 document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
-    showToast("Chức năng này đã bị vô hiệu hóa!");
+    showToast("Chức năng này đã bị vô hiệu hóa!", "info");
 });
 
 
@@ -994,7 +990,7 @@ document.addEventListener("keydown", function(e) {
         e.preventDefault();
         e.stopPropagation();
 
-        showToast("Thao tác này đã bị vô hiệu hóa!");
+        showToast("Thao tác này đã bị vô hiệu hóa!", "info");
         return false;
     }
 }, true);
